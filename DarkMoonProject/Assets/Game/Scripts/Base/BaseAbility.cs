@@ -8,5 +8,5 @@ public abstract class BaseAbility {
 
     protected int id = 1;
 
-    protected abstract void effect ();
+    protected abstract void effect (int level);
 }

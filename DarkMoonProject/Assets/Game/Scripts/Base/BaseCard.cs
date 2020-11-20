@@ -18,4 +18,6 @@ public abstract class BaseCard : MonoBehaviour {
 
     protected List<int> abilityList = new List<int> ();
 
+    // TODO: 根据所属阵营操作相应数据
+
 }

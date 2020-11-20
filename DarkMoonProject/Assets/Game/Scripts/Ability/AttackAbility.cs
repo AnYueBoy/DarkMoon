@@ -5,7 +5,7 @@
  */
 
 public class AttackAbility : BaseAbility {
-    protected override void effect () {
+    protected override void effect (int level) {
 
     }
 }
