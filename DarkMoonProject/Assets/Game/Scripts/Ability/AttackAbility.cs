@@ -5,7 +5,7 @@
  */
 
 public class AttackAbility : BaseAbility {
-    protected override void effect (BaseRoleData targetData) {
+    protected override void effect (AbilityData abilityData, BaseRoleData targetData) {
 
     }
 }
