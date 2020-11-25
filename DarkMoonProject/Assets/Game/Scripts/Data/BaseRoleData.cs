@@ -6,5 +6,5 @@
 
 public abstract class BaseRoleData {
 
-    protected double roleHp = 0;
+    public double roleHp = 0;
 }

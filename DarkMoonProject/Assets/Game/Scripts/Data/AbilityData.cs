@@ -6,4 +6,5 @@
 
 public class AbilityData {
 
+    public double harmValue = 0;
 }
