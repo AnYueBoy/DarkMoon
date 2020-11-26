@@ -7,5 +7,5 @@ public class InSidePlayerData {
 
     public double currentHP = 0;
 
-    
+    public double armor = 0;
 }

@@ -6,6 +6,12 @@
 
 public class AttackAbility : BaseAbility {
     protected override void effect (AbilityData abilityData, BaseRoleData targetData) {
-        targetData.roleHp -= abilityData.harmValue;
+        if (abilityData.baseValue <= targetData.armor) {
+            targetData.armor -= abilityData.baseValue;
+            return;
+        }
+        double extendValue = abilityData.baseValue - targetData.armor;
+        targetData.armor = 0;
+        targetData.roleHp -= extendValue;
     }
 }
