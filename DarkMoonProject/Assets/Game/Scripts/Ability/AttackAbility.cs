@@ -6,7 +6,7 @@
 
 public class AttackAbility : BaseAbility {
 
-    protected int id = 1;
+    protected int id = 2;
 
     protected override void effect (CardData cardData, BaseRoleData targetData) {
 

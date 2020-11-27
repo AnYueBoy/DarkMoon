@@ -6,7 +6,7 @@
 
 public class DefenceAbility : BaseAbility {
 
-    protected int id = 2;
+    protected int id = 3;
 
     protected override void effect (CardData cardData, BaseRoleData targetData) {
         AbilityData abilityData = cardData.abilityDic[id];
