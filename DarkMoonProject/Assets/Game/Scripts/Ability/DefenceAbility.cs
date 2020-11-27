@@ -5,7 +5,11 @@
  */
 
 public class DefenceAbility : BaseAbility {
-    protected override void effect (AbilityData abilityData, BaseRoleData targetRole) {
-        targetRole.armor += abilityData.baseValue;
+
+    protected int id = 2;
+
+    protected override void effect (CardData cardData, BaseRoleData targetData) {
+        AbilityData abilityData = cardData.abilityDic[id];
+        targetData.armor += abilityData.baseValue;
     }
 }

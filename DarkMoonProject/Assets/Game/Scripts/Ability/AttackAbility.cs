@@ -5,7 +5,12 @@
  */
 
 public class AttackAbility : BaseAbility {
-    protected override void effect (AbilityData abilityData, BaseRoleData targetData) {
+
+    protected int id = 1;
+
+    protected override void effect (CardData cardData, BaseRoleData targetData) {
+
+        AbilityData abilityData = cardData.abilityDic[id];
         if (abilityData.baseValue <= targetData.armor) {
             targetData.armor -= abilityData.baseValue;
             return;

@@ -1,0 +1,22 @@
+{
+    "cards": [
+        {
+            "id": 1,
+            "abilities": [
+                {
+                    "id": 1,
+                    "abilityData": {
+                        "baseValue": 1
+                    }
+                },
+                {
+                    "id": 2,
+                    "abilityData": {
+                        "baseValue": 1
+                    }
+                }
+
+            ]
+        }
+    ]
+}

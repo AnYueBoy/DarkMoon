@@ -10,14 +10,9 @@ using UnityEngine;
 
 public abstract class BaseCard : MonoBehaviour {
 
-    protected int energyConsume = 1;
-
     protected int currentLevel = 1;
 
-    protected CampEnum camp = CampEnum.PLAYER;
+    public CampEnum camp = CampEnum.PLAYER;
 
-    protected List<int> abilityList = new List<int> ();
-
-    // TODO: 根据所属阵营操作相应数据
-
+    protected CardData cardData = null;
 }

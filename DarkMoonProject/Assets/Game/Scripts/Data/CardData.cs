@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 /*
  * @Author: l hy 
  * @Date: 2020-11-25 16:10:40 
@@ -6,4 +7,5 @@
 
 public class CardData {
 
+    public Dictionary<int, AbilityData> abilityDic = new Dictionary<int, AbilityData> ();
 }
