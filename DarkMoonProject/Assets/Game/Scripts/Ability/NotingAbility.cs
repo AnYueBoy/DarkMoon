@@ -6,6 +6,6 @@
 
 public class NotingAbility : BaseAbility {
     protected override void effect (CardData cardData, BaseRoleData targetData) {
-
+        cardData.isRemove = true;
     }
 }

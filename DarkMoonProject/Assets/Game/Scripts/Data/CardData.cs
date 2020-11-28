@@ -7,5 +7,10 @@ using System.Collections.Generic;
 
 public class CardData {
 
+    public int energyConsume = 0;
+
+    public bool isRemove = false;
+
     public Dictionary<int, AbilityData> abilityDic = new Dictionary<int, AbilityData> ();
+
 }
