@@ -13,4 +13,15 @@ public abstract class BaseCard : MonoBehaviour {
     protected int currentLevel = 1;
 
     protected CardData cardData = null;
+
+    protected bool consumeCheck () {
+        CampEnum targetCamp = cardData.camp;
+        BaseRoleData targetData = DataManager.getInstance ().getTargetData (targetCamp);
+        if (targetData.energy < cardData.energyConsume) {
+            return false;
+        }
+        return true;
+    }
+
+    // protected void trigger
 }
