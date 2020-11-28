@@ -14,6 +14,10 @@ public abstract class BaseCard : MonoBehaviour {
 
     protected CardData cardData = null;
 
+    protected void buildCard () {
+
+    }
+
     protected bool consumeCheck () {
         CampEnum targetCamp = cardData.camp;
         BaseRoleData targetData = DataManager.getInstance ().getTargetData (targetCamp);
@@ -23,5 +27,15 @@ public abstract class BaseCard : MonoBehaviour {
         return true;
     }
 
-    // protected void trigger
+    protected void turnBegin () {
+
+    }
+
+    protected void playerTrigger () {
+
+    }
+
+    protected void turnEnd () {
+
+    }
 }
