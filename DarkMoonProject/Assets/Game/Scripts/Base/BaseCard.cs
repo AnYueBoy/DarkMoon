@@ -4,13 +4,16 @@
  * @Description: 卡牌基类
  */
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseCard : MonoBehaviour {
 
-    protected int energyConsume = 1;
+    protected int currentLevel = 1;
 
-    protected List<int> abilityList = new List<int> ();
 
+    public CampEnum camp = CampEnum.PLAYER;
+
+    protected CardData cardData = null;
 }
