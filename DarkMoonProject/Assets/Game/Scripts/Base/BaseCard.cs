@@ -12,8 +12,5 @@ public abstract class BaseCard : MonoBehaviour {
 
     protected int currentLevel = 1;
 
-
-    public CampEnum camp = CampEnum.PLAYER;
-
     protected CardData cardData = null;
 }

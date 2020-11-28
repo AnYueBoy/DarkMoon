@@ -8,8 +8,9 @@ public class DefenceAbility : BaseAbility {
 
     protected int id = 2;
 
-    protected override void effect (CardData cardData, BaseRoleData targetData) {
+    protected override void effect (CardData cardData) {
         AbilityData abilityData = cardData.abilityDic[id];
+        BaseRoleData targetData = DataManager.getInstance ().getTargetData (cardData.camp);
         targetData.armor += abilityData.baseValue;
     }
 }

@@ -5,7 +5,7 @@
  */
 
 public class NotingAbility : BaseAbility {
-    protected override void effect (CardData cardData, BaseRoleData targetData) {
+    protected override void effect (CardData cardData) {
         cardData.isRemove = true;
     }
 }

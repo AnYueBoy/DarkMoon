@@ -7,7 +7,7 @@ public class DataManager {
 
     private static DataManager _instance = null;
 
-    public static DataManager instance () {
+    public static DataManager getInstance () {
         if (_instance == null) {
             _instance = new DataManager ();
         }
@@ -16,12 +16,20 @@ public class DataManager {
     }
 
     private BaseRoleData _battleRoleData = null;
-    public BaseRoleData battleRoleData () {
-        return _battleRoleData;
-    }
+    // public BaseRoleData battleRoleData () {
+    //     return _battleRoleData;
+    // }
 
     private BaseRoleData _battleEnemyData = null;
-    public BaseRoleData battleEnemyData () {
-        return _battleEnemyData;
+    // public BaseRoleData battleEnemyData () {
+    //     return _battleEnemyData;
+    // }
+
+    public BaseRoleData getTargetData (CampEnum camp) {
+        if (camp == CampEnum.ENEMY) {
+            return this._battleEnemyData;
+        }
+
+        return this._battleRoleData;
     }
 }

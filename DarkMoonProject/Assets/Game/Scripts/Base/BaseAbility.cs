@@ -6,5 +6,5 @@
 
 public abstract class BaseAbility {
 
-    protected abstract void effect (CardData cardData, BaseRoleData targetData);
+    protected abstract void effect (CardData cardData);
 }

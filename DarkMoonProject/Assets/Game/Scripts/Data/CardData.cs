@@ -11,6 +11,7 @@ public class CardData {
 
     public bool isRemove = false;
 
-    public Dictionary<int, AbilityData> abilityDic = new Dictionary<int, AbilityData> ();
+    public CampEnum camp = CampEnum.PLAYER;
 
+    public Dictionary<int, AbilityData> abilityDic = new Dictionary<int, AbilityData> ();
 }
