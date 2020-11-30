@@ -6,9 +6,9 @@
 
 public abstract class BaseAbility {
 
-    protected abstract void turnBeginEffect (CardData cardData);
+    public abstract void turnBeginEffect (CardData cardData);
 
-    protected abstract void effect (CardData cardData);
+    public abstract void effect (CardData cardData);
 
-    protected abstract void turnEndEffect (CardData cardData);
+    public abstract void turnEndEffect (CardData cardData);
 }

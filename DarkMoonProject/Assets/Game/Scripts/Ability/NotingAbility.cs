@@ -8,10 +8,10 @@ public class NotingAbility : BaseAbility {
 
     public int id = 3;
 
-    protected override void turnBeginEffect (CardData cardData) { }
-    protected override void effect (CardData cardData) { }
+    public override void turnBeginEffect (CardData cardData) { }
+    public override void effect (CardData cardData) { }
 
-    protected override void turnEndEffect (CardData cardData) {
+    public override void turnEndEffect (CardData cardData) {
         cardData.isRemove = true;
     }
 }

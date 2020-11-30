@@ -13,5 +13,5 @@ public class CardData {
 
     public CampEnum camp = CampEnum.PLAYER;
 
-    public Dictionary<int, AbilityData> abilityDic = new Dictionary<int, AbilityData> ();
+    public Dictionary<int, AbilityData> abilityDataDic = new Dictionary<int, AbilityData> ();
 }

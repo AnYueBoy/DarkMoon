@@ -8,10 +8,10 @@ public class AttackAbility : BaseAbility {
 
     public int id = 1;
 
-    protected override void turnBeginEffect (CardData cardData) { }
+    public override void turnBeginEffect (CardData cardData) { }
 
-    protected override void effect (CardData cardData) {
-        AbilityData abilityData = cardData.abilityDic[id];
+    public override void effect (CardData cardData) {
+        AbilityData abilityData = cardData.abilityDataDic[id];
         BaseRoleData targetData = DataManager.getInstance ().getTargetData (cardData.camp);
 
         if (abilityData.baseValue <= targetData.armor) {
@@ -23,5 +23,5 @@ public class AttackAbility : BaseAbility {
         targetData.roleHp -= extendValue;
     }
 
-    protected override void turnEndEffect (CardData cardData) { }
+    public override void turnEndEffect (CardData cardData) { }
 }
