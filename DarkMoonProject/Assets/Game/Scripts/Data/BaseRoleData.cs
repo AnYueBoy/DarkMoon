@@ -9,4 +9,6 @@ public abstract class BaseRoleData {
     public double roleHp = 0;
 
     public double armor = 0;
+
+    public double energy = 0;
 }

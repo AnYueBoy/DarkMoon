@@ -5,7 +5,13 @@
  */
 
 public class NotingAbility : BaseAbility {
-    protected override void effect (CardData cardData, BaseRoleData targetData) {
+
+    public int id = 3;
+
+    protected override void turnBeginEffect (CardData cardData) { }
+    protected override void effect (CardData cardData) { }
+
+    protected override void turnEndEffect (CardData cardData) {
         cardData.isRemove = true;
     }
 }

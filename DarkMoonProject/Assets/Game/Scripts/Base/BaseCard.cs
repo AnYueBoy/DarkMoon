@@ -12,8 +12,30 @@ public abstract class BaseCard : MonoBehaviour {
 
     protected int currentLevel = 1;
 
-
-    public CampEnum camp = CampEnum.PLAYER;
-
     protected CardData cardData = null;
+
+    protected void buildCard () {
+
+    }
+
+    protected bool consumeCheck () {
+        CampEnum targetCamp = cardData.camp;
+        BaseRoleData targetData = DataManager.getInstance ().getTargetData (targetCamp);
+        if (targetData.energy < cardData.energyConsume) {
+            return false;
+        }
+        return true;
+    }
+
+    protected void turnBegin () {
+
+    }
+
+    protected void playerTrigger () {
+
+    }
+
+    protected void turnEnd () {
+
+    }
 }
