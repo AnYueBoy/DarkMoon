@@ -6,7 +6,7 @@
 
 public class AttackAbility : BaseAbility {
 
-    protected int id = 1;
+    public int id = 1;
 
     protected override void turnBeginEffect (CardData cardData) { }
 

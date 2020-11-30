@@ -6,6 +6,8 @@
 
 public class NotingAbility : BaseAbility {
 
+    public int id = 3;
+
     protected override void turnBeginEffect (CardData cardData) { }
     protected override void effect (CardData cardData) { }
 
