@@ -1,14 +1,14 @@
 ﻿/*
  * @Author: l hy 
  * @Date: 2020-11-18 16:44:09 
- * @Description: 卡牌基类
+ * @Description: 卡牌
  */
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseCard : MonoBehaviour {
+public class BaseCard : MonoBehaviour {
 
     protected int currentLevel = 1;
 
