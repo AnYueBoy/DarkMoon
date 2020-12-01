@@ -7,12 +7,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BaseCard : MonoBehaviour {
 
     protected int currentLevel = 1;
 
     protected CardData cardData = null;
+
+    #region ui相关
+
+    [Header ("立绘图片")]
+    public Image drawImage = null;
+
+    [Header ("卡牌背景图片")]
+    public Image cardBgImage = null;
+    #endregion
 
     protected void buildCard () {
 
