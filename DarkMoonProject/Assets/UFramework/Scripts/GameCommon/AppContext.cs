@@ -25,4 +25,25 @@ public class AppContext {
             return this._assetsManager;
         }
     }
+
+    private AudioManager _audioManager = null;
+    public AudioManager audioManager {
+        get {
+            if (_audioManager == null) {
+                _audioManager = new AudioManager ();
+            }
+
+            return _audioManager;
+        }
+    }
+
+    private ListenerManager _listenerManager = null;
+    public ListenerManager listenerManager {
+        get {
+            if (_listenerManager == null) {
+                _listenerManager = new ListenerManager ();
+            }
+            return _listenerManager;
+        }
+    }
 }
