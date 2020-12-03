@@ -15,6 +15,8 @@ public class AssetsManager {
 
     private Dictionary<string, int> referenceCounter = new Dictionary<string, int> ();
 
+    private AssetsLoadManager assetsLoadManager = new AssetsLoadManager ();
+
     public T getAssetsByUrl<T> (string assetsUrl) where T : Object {
         Object targetAssets = null;
         if (assetsPool.ContainsKey (assetsUrl)) {
@@ -22,7 +24,7 @@ public class AssetsManager {
             return targetAssets as T;
         }
 
-        targetAssets = AssetsLoadManager.loadAssets<T> (assetsUrl);
+        targetAssets = this.assetsLoadManager.loadAssets<T> (assetsUrl);
         assetsPool.Add (assetsUrl, targetAssets);
         this.addRef (assetsUrl);
         return targetAssets as T;

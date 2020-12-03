@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-/*
+﻿/*
  * @Author: l hy 
  * @Date: 2020-04-10 21:54:42 
  * @Description: 场景管理器 
@@ -8,8 +6,8 @@ using System.Linq;
  * @Last Modified time: 2020-04-14 21:50:19
  */
 
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
