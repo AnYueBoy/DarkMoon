@@ -3,15 +3,18 @@
  * @Date: 2020-12-03 15:25:34 
  * @Description: AppContext
  */
-public class AppContext {
+using UnityEngine;
+
+public class AppContext : MonoBehaviour {
 
     private static AppContext _instance = null;
+
+    private void Awake () {
+        _instance = this;
+    }
+
     public static AppContext instance {
         get {
-            if (_instance == null) {
-                _instance = new AppContext ();
-            }
-
             return _instance;
         }
     }
