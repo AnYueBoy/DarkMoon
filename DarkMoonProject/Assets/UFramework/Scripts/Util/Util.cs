@@ -223,6 +223,12 @@
                int result = Random.Range (min, max + 1);
                return result;
            }
+           public static float getRandomValue (float min, float max) {
+               min = min > max?max : min;
+               max = max < min?min : max;
+               float result = Random.Range (min, max + 1);
+               return result;
+           }
 
            /// <summary>
            /// 混乱数组元素
@@ -236,6 +242,17 @@
                    sourceList[i] = sourceList[randomValue];
                    sourceList[randomValue] = tempValue;
                }
+           }
+
+           /// <summary>
+           /// 获取随机颜色
+           /// </summary>
+           /// <returns></returns>
+           public static Color getRandomColor () {
+               float r = getRandomValue (0, 255f);
+               float g = getRandomValue (0, 255f);
+               float b = getRandomValue (0, 255f);
+               return new Color (r, g, b);
            }
        }
 
