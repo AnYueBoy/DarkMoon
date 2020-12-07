@@ -6,5 +6,11 @@
 
 public class AbilityData {
 
+    public int id = 1;
+
     public double baseValue = 0;
+
+    public string title = "";
+
+    public string describe = "";
 }

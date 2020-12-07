@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3221211798147221419}
   - component: {fileID: 3221211798147221416}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1863926126086944e91dfd9a68947162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgImage: {fileID: 8454525861399884371}
+  title: {fileID: 3221211798147221416}
 --- !u!1 &4370561411803697602
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +334,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1118047623637682672}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3251241508798153601}
+        m_MethodName: joinItem_Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5108037986570116889
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +540,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1441636196022096390}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3251241508798153601}
+        m_MethodName: editorItem_Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7290712413281331029
 GameObject:
   m_ObjectHideFlags: 0
