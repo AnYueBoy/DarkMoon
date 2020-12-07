@@ -87,6 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3221211798729390287}
   - component: {fileID: 3221211798729390281}
+  - component: {fileID: 3251241508798153601}
   m_Layer: 5
   m_Name: AbilityItem
   m_TagString: Untagged
@@ -125,6 +126,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3221211798729390284}
   m_CullTransparentMesh: 0
+--- !u!114 &3251241508798153601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221211798729390284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1863926126086944e91dfd9a68947162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4370561411803697602
 GameObject:
   m_ObjectHideFlags: 0
