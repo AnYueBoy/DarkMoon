@@ -17,4 +17,12 @@ public class DefenceAbility : BaseAbility {
     }
 
     public override void turnEndEffect (CardData cardData) { }
+
+    public override string describe () {
+        return "获得防御";
+    }
+
+    public override string title () {
+        return "防御";
+    }
 }

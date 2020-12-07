@@ -14,4 +14,12 @@ public class NotingAbility : BaseAbility {
     public override void turnEndEffect (CardData cardData) {
         cardData.isRemove = true;
     }
+
+    public override string title () {
+        return "虚无";
+    }
+
+    public override string describe () {
+        return "在回合结束时，移出卡组";
+    }
 }

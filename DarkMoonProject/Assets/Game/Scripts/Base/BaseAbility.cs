@@ -11,4 +11,8 @@ public abstract class BaseAbility {
     public abstract void effect (CardData cardData);
 
     public abstract void turnEndEffect (CardData cardData);
+
+    public abstract string title ();
+
+    public abstract string describe ();
 }

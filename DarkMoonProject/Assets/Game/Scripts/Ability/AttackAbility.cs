@@ -24,4 +24,12 @@ public class AttackAbility : BaseAbility {
     }
 
     public override void turnEndEffect (CardData cardData) { }
+
+    public override string describe () {
+        return "造成伤害";
+    }
+
+    public override string title () {
+        return "攻击";
+    }
 }
