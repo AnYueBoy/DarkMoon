@@ -20,6 +20,8 @@ public class AbilityItem : MonoBehaviour {
     public void init (AbilityData abilityData) {
         Color randomColor = Util.getRandomColor ();
         bgImage.color = randomColor;
+
+        this.title.text = abilityData.title;
     }
 
     public void editorItem_Click () {
