@@ -6,11 +6,13 @@
 
 public abstract class BaseAbility {
 
-    public abstract void turnBeginEffect (CardData cardData);
+    public abstract void refreshCardData (CardData cardData);
 
-    public abstract void effect (CardData cardData);
+    public abstract void turnBeginEffect ();
 
-    public abstract void turnEndEffect (CardData cardData);
+    public abstract void effect ();
+
+    public abstract void turnEndEffect ();
 
     public abstract string title ();
 
