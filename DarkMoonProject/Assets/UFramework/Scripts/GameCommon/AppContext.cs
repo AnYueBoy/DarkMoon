@@ -3,15 +3,12 @@
  * @Date: 2020-12-03 15:25:34 
  * @Description: AppContext
  */
+using LitJson;
 using UnityEngine;
 
 public class AppContext : MonoBehaviour {
 
     private static AppContext _instance = null;
-
-    private void Awake () {
-        _instance = this;
-    }
 
     public static AppContext instance {
         get {
@@ -48,5 +45,18 @@ public class AppContext : MonoBehaviour {
             }
             return _listenerManager;
         }
+    }
+
+    private void Awake () {
+        _instance = this;
+
+        this.loadCardPooJson ();
+    }
+
+    private void loadCardPooJson () {
+        TextAsset cardPoolJson = assetsManager.getAssetsByUrl<TextAsset> (UrlString.cardJsonUrl);
+        string context = cardPoolJson.text;
+        CardPoolData cardPoolData = JsonMapper.ToObject<CardPoolData> (context);
+        CustomDataManager.cardPoolData = cardPoolData;
     }
 }
