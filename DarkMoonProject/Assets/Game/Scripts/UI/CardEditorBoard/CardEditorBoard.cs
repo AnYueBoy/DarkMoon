@@ -19,8 +19,6 @@ public class CardEditorBoard : BaseUI {
     [Header ("能力item")]
     public GameObject abilityItemPrefab = null;
 
-    private readonly Vector2 itemStartPos = new Vector2 (0, 400);
-
     private List<AbilityItem> abilityItemList = new List<AbilityItem> ();
 
     public void createCards_Click () {
@@ -34,13 +32,15 @@ public class CardEditorBoard : BaseUI {
         }
 
         Dictionary<int, BaseAbility> abilityDic = AppContext.instance.abilityManager.abilityDic;
+
+        float contentHeight = (68 + 40) * abilityDic.Count;
+        RectTransform rectTransform = this.content.GetComponent<RectTransform> ();
+        // rectTransform.rect.size = new Vector2 (364, contentHeight);
+
         int index = 0;
         foreach (int id in abilityDic.Keys) {
             GameObject abilityItemNode = ObjectPool.getInstance ().requestInstance (this.abilityItemPrefab);
-            abilityItemNode.transform.SetParent (this.content.transform);
-            float itemPosX = this.itemStartPos.x;
-            float itemPosY = this.itemStartPos.y - ConstValue.abilityItemInterval * index;
-            abilityItemNode.transform.localPosition = new Vector3 (itemPosX, itemPosY, 0);
+            abilityItemNode.transform.SetParent (this.content.transform, false);
             AbilityItem abilityItem = abilityItemNode.GetComponent<AbilityItem> ();
 
             // FIXME: 数据获取有问题

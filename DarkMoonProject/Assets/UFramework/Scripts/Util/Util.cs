@@ -249,9 +249,9 @@
            /// </summary>
            /// <returns></returns>
            public static Color getRandomColor () {
-               float r = getRandomValue (0, 255f);
-               float g = getRandomValue (0, 255f);
-               float b = getRandomValue (0, 255f);
+               float r = getRandomValue (0, 1f);
+               float g = getRandomValue (0, 1f);
+               float b = getRandomValue (0, 1f);
                return new Color (r, g, b);
            }
        }

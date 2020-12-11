@@ -20,7 +20,6 @@ public class AbilityItem : MonoBehaviour {
     public void init (AbilityData abilityData = null) {
         Color randomColor = Util.getRandomColor ();
         bgImage.color = randomColor;
-
         // FIXME:等待修改
         // this.title.text = abilityData.title;
     }
