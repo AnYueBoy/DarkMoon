@@ -33,7 +33,7 @@ public class BaseCard : MonoBehaviour {
 
     private void initAbilityCardData () {
         foreach (int id in this.cardData.abilityDataDic.Keys) {
-            BaseAbility targetAbility = this.cardData.abilityDataDic[id];
+            // BaseAbility targetAbility = this.cardData.abilityDataDic[id];
         }
     }
 
