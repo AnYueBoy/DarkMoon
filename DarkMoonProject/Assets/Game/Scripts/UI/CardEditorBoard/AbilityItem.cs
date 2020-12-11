@@ -17,11 +17,12 @@ public class AbilityItem : MonoBehaviour {
     [Header ("插槽名称")]
     public Text title = null;
 
-    public void init (AbilityData abilityData) {
+    public void init (AbilityData abilityData = null) {
         Color randomColor = Util.getRandomColor ();
         bgImage.color = randomColor;
 
-        this.title.text = abilityData.title;
+        // FIXME:等待修改
+        // this.title.text = abilityData.title;
     }
 
     public void editorItem_Click () {

@@ -47,10 +47,21 @@ public class AppContext : MonoBehaviour {
         }
     }
 
+    private AbilityManager _abilityManager = null;
+    public AbilityManager abilityManager {
+        get {
+            if (_abilityManager == null) {
+                _abilityManager = new AbilityManager ();
+            }
+            return _abilityManager;
+        }
+    }
+
     private void Awake () {
         _instance = this;
 
         this.loadCardPooJson ();
+        this.abilityManager.init ();
     }
 
     private void loadCardPooJson () {
