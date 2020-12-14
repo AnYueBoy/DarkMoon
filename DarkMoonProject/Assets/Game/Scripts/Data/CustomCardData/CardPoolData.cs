@@ -4,7 +4,8 @@
  * @Description: 卡池数据
  */
 using System.Collections.Generic;
+
 public class CardPoolData {
 
-    public List<CustomCardData> cardDataList = new List<CustomCardData> ();
+    public List<CustomCardData> cards = new List<CustomCardData> ();
 }

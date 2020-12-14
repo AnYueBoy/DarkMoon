@@ -31,6 +31,12 @@ public class BaseCard : MonoBehaviour {
 
     }
 
+    private void initAbilityCardData () {
+        foreach (int id in this.cardData.abilityDataDic.Keys) {
+            // BaseAbility targetAbility = this.cardData.abilityDataDic[id];
+        }
+    }
+
     protected bool consumeCheck () {
         CampEnum targetCamp = cardData.camp;
         BaseRoleData targetData = DataManager.getInstance ().getTargetData (targetCamp);
@@ -53,8 +59,7 @@ public class BaseCard : MonoBehaviour {
         }
         foreach (int id in cardData.abilityDataDic.Keys) {
             BaseAbility targetAbility = abilityDic[id];
-            // FIXME: 感觉应该传入的是abilityData cardData不属于能力插槽操作的数据,纠结ing
-            targetAbility.turnBeginEffect (cardData);
+            targetAbility.turnBeginEffect ();
         }
     }
 
@@ -71,7 +76,7 @@ public class BaseCard : MonoBehaviour {
         }
         foreach (int id in cardData.abilityDataDic.Keys) {
             BaseAbility targetAbility = abilityDic[id];
-            targetAbility.effect (cardData);
+            targetAbility.effect ();
         }
     }
 
@@ -88,7 +93,7 @@ public class BaseCard : MonoBehaviour {
         }
         foreach (int id in cardData.abilityDataDic.Keys) {
             BaseAbility targetAbility = abilityDic[id];
-            targetAbility.turnEndEffect (cardData);
+            targetAbility.turnEndEffect ();
         }
     }
 }

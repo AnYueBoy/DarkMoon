@@ -8,10 +8,25 @@ public class NotingAbility : BaseAbility {
 
     public int id = 3;
 
-    public override void turnBeginEffect (CardData cardData) { }
-    public override void effect (CardData cardData) { }
+    private CardData cardData = null;
 
-    public override void turnEndEffect (CardData cardData) {
+    public override void refreshCardData (CardData cardData) {
+        this.cardData = cardData;
+    }
+
+    public override void turnBeginEffect () { }
+    public override void effect () { }
+
+    public override void turnEndEffect () {
         cardData.isRemove = true;
     }
+
+    public override string title () {
+        return "虚无";
+    }
+
+    public override string describe () {
+        return "在回合结束时，移出卡组";
+    }
+
 }

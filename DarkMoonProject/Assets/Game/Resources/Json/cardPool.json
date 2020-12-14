@@ -7,15 +7,15 @@
             "abilities": [
                 {
                     "id": 1,
-                    "abilityData": {
-                        "baseValue": 1
-                    }
+                    "baseValue": 1,
+                    "title": "",
+                    "describe": ""
                 },
                 {
                     "id": 2,
-                    "abilityData": {
-                        "baseValue": 1
-                    }
+                    "baseValue": 1,
+                    "title": "",
+                    "describe": ""
                 }
             ]
         }

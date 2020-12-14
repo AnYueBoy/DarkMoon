@@ -8,13 +8,28 @@ public class DefenceAbility : BaseAbility {
 
     public int id = 2;
 
-    public override void turnBeginEffect (CardData cardData) { }
+    private CardData cardData = null;
 
-    public override void effect (CardData cardData) {
-        AbilityData abilityData = cardData.abilityDataDic[id];
-        BaseRoleData targetData = DataManager.getInstance ().getTargetData (cardData.camp);
+    public override void refreshCardData (CardData cardData) {
+        this.cardData = cardData;
+    }
+
+    public override void turnBeginEffect () { }
+
+    public override void effect () {
+        AbilityData abilityData = this.cardData.abilityDataDic[id];
+        BaseRoleData targetData = DataManager.getInstance ().getTargetData (this.cardData.camp);
         targetData.armor += abilityData.baseValue;
     }
 
-    public override void turnEndEffect (CardData cardData) { }
+    public override void turnEndEffect () { }
+
+    public override string describe () {
+        return "获得防御";
+    }
+
+    public override string title () {
+        return "防御";
+    }
+
 }

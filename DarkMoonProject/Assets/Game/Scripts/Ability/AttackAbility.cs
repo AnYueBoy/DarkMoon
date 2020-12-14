@@ -8,11 +8,17 @@ public class AttackAbility : BaseAbility {
 
     public int id = 1;
 
-    public override void turnBeginEffect (CardData cardData) { }
+    private CardData cardData = null;
 
-    public override void effect (CardData cardData) {
-        AbilityData abilityData = cardData.abilityDataDic[id];
-        BaseRoleData targetData = DataManager.getInstance ().getTargetData (cardData.camp);
+    public override void refreshCardData (CardData cardData) {
+        this.cardData = cardData;
+    }
+
+    public override void turnBeginEffect () { }
+
+    public override void effect () {
+        AbilityData abilityData = this.cardData.abilityDataDic[id];
+        BaseRoleData targetData = DataManager.getInstance ().getTargetData (this.cardData.camp);
 
         if (abilityData.baseValue <= targetData.armor) {
             targetData.armor -= abilityData.baseValue;
@@ -23,5 +29,14 @@ public class AttackAbility : BaseAbility {
         targetData.roleHp -= extendValue;
     }
 
-    public override void turnEndEffect (CardData cardData) { }
+    public override void turnEndEffect () { }
+
+    public override string describe () {
+        return "造成伤害";
+    }
+
+    public override string title () {
+        return "攻击";
+    }
+
 }
