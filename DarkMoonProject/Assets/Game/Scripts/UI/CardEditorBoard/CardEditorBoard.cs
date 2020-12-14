@@ -33,10 +33,6 @@ public class CardEditorBoard : BaseUI {
 
         Dictionary<int, BaseAbility> abilityDic = AppContext.instance.abilityManager.abilityDic;
 
-        float contentHeight = (68 + 40) * abilityDic.Count;
-        RectTransform rectTransform = this.content.GetComponent<RectTransform> ();
-        // rectTransform.rect.size = new Vector2 (364, contentHeight);
-
         int index = 0;
         foreach (int id in abilityDic.Keys) {
             GameObject abilityItemNode = ObjectPool.getInstance ().requestInstance (this.abilityItemPrefab);
