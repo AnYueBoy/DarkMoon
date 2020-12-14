@@ -31,18 +31,15 @@ public class CardEditorBoard : BaseUI {
             return;
         }
 
-        Dictionary<int, BaseAbility> abilityDic = AppContext.instance.abilityManager.abilityDic;
+        Dictionary<int, AbilityData> abilityDic = CustomDataManager.abilityPoolDataDic;
 
-        int index = 0;
-        foreach (int id in abilityDic.Keys) {
+        foreach (AbilityData abilityData in abilityDic.Values) {
             GameObject abilityItemNode = ObjectPool.getInstance ().requestInstance (this.abilityItemPrefab);
             abilityItemNode.transform.SetParent (this.content.transform, false);
             AbilityItem abilityItem = abilityItemNode.GetComponent<AbilityItem> ();
 
-            // FIXME: 数据获取有问题
-            abilityItem.init ();
+            abilityItem.init (abilityData);
             this.abilityItemList.Add (abilityItem);
-            index++;
         }
     }
 

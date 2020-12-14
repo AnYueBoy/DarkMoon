@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 /*
  * @Author: l hy 
  * @Date: 2020-12-07 13:42:52 
@@ -6,4 +7,6 @@
 
 public class CustomDataManager {
     public static CardPoolData cardPoolData = null;
+
+    public static Dictionary<int, AbilityData> abilityPoolDataDic = new Dictionary<int, AbilityData> ();
 }
