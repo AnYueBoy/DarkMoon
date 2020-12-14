@@ -61,6 +61,7 @@ public class AppContext : MonoBehaviour {
         _instance = this;
 
         this.loadCardPooJson ();
+        this.loadAbilityPoolJson ();
         this.abilityManager.init ();
     }
 
@@ -69,5 +70,14 @@ public class AppContext : MonoBehaviour {
         string context = cardPoolJson.text;
         CardPoolData cardPoolData = JsonMapper.ToObject<CardPoolData> (context);
         CustomDataManager.cardPoolData = cardPoolData;
+    }
+
+    private void loadAbilityPoolJson () {
+        TextAsset abilityJson = assetsManager.getAssetsByUrl<TextAsset> (UrlString.abilityJsonUrl);
+        string context = abilityJson.text;
+        AbilityPoolData abilityPoolData = JsonMapper.ToObject<AbilityPoolData> (context);
+        foreach (var abilityData in abilityPoolData.abilities) {
+            CustomDataManager.abilityPoolDataDic.Add (abilityData.id, abilityData);
+        }
     }
 }

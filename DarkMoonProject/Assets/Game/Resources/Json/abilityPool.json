@@ -1,0 +1,22 @@
+{
+    "abilities": [
+        {
+            "id": 1,
+            "baseValue": 1,
+            "title": "攻击",
+            "describe": "造成X点伤害"
+        },
+        {
+            "id": 2,
+            "baseValue": 1,
+            "title": "防御",
+            "describe": "获得X点护甲"
+        },
+        {
+            "id": 3,
+            "baseValue": -1,
+            "title": "虚无",
+            "describe": "在回合结束时，移出卡组"
+        }
+    ]
+}
