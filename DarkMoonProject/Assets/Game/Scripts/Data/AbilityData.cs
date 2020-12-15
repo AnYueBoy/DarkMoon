@@ -10,7 +10,7 @@ public class AbilityData {
 
     public double baseValue = 0;
 
-    public string title = "";
+    public string explain = "";
 
     public string describe = "";
 }
