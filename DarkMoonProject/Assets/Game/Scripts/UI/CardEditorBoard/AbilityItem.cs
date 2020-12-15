@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-/*
+﻿/*
  * @Author: l hy 
  * @Date: 2020-12-07 14:32:05 
  * @Description: 能力列表item
@@ -16,27 +15,27 @@ public class AbilityItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [Header ("能力插槽背景")]
     public Image bgImage = null;
 
-    [Header ("插槽名称")]
-    public Text title = null;
-
-    [Header ("描述")]
+    [Header ("插槽能力")]
     public Text describe = null;
 
-    private string targetDescribe = null;
+    [Header ("能力解释")]
+    public Text explain = null;
+
+    private string explainStr = null;
     public void init (AbilityData abilityData = null) {
-        this.describe.gameObject.SetActive (false);
+        this.explain.transform.parent.gameObject.SetActive (false);
 
         Color randomColor = Util.getRandomColor ();
         bgImage.color = randomColor;
-        this.title.text = abilityData.title;
 
+        this.explainStr = abilityData.explain;
         string patternStr = abilityData.describe;
         int targetIndex = patternStr.IndexOf ('X');
         if (targetIndex != -1) {
             patternStr = patternStr.Replace ("X", abilityData.baseValue.ToString ());
         }
 
-        targetDescribe = patternStr;
+        this.describe.text = patternStr;
     }
 
     public void editorItem_Click () {
@@ -48,21 +47,21 @@ public class AbilityItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
 
     public void OnPointerEnter (PointerEventData eventData) {
-        if (!this.describe.gameObject.activeSelf) {
-            this.describe.gameObject.SetActive (true);
+        if (!this.explain.transform.parent.gameObject.activeSelf) {
+            this.explain.transform.parent.gameObject.SetActive (true);
         }
 
-        string currentText = this.describe.text;
+        string currentText = this.explain.text;
 
-        if (currentText != this.targetDescribe) {
-            currentText = this.targetDescribe;
-            this.describe.text = currentText;
+        if (currentText != this.explainStr) {
+            currentText = this.explainStr;
+            this.explain.text = currentText;
         }
     }
 
     public void OnPointerExit (PointerEventData eventData) {
-        if (this.describe.gameObject.activeSelf) {
-            this.describe.gameObject.SetActive (false);
+        if (this.explain.transform.parent.gameObject.activeSelf) {
+            this.explain.transform.parent.gameObject.SetActive (false);
         }
     }
 }

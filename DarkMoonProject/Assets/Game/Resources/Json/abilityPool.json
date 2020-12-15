@@ -3,20 +3,20 @@
         {
             "id": 1,
             "baseValue": 1,
-            "title": "攻击",
+            "explain": "攻击：对敌人造成伤害",
             "describe": "造成X点伤害"
         },
         {
             "id": 2,
             "baseValue": 1,
-            "title": "防御",
+            "explain": "防御：获得护甲",
             "describe": "获得X点护甲"
         },
         {
             "id": 3,
             "baseValue": -1,
-            "title": "虚无",
-            "describe": "在回合结束时，移出卡组"
+            "explain": "虚无：在回合结束时，移出卡组",
+            "describe": "虚无"
         }
     ]
 }
