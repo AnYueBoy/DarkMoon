@@ -9,6 +9,8 @@ public class CardData {
 
     public int energyConsume = 0;
 
+    public string cardName = "";
+
     public bool isRemove = false;
 
     public CampEnum camp = CampEnum.PLAYER;

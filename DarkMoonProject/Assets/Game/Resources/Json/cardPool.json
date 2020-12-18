@@ -3,6 +3,7 @@
         {
             "id": 1,
             "consumeEnergy": 1,
+            "cardName": "短剑",
             "textureUrl": "",
             "abilities": [
                 {
