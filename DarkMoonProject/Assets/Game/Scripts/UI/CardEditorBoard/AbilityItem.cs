@@ -22,6 +22,9 @@ public class AbilityItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public Text explain = null;
 
     private string explainStr = null;
+
+    private bool isJoined = false;
+
     public void init (AbilityData abilityData = null) {
         this.explain.transform.parent.gameObject.SetActive (false);
 
@@ -43,10 +46,19 @@ public class AbilityItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
 
     public void joinItem_Click () {
-
+        this.isJoined = true;
+        this.hideExplain ();
     }
 
     public void OnPointerEnter (PointerEventData eventData) {
+        if (this.isJoined) {
+            return;
+        }
+
+        this.showExplain ();
+    }
+
+    private void showExplain () {
         if (!this.explain.transform.parent.gameObject.activeSelf) {
             this.explain.transform.parent.gameObject.SetActive (true);
         }
@@ -59,9 +71,21 @@ public class AbilityItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
     }
 
-    public void OnPointerExit (PointerEventData eventData) {
+    private void hideExplain () {
         if (this.explain.transform.parent.gameObject.activeSelf) {
             this.explain.transform.parent.gameObject.SetActive (false);
         }
+    }
+
+    public void OnPointerExit (PointerEventData eventData) {
+        if (this.isJoined) {
+            return;
+        }
+
+        this.hideExplain ();
+    }
+
+    public bool getJoinedState () {
+        return this.isJoined;
     }
 }

@@ -12,6 +12,8 @@ public class CustomCardData {
 
     public int consumeEnergy = 0;
 
+    public string cardName = "";
+
     public string textureUrl = "";
 
     public List<AbilityData> abilities = new List<AbilityData> ();

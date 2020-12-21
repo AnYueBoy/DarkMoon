@@ -3,7 +3,7 @@
  * @Date: 2020-12-07 14:31:33 
  * @Description: 卡牌编辑界面
  */
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,6 +40,28 @@ public class CardEditorBoard : BaseUI {
 
             abilityItem.init (abilityData);
             this.abilityItemList.Add (abilityItem);
+        }
+    }
+
+    private void Update () {
+        this.refreshAbilityState ();
+    }
+
+    private void refreshAbilityState () {
+        if (this.abilityItemList == null || this.abilityItemList.Count <= 0) {
+            return;
+        }
+
+        for (int i = 0; i < this.abilityItemList.Count; i++) {
+            AbilityItem abilityItem = this.abilityItemList[i];
+            if (!abilityItem) {
+                continue;
+            }
+
+            if (abilityItem.getJoinedState ()) {
+                ObjectPool.getInstance ().returnInstance (abilityItem.gameObject);
+                this.abilityItemList.Remove (abilityItem);
+            }
         }
     }
 
