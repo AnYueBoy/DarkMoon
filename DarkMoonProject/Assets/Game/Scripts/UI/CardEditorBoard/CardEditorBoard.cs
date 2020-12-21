@@ -19,7 +19,12 @@ public class CardEditorBoard : BaseUI {
     [Header ("能力item")]
     public GameObject abilityItemPrefab = null;
 
+    [Header ("卡片预览区")]
+    public PreviewCard cardPreview = null;
+
     private List<AbilityItem> abilityItemList = new List<AbilityItem> ();
+
+    private List<AbilityData> cardPreviewAbilityList = new List<AbilityData> ();
 
     public void createCards_Click () {
         this.loadAbilities ();
@@ -61,11 +66,18 @@ public class CardEditorBoard : BaseUI {
             if (abilityItem.getJoinedState ()) {
                 ObjectPool.getInstance ().returnInstance (abilityItem.gameObject);
                 this.abilityItemList.Remove (abilityItem);
+                this.cardPreviewAbilityList.Add (abilityItem.AbilityData);
+                this.refreshPreviewCard ();
             }
         }
     }
 
-    private void refreshAbilityData () {
+    private void refreshPreviewCard () {
+        PreviewData previewData = new PreviewData (this.cardPreviewAbilityList);
+        this.cardPreview.refreshCard (previewData);
+    }
 
+    private void refreshAbilityData () {
+        // TODO: 刷新能力列表数据
     }
 }

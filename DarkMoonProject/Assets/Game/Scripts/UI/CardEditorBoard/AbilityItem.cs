@@ -25,7 +25,17 @@ public class AbilityItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private bool isJoined = false;
 
+    private AbilityData abilityData = null;
+
+    public AbilityData AbilityData {
+        get {
+            return this.abilityData;
+        }
+    }
+
     public void init (AbilityData abilityData = null) {
+        this.abilityData = abilityData;
+
         this.explain.transform.parent.gameObject.SetActive (false);
 
         Color randomColor = Util.getRandomColor ();
