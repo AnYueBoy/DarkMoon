@@ -43,6 +43,28 @@ public class CardEditorBoard : BaseUI {
         }
     }
 
+    private void Update () {
+        this.refreshAbilityState ();
+    }
+
+    private void refreshAbilityState () {
+        if (this.abilityItemList == null || this.abilityItemList.Count <= 0) {
+            return;
+        }
+
+        for (int i = 0; i < this.abilityItemList.Count; i++) {
+            AbilityItem abilityItem = this.abilityItemList[i];
+            if (!abilityItem) {
+                continue;
+            }
+
+            if (abilityItem.getJoinedState ()) {
+                ObjectPool.getInstance ().returnInstance (abilityItem.gameObject);
+                this.abilityItemList.Remove (abilityItem);
+            }
+        }
+    }
+
     private void refreshAbilityData () {
 
     }
