@@ -2,26 +2,6 @@
     "cards": [
         {
             "id": 1,
-            "consumeEnergy": 1,
-            "cardName": "短剑",
-            "textureUrl": "",
-            "abilities": [
-                {
-                    "id": 1,
-                    "baseValue": 1.0,
-                    "explain": "",
-                    "describe": ""
-                },
-                {
-                    "id": 2,
-                    "baseValue": 1.0,
-                    "explain": "",
-                    "describe": ""
-                }
-            ]
-        },
-        {
-            "id": 2,
             "consumeEnergy": 0,
             "cardName": "暗月",
             "textureUrl": "",
@@ -37,12 +17,6 @@
                     "baseValue": 1.0,
                     "explain": "防御：获得护甲",
                     "describe": "获得X点护甲"
-                },
-                {
-                    "id": 3,
-                    "baseValue": -1.0,
-                    "explain": "虚无：在回合结束时，移出卡组",
-                    "describe": "虚无"
                 }
             ]
         }
