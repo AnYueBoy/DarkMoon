@@ -1,10 +1,12 @@
-﻿/*
+﻿using System.IO;
+/*
  * @Author: l hy 
  * @Date: 2020-12-07 14:31:33 
  * @Description: 卡牌编辑界面
  */
 
 using System.Collections.Generic;
+using LitJson;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -75,6 +77,37 @@ public class CardEditorBoard : BaseUI {
     private void refreshPreviewCard () {
         PreviewData previewData = new PreviewData (this.cardPreviewAbilityList);
         this.cardPreview.refreshCard (previewData);
+    }
+
+    public void buildCardCompleted () {
+        CardPoolData cardPoolData = CustomDataManager.cardPoolData;
+        CustomCardData customCardData = new CustomCardData ();
+
+        customCardData.id = cardPoolData.cards.Count + 1;
+
+        // FIXME: 卡牌背景图片
+        customCardData.textureUrl = "";
+
+        // FIXME: 能力消耗
+        customCardData.consumeEnergy = 0;
+
+        customCardData.cardName = "暗月";
+        customCardData.abilities = this.cardPreviewAbilityList;
+        cardPoolData.cards.Add (customCardData);
+
+        string cardPoolStr = JsonMapper.ToJson (cardPoolData);
+
+        string filePath = Application.dataPath + "/Game/Resources/" + UrlString.cardJsonUrl + ".json";
+        Debug.Log ("filePath: " + filePath);
+        if (!File.Exists (filePath)) {
+            Debug.LogError ("target file not exist");
+            return;
+        }
+
+        StreamWriter sw = new StreamWriter (filePath);
+        sw.Write (cardPoolStr);
+        sw.Close ();
+
     }
 
     private void refreshAbilityData () {
