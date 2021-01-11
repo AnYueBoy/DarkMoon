@@ -1,12 +1,12 @@
-﻿/*
+/*
  * @Author: l hy 
- * @Date: 2020-11-26 15:11:36 
- * @Description: 防御能力插槽
+ * @Date: 2021-01-11 10:00:16 
+ * @Description: 中毒
  */
 
-public class DefenceAbility : BaseAbility {
+public class PoisonAbility : BaseAbility {
 
-    public int id = 2;
+    public int id = 3;
 
     public override void refreshCardData (CardData cardData) {
         this.cardData = cardData;
@@ -16,17 +16,15 @@ public class DefenceAbility : BaseAbility {
 
     public override void effect () {
         AbilityData abilityData = this.cardData.abilityDataDic[id];
-        BaseRoleData targetData = DataManager.getInstance ().getCampRoleData (this.cardData.camp);
-        targetData.armor += abilityData.baseValue;
+        BaseRoleData targetData = DataManager.getInstance ().getOtherCampRoleData (this.cardData.camp);
+        targetData.addAbilityLayer (id, abilityData.baseValue);
     }
-
     public override void turnEndEffect () { }
 
     public override string title () {
-        return "防御";
+        return "中毒";
     }
-
     public override string describe () {
-        return "获得防御";
+        return "中毒方在回合开始时，受到中毒层数的伤害，并减少一层中毒";
     }
 }

@@ -8,8 +8,6 @@ public class NotingAbility : BaseAbility {
 
     public int id = 3;
 
-    private CardData cardData = null;
-
     public override void refreshCardData (CardData cardData) {
         this.cardData = cardData;
     }

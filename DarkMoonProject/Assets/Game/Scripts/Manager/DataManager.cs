@@ -3,6 +3,9 @@
  * @Date: 2020-11-26 16:24:14 
  * @Description: 数据管理
  */
+
+using UnityEngine;
+
 public class DataManager {
 
     private static DataManager _instance = null;
@@ -15,7 +18,7 @@ public class DataManager {
         return _instance;
     }
 
-    private BaseRoleData _battleRoleData = null;
+    private BaseRoleData _battlePlayerData = null;
     // public BaseRoleData battleRoleData () {
     //     return _battleRoleData;
     // }
@@ -25,11 +28,36 @@ public class DataManager {
     //     return _battleEnemyData;
     // }
 
-    public BaseRoleData getTargetData (CampEnum camp) {
-        if (camp == CampEnum.ENEMY) {
-            return this._battleEnemyData;
-        }
+    /// <summary>
+    /// 获取对应阵营的角色数据
+    /// </summary>
+    /// <param name="camp"></param>
+    /// <returns></returns>
+    public BaseRoleData getCampRoleData (CampEnum camp) {
+        switch (camp) {
+            case CampEnum.ENEMY:
+                return this._battleEnemyData;
 
-        return this._battleRoleData;
+            case CampEnum.PLAYER:
+                return this._battlePlayerData;
+
+            default:
+                Debug.LogError ("can not get campData: " + camp);
+                return null;
+        }
+    }
+
+    public BaseRoleData getOtherCampRoleData (CampEnum camp) {
+        switch (camp) {
+            case CampEnum.ENEMY:
+                return this._battlePlayerData;
+
+            case CampEnum.PLAYER:
+                return this._battleEnemyData;
+
+            default:
+                Debug.LogError ("can not get otherCampData: " + camp);
+                return null;
+        }
     }
 }
