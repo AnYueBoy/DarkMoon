@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3221211798147221419}
   - component: {fileID: 3221211798147221416}
   m_Layer: 5
-  m_Name: Describe
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgImage: {fileID: 8454525861399884371}
-  describe: {fileID: 3221211798147221416}
-  explain: {fileID: 6111597427534662030}
+  abilityName: {fileID: 3221211798147221416}
+  abilityDescribe: {fileID: 6111597427534662030}
 --- !u!1 &4219125827555513296
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 8475282869272648813}
   - component: {fileID: 6111597427534662030}
   m_Layer: 5
-  m_Name: Explain
+  m_Name: Describe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 1505872319715336612}
   - component: {fileID: 6214212332240385913}
   m_Layer: 5
-  m_Name: ExplainBg
+  m_Name: DescribeBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

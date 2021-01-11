@@ -3,8 +3,7 @@
  * @Date: 2020-12-07 14:32:05 
  * @Description: 能力列表item
  */
-using System.Collections;
-using System.Collections.Generic;
+
 using UFramework;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,13 +14,13 @@ public class AbilityItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [Header ("能力插槽背景")]
     public Image bgImage = null;
 
-    [Header ("插槽能力")]
-    public Text describe = null;
+    [Header ("插槽名称")]
+    public Text abilityName = null;
 
-    [Header ("能力解释")]
-    public Text explain = null;
+    [Header ("插槽描述")]
+    public Text abilityDescribe = null;
 
-    private string explainStr = null;
+    private string describeStr = null;
 
     private bool isJoined = false;
 
@@ -36,19 +35,14 @@ public class AbilityItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void init (AbilityData abilityData = null) {
         this.abilityData = abilityData;
 
-        this.explain.transform.parent.gameObject.SetActive (false);
+        this.abilityDescribe.transform.parent.gameObject.SetActive (false);
 
         Color randomColor = Util.getRandomColor ();
         bgImage.color = randomColor;
 
-        this.explainStr = abilityData.explain;
-        string patternStr = abilityData.describe;
-        int targetIndex = patternStr.IndexOf ('X');
-        if (targetIndex != -1) {
-            patternStr = patternStr.Replace ("X", abilityData.baseValue.ToString ());
-        }
+        this.abilityName.text = abilityData.abilityName;
 
-        this.describe.text = patternStr;
+        this.describeStr = abilityData.abilityDescribe;
     }
 
     public void editorItem_Click () {
@@ -69,21 +63,21 @@ public class AbilityItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
 
     private void showExplain () {
-        if (!this.explain.transform.parent.gameObject.activeSelf) {
-            this.explain.transform.parent.gameObject.SetActive (true);
+        if (!this.abilityDescribe.transform.parent.gameObject.activeSelf) {
+            this.abilityDescribe.transform.parent.gameObject.SetActive (true);
         }
 
-        string currentText = this.explain.text;
+        string currentText = this.abilityDescribe.text;
 
-        if (currentText != this.explainStr) {
-            currentText = this.explainStr;
-            this.explain.text = currentText;
+        if (currentText != this.describeStr) {
+            currentText = this.describeStr;
+            this.abilityDescribe.text = currentText;
         }
     }
 
     private void hideExplain () {
-        if (this.explain.transform.parent.gameObject.activeSelf) {
-            this.explain.transform.parent.gameObject.SetActive (false);
+        if (this.abilityDescribe.transform.parent.gameObject.activeSelf) {
+            this.abilityDescribe.transform.parent.gameObject.SetActive (false);
         }
     }
 
