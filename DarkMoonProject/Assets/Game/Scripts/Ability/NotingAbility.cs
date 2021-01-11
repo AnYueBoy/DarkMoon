@@ -6,7 +6,7 @@
 
 public class NotingAbility : BaseAbility {
 
-    public int id = 3;
+    public new int id = 3;
 
     public override void refreshCardData (CardData cardData) {
         this.cardData = cardData;
@@ -18,13 +18,4 @@ public class NotingAbility : BaseAbility {
     public override void turnEndEffect () {
         cardData.isRemove = true;
     }
-
-    public override string title () {
-        return "虚无";
-    }
-
-    public override string describe () {
-        return "在回合结束时，移出卡组";
-    }
-
 }

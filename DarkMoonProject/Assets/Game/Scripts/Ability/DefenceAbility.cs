@@ -6,7 +6,7 @@
 
 public class DefenceAbility : BaseAbility {
 
-    public int id = 2;
+    public new int id = 2;
 
     public override void refreshCardData (CardData cardData) {
         this.cardData = cardData;
@@ -21,12 +21,4 @@ public class DefenceAbility : BaseAbility {
     }
 
     public override void turnEndEffect () { }
-
-    public override string title () {
-        return "防御";
-    }
-
-    public override string describe () {
-        return "获得防御";
-    }
 }

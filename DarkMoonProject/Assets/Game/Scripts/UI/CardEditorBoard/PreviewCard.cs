@@ -3,7 +3,7 @@
  * @Date: 2020-12-21 21:24:52 
  * @Description: 预览区卡牌
  * @Last Modified by: l hy
- * @Last Modified time: 2020-12-21 21:41:56
+ * @Last Modified time: 2021-01-11 11:12:34
  */
 
 using System.Collections;
@@ -32,7 +32,7 @@ public class PreviewCard : MonoBehaviour {
 
         string describeStr = "";
         foreach (AbilityData abilityData in previewData.abilityDataList) {
-            string replaceStr = abilityData.describe.Replace ("X", abilityData.baseValue.ToString ());
+            string replaceStr = abilityData.abilityEffect.Replace ("X", abilityData.baseValue.ToString ());
             describeStr += replaceStr + "\n";
         }
         this.describeText.text = describeStr;

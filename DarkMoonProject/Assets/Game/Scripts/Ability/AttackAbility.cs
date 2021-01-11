@@ -5,8 +5,7 @@
  */
 
 public class AttackAbility : BaseAbility {
-
-    public int id = 1;
+    public new int id = 1;
 
     public override void refreshCardData (CardData cardData) {
         this.cardData = cardData;
@@ -28,13 +27,4 @@ public class AttackAbility : BaseAbility {
     }
 
     public override void turnEndEffect () { }
-
-    public override string title () {
-        return "攻击";
-    }
-
-    public override string describe () {
-        return "造成伤害";
-    }
-
 }

@@ -8,6 +8,8 @@ public abstract class BaseAbility {
 
     protected CardData cardData = null;
 
+    public int id = 0;
+
     public abstract void refreshCardData (CardData cardData);
 
     /// <summary>
@@ -26,14 +28,22 @@ public abstract class BaseAbility {
     public abstract void turnEndEffect ();
 
     /// <summary>
-    /// 能力标题
+    /// 能力名称
     /// </summary>
     /// <returns></returns>
-    public abstract string title ();
+    public string abilityName () {
+        string abilityName = this.cardData.abilityDataDic[id].abilityName;
+        return abilityName;
+    }
 
     /// <summary>
     /// 能力描述
     /// </summary>
     /// <returns></returns>
-    public abstract string describe ();
+    public string abilityDescribe () {
+        AbilityData abilityData = this.cardData.abilityDataDic[id];
+        double baseValue = abilityData.baseValue;
+        string describeStr = abilityData.abilityDescribe.Replace ("X", baseValue.ToString ());
+        return describeStr;
+    }
 }
