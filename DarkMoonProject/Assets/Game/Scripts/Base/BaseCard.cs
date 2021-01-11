@@ -39,7 +39,7 @@ public class BaseCard : MonoBehaviour {
 
     protected bool consumeCheck () {
         CampEnum targetCamp = cardData.camp;
-        BaseRoleData targetData = DataManager.getInstance ().getTargetData (targetCamp);
+        BaseRoleData targetData = DataManager.getInstance ().getCampRoleData (targetCamp);
         if (targetData.energy < cardData.energyConsume) {
             return false;
         }
