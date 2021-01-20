@@ -4,6 +4,8 @@
  * @Description: AppContext
  */
 using LitJson;
+using UFramework.Const;
+using UFramework.GameCommon;
 using UnityEngine;
 
 public class AppContext : MonoBehaviour {
@@ -66,14 +68,14 @@ public class AppContext : MonoBehaviour {
     }
 
     private void loadCardPooJson () {
-        TextAsset cardPoolJson = assetsManager.getAssetsByUrl<TextAsset> (UrlString.cardJsonUrl);
+        TextAsset cardPoolJson = assetsManager.getAssetByUrl<TextAsset> (CustomUrlString.cardJsonUrl);
         string context = cardPoolJson.text;
         CardPoolData cardPoolData = JsonMapper.ToObject<CardPoolData> (context);
         CustomDataManager.cardPoolData = cardPoolData;
     }
 
     private void loadAbilityPoolJson () {
-        TextAsset abilityJson = assetsManager.getAssetsByUrl<TextAsset> (UrlString.abilityJsonUrl);
+        TextAsset abilityJson = assetsManager.getAssetByUrl<TextAsset> (CustomUrlString.abilityJsonUrl);
         string context = abilityJson.text;
         AbilityPoolData abilityPoolData = JsonMapper.ToObject<AbilityPoolData> (context);
         foreach (var abilityData in abilityPoolData.abilities) {

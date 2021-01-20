@@ -4,9 +4,10 @@
  * @Description: 卡牌编辑界面
  */
 
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using LitJson;
+using UFramework.GameCommon;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -97,7 +98,7 @@ public class CardEditorBoard : BaseUI {
 
         string cardPoolStr = JsonMapper.ToJson (cardPoolData);
 
-        string filePath = Application.dataPath + "/Game/Resources/" + UrlString.cardJsonUrl + ".json";
+        string filePath = Application.dataPath + "/Game/Resources/" + CustomUrlString.cardJsonUrl + ".json";
         Debug.Log ("filePath: " + filePath);
         if (!File.Exists (filePath)) {
             Debug.LogError ("target file not exist");
