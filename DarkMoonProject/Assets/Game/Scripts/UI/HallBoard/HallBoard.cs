@@ -3,11 +3,12 @@
  * @Date: 2020-12-06 11:03:09 
  * @Description: 大厅界面
  * @Last Modified by: l hy
- * @Last Modified time: 2020-12-06 11:07:28
+ * @Last Modified time: 2021-01-20 10:11:05
  */
 
 using System.Collections;
 using System.Collections.Generic;
+using UFramework.GameCommon;
 using UnityEngine;
 
 public class HallBoard : BaseUI {
