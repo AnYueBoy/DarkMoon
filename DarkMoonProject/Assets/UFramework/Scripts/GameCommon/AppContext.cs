@@ -68,14 +68,14 @@ public class AppContext : MonoBehaviour {
     }
 
     private void loadCardPooJson () {
-        TextAsset cardPoolJson = assetsManager.getAssetByUrl<TextAsset> (CustomUrlString.cardJsonUrl);
+        TextAsset cardPoolJson = assetsManager.getAssetByUrlSync<TextAsset> (CustomUrlString.cardJsonUrl);
         string context = cardPoolJson.text;
         CardPoolData cardPoolData = JsonMapper.ToObject<CardPoolData> (context);
         CustomDataManager.cardPoolData = cardPoolData;
     }
 
     private void loadAbilityPoolJson () {
-        TextAsset abilityJson = assetsManager.getAssetByUrl<TextAsset> (CustomUrlString.abilityJsonUrl);
+        TextAsset abilityJson = assetsManager.getAssetByUrlSync<TextAsset> (CustomUrlString.abilityJsonUrl);
         string context = abilityJson.text;
         AbilityPoolData abilityPoolData = JsonMapper.ToObject<AbilityPoolData> (context);
         foreach (var abilityData in abilityPoolData.abilities) {
