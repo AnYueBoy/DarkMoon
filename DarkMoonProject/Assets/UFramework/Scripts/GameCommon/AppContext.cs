@@ -4,7 +4,6 @@
  * @Description: AppContext
  */
 using LitJson;
-using UFramework.Const;
 using UFramework.GameCommon;
 using UnityEngine;
 
@@ -12,59 +11,40 @@ public class AppContext : MonoBehaviour {
 
     private static AppContext _instance = null;
 
+    #region 管理类
+    public AssetsManager assetsManager = new AssetsManager ();
+
+    public AudioManager audioManager = new AudioManager ();
+
+    public ListenerManager listenerManager = new ListenerManager ();
+
+    public AbilityManager abilityManager = new AbilityManager ();
+
+    public UIManager uIManager = new UIManager ();
+
+    #endregion
+
+    public GameObject uiRoot = null;
+
     public static AppContext instance {
         get {
             return _instance;
         }
     }
 
-    private AssetsManager _assetsManager = null;
-    public AssetsManager assetsManager {
-        get {
-            if (_assetsManager == null) {
-                _assetsManager = new AssetsManager ();
-            }
-            return this._assetsManager;
-        }
-    }
-
-    private AudioManager _audioManager = null;
-    public AudioManager audioManager {
-        get {
-            if (_audioManager == null) {
-                _audioManager = new AudioManager ();
-            }
-
-            return _audioManager;
-        }
-    }
-
-    private ListenerManager _listenerManager = null;
-    public ListenerManager listenerManager {
-        get {
-            if (_listenerManager == null) {
-                _listenerManager = new ListenerManager ();
-            }
-            return _listenerManager;
-        }
-    }
-
-    private AbilityManager _abilityManager = null;
-    public AbilityManager abilityManager {
-        get {
-            if (_abilityManager == null) {
-                _abilityManager = new AbilityManager ();
-            }
-            return _abilityManager;
-        }
-    }
-
     private void Awake () {
         _instance = this;
 
+        this.init ();
+    }
+
+    private void init () {
         this.loadCardPooJson ();
         this.loadAbilityPoolJson ();
         this.abilityManager.init ();
+        this.uIManager.init (this.uiRoot);
+
+        this.uIManager.showBoard (UIPath.HallBoard);
     }
 
     private void loadCardPooJson () {
