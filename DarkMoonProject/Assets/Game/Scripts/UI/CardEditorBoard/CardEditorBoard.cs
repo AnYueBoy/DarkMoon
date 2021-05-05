@@ -42,7 +42,7 @@ public class CardEditorBoard : BaseUI {
         Dictionary<int, AbilityData> abilityDic = CustomDataManager.abilityPoolDataDic;
 
         foreach (AbilityData abilityData in abilityDic.Values) {
-            GameObject abilityItemNode = ObjectPool.getInstance ().requestInstance (this.abilityItemPrefab);
+            GameObject abilityItemNode = ObjectPool.instance.requestInstance (this.abilityItemPrefab);
             abilityItemNode.transform.SetParent (this.content.transform, false);
             AbilityItem abilityItem = abilityItemNode.GetComponent<AbilityItem> ();
 
@@ -67,7 +67,7 @@ public class CardEditorBoard : BaseUI {
             }
 
             if (abilityItem.getJoinedState ()) {
-                ObjectPool.getInstance ().returnInstance (abilityItem.gameObject);
+                ObjectPool.instance.returnInstance (abilityItem.gameObject);
                 this.abilityItemList.Remove (abilityItem);
                 this.cardPreviewAbilityList.Add (abilityItem.AbilityData);
                 this.refreshPreviewCard ();
