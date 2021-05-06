@@ -1,24 +1,3 @@
 {
-    "cards": [
-        {
-            "id": 1,
-            "consumeEnergy": 0,
-            "cardName": "暗月",
-            "textureUrl": "",
-            "abilities": [
-                {
-                    "id": 1,
-                    "baseValue": 1.0,
-                    "explain": "攻击：对敌人造成伤害",
-                    "describe": "造成X点伤害"
-                },
-                {
-                    "id": 2,
-                    "baseValue": 1.0,
-                    "explain": "防御：获得护甲",
-                    "describe": "获得X点护甲"
-                }
-            ]
-        }
-    ]
+    "cards": []
 }
