@@ -25,6 +25,9 @@ public class CardEditorBoard : BaseUI {
     [Header ("卡片预览区")]
     public PreviewCard cardPreview = null;
 
+    [Header ("能量消耗")]
+    public InputField inputField = null;
+
     private List<AbilityItem> abilityItemList = new List<AbilityItem> ();
 
     private List<AbilityData> cardPreviewAbilityList = new List<AbilityData> ();
@@ -89,8 +92,10 @@ public class CardEditorBoard : BaseUI {
         // FIXME: 卡牌背景图片
         customCardData.textureUrl = "";
 
-        // FIXME: 能力消耗
-        customCardData.consumeEnergy = 0;
+        // 能力消耗
+        string consumeEnergyStr = this.inputField.text;
+        int consumeEnergy = int.Parse (consumeEnergyStr);
+        customCardData.consumeEnergy = consumeEnergy;
 
         customCardData.cardName = "暗月";
         customCardData.abilities = this.cardPreviewAbilityList;
