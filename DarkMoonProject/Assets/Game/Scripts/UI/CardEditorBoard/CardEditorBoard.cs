@@ -4,6 +4,7 @@
  * @Description: 卡牌编辑界面
  */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using LitJson;
@@ -94,7 +95,10 @@ public class CardEditorBoard : BaseUI {
 
         // 能力消耗
         string consumeEnergyStr = this.inputField.text;
-        int consumeEnergy = int.Parse (consumeEnergyStr);
+        int consumeEnergy = 0;
+        if (String.IsNullOrEmpty (consumeEnergyStr)) {
+            consumeEnergy = int.Parse (consumeEnergyStr);
+        }
         customCardData.consumeEnergy = consumeEnergy;
 
         customCardData.cardName = "暗月";
