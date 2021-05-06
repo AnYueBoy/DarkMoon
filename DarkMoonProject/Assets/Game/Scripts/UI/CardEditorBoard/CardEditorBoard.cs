@@ -114,4 +114,8 @@ public class CardEditorBoard : BaseUI {
     private void refreshAbilityData () {
         // TODO: 刷新能力列表数据
     }
+
+    public void close_Click () {
+        AppContext.instance.uIManager.showBoard (UIPath.HallBoard);
+    }
 }
