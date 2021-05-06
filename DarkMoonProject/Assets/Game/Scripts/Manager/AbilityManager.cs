@@ -6,16 +6,6 @@
 
 using System.Collections.Generic;
 public class AbilityManager {
-    private static AbilityManager _instance = null;
-
-    public static AbilityManager getInstance () {
-        if (_instance == null) {
-            _instance = new AbilityManager ();
-        }
-
-        return _instance;
-    }
-
     public Dictionary<int, BaseAbility> abilityDic = new Dictionary<int, BaseAbility> ();
 
     public void init () {

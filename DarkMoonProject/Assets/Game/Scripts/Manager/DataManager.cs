@@ -8,16 +8,6 @@ using UnityEngine;
 
 public class DataManager {
 
-    private static DataManager _instance = null;
-
-    public static DataManager getInstance () {
-        if (_instance == null) {
-            _instance = new DataManager ();
-        }
-
-        return _instance;
-    }
-
     private BaseRoleData _battlePlayerData = null;
     // public BaseRoleData battleRoleData () {
     //     return _battleRoleData;

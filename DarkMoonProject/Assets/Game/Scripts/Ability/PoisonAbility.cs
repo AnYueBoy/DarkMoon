@@ -16,7 +16,7 @@ public class PoisonAbility : BaseAbility {
 
     public override void effect () {
         AbilityData abilityData = this.cardData.abilityDataDic[id];
-        BaseRoleData targetData = DataManager.getInstance ().getOtherCampRoleData (this.cardData.camp);
+        BaseRoleData targetData = AppContext.instance.dataManager.getOtherCampRoleData (this.cardData.camp);
         targetData.addAbilityLayer (id, abilityData.baseValue);
     }
     public override void turnEndEffect () { }

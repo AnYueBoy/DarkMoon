@@ -16,7 +16,7 @@ public class DefenceAbility : BaseAbility {
 
     public override void effect () {
         AbilityData abilityData = this.cardData.abilityDataDic[id];
-        BaseRoleData targetData = DataManager.getInstance ().getCampRoleData (this.cardData.camp);
+        BaseRoleData targetData = AppContext.instance.dataManager.getCampRoleData (this.cardData.camp);
         targetData.armor += abilityData.baseValue;
     }
 
