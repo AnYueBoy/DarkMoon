@@ -14,7 +14,7 @@ public class AppContext : MonoBehaviour {
     #region 管理类
     public AssetsManager assetsManager = new AssetsManager ();
 
-    public AudioManager audioManager = new AudioManager ();
+    public AudioManager audioManager = null;
 
     public ListenerManager listenerManager = new ListenerManager ();
 
