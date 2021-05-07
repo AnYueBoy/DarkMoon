@@ -28,7 +28,16 @@ public class CardEditorBoard : BaseUI {
 
     private List<AbilityItem> abilityItemList = new List<AbilityItem> ();
 
-    private CustomCardData previewData = new CustomCardData ();
+    private CustomCardData previewData = null;
+
+    private void OnEnable () {
+        this.init ();
+    }
+
+    private void init () {
+        this.previewData = new CustomCardData ();
+        this.cardPreview.init (this.previewData);
+    }
 
     public void loadAbilityListClick () {
         this.recycleAllAbilityItem ();
@@ -37,14 +46,13 @@ public class CardEditorBoard : BaseUI {
     }
 
     public void resetCardClick () {
-        // 重置卡牌数据
-        this.previewData = new CustomCardData ();
-
         this.loadAbilityListClick ();
+        this.init ();
     }
 
     private void loadAbilities () {
         Dictionary<int, AbilityData> abilityDic = CustomDataManager.abilityPoolDataDic;
+        Debug.Log ("value length: " + abilityDic.Values.Count);
         foreach (AbilityData abilityData in abilityDic.Values) {
             GameObject abilityItemNode = ObjectPool.instance.requestInstance (this.abilityItemPrefab);
             abilityItemNode.transform.SetParent (this.content.transform, false);
@@ -66,6 +74,8 @@ public class CardEditorBoard : BaseUI {
 
             ObjectPool.instance.returnInstance (abilityItem.gameObject);
         }
+
+        this.abilityItemList.Clear ();
     }
 
     private void Update () {
