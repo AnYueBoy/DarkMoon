@@ -1,4 +1,5 @@
-﻿/*
+﻿using System;
+/*
  * @Author: l hy 
  * @Date: 2020-12-21 21:24:52 
  * @Description: 预览区卡牌
@@ -15,26 +16,60 @@ public class PreviewCard : MonoBehaviour {
 
     #region ui相关
 
-    [Header ("立绘图片")]
-    public Image drawImage = null;
+    public Image iconImage = null;
 
-    [Header ("背景图片")]
     public Image cardBgImage = null;
 
-    [Header ("描述")]
     public Text describeText = null;
+
+    public InputField cardName = null;
+
+    public InputField cardConsume = null;
 
     #endregion
 
-    public void refreshCard (PreviewData previewData) {
-        // this.drawImage.sprite = new sprite();
-        // this.cardBgImage.sprite = new Sprite();
+    private CustomCardData previewData = null;
 
+    private void OnEnable () {
+        this.addChangeListener ();
+    }
+
+    public void init (CustomCardData previewData) {
+        this.previewData = previewData;
+    }
+
+    private void addChangeListener () {
+        this.cardName.onValueChanged.AddListener ((string cardNameValue) => {
+            this.previewData.cardName = cardNameValue;
+            this.showCardInfo ();
+        });
+
+        this.cardConsume.onValueChanged.AddListener ((String consumeValue) => {
+            if (String.IsNullOrEmpty (consumeValue)) {
+                this.previewData.consumeEnergy = 0;
+            } else {
+                this.previewData.consumeEnergy = int.Parse (consumeValue);
+            }
+            this.showCardInfo ();
+        });
+    }
+
+    private void showCardInfo () {
+        // 显示卡牌描述
         string describeStr = "";
-        foreach (AbilityData abilityData in previewData.abilityDataList) {
+        foreach (AbilityData abilityData in this.previewData.abilities) {
             string replaceStr = abilityData.abilityEffect.Replace ("X", abilityData.baseValue.ToString ());
             describeStr += replaceStr + "\n";
         }
         this.describeText.text = describeStr;
+
+        this.cardConsume.text = this.previewData.consumeEnergy.ToString ();
+
+        this.cardName.text = this.previewData.cardName;
+    }
+
+    private void OnDisable () {
+        this.cardName.onValueChanged.RemoveAllListeners ();
+        this.cardConsume.onValueChanged.RemoveAllListeners ();
     }
 }

@@ -722,7 +722,6 @@ MonoBehaviour:
   abilityItemPrefab: {fileID: 3221211798729390284, guid: 4b81957c9a871744dacf4a446c891c1f,
     type: 3}
   cardPreview: {fileID: 1892598178252319285}
-  inputField: {fileID: 8574403221611419044}
 --- !u!1 &5375064624999188328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,9 +1539,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ad6f7b60406d844ab8126f8171ed40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawImage: {fileID: 9042689229467573053}
+  iconImage: {fileID: 0}
   cardBgImage: {fileID: 9042689229466206956}
   describeText: {fileID: 9042689230285912506}
+  cardName: {fileID: 0}
+  cardConsume: {fileID: 8574403221611419044}
 --- !u!1 &9042689229466206738
 GameObject:
   m_ObjectHideFlags: 0

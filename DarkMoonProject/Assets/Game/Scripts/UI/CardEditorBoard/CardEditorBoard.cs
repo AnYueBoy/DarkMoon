@@ -26,25 +26,23 @@ public class CardEditorBoard : BaseUI {
     [Header ("卡片预览区")]
     public PreviewCard cardPreview = null;
 
-    [Header ("能量消耗")]
-    public InputField inputField = null;
-
     private List<AbilityItem> abilityItemList = new List<AbilityItem> ();
 
-    private List<AbilityData> cardPreviewAbilityList = new List<AbilityData> ();
+    private CustomCardData previewData = null;
 
-    public void createCards_Click () {
+    public void loadAbilityListClick () {
+        this.recycleAllAbilityItem ();
+        // 加载能力插槽
         this.loadAbilities ();
     }
 
+    public void resetCardClick () {
+        // 重置卡牌数据
+        this.previewData = new CustomCardData ();
+    }
+
     private void loadAbilities () {
-        if (this.abilityItemList.Count > 0) {
-            this.refreshAbilityData ();
-            return;
-        }
-
         Dictionary<int, AbilityData> abilityDic = CustomDataManager.abilityPoolDataDic;
-
         foreach (AbilityData abilityData in abilityDic.Values) {
             GameObject abilityItemNode = ObjectPool.instance.requestInstance (this.abilityItemPrefab);
             abilityItemNode.transform.SetParent (this.content.transform, false);
@@ -52,6 +50,19 @@ public class CardEditorBoard : BaseUI {
 
             abilityItem.init (abilityData);
             this.abilityItemList.Add (abilityItem);
+        }
+    }
+
+    private void recycleAllAbilityItem () {
+        foreach (AbilityItem abilityItem in this.abilityItemList) {
+            if (abilityItem == null) {
+                continue;
+            }
+            if (!abilityItem.gameObject.activeSelf) {
+                continue;
+            }
+
+            ObjectPool.instance.returnInstance (abilityItem.gameObject);
         }
     }
 
@@ -73,37 +84,17 @@ public class CardEditorBoard : BaseUI {
             if (abilityItem.getJoinedState ()) {
                 ObjectPool.instance.returnInstance (abilityItem.gameObject);
                 this.abilityItemList.Remove (abilityItem);
-                this.cardPreviewAbilityList.Add (abilityItem.AbilityData);
-                this.refreshPreviewCard ();
+                this.previewData.abilities.Add (abilityItem.AbilityData);
+                this.cardPreview.init (this.previewData);
             }
         }
     }
 
-    private void refreshPreviewCard () {
-        PreviewData previewData = new PreviewData (this.cardPreviewAbilityList);
-        this.cardPreview.refreshCard (previewData);
-    }
-
     public void buildCardCompleted () {
         CardPoolData cardPoolData = CustomDataManager.cardPoolData;
-        CustomCardData customCardData = new CustomCardData ();
-
-        customCardData.id = cardPoolData.cards.Count + 1;
-
-        // FIXME: 卡牌背景图片
-        customCardData.textureUrl = "";
-
-        // 能力消耗
-        string consumeEnergyStr = this.inputField.text;
-        int consumeEnergy = 0;
-        if (String.IsNullOrEmpty (consumeEnergyStr)) {
-            consumeEnergy = int.Parse (consumeEnergyStr);
-        }
-        customCardData.consumeEnergy = consumeEnergy;
-
-        customCardData.cardName = "暗月";
-        customCardData.abilities = this.cardPreviewAbilityList;
-        cardPoolData.cards.Add (customCardData);
+        // TODO: id 改变需要确认
+        this.previewData.id = cardPoolData.cards.Count + 1;
+        cardPoolData.cards.Add (previewData);
 
         string cardPoolStr = JsonMapper.ToJson (cardPoolData);
 
@@ -117,11 +108,6 @@ public class CardEditorBoard : BaseUI {
         StreamWriter sw = new StreamWriter (filePath);
         sw.Write (cardPoolStr);
         sw.Close ();
-
-    }
-
-    private void refreshAbilityData () {
-        // TODO: 刷新能力列表数据
     }
 
     public void close_Click () {
