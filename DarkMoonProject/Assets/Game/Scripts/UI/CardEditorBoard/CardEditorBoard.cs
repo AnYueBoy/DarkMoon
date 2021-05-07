@@ -130,6 +130,9 @@ public class CardEditorBoard : BaseUI {
         StreamWriter sw = new StreamWriter (filePath);
         sw.Write (cardPoolStr);
         sw.Close ();
+
+        // TODO: 临时修复逻辑，需求确认卡牌保存成功后的具体逻辑
+        this.resetCardClick ();
     }
 
     public void close_Click () {
