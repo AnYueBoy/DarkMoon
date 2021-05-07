@@ -28,7 +28,7 @@ public class CardEditorBoard : BaseUI {
 
     private List<AbilityItem> abilityItemList = new List<AbilityItem> ();
 
-    private CustomCardData previewData = null;
+    private CustomCardData previewData = new CustomCardData ();
 
     public void loadAbilityListClick () {
         this.recycleAllAbilityItem ();
@@ -39,6 +39,8 @@ public class CardEditorBoard : BaseUI {
     public void resetCardClick () {
         // 重置卡牌数据
         this.previewData = new CustomCardData ();
+
+        this.loadAbilityListClick ();
     }
 
     private void loadAbilities () {

@@ -1,5 +1,4 @@
-﻿using System;
-/*
+﻿/*
  * @Author: l hy 
  * @Date: 2020-12-21 21:24:52 
  * @Description: 预览区卡牌
@@ -7,6 +6,7 @@
  * @Last Modified time: 2021-01-11 11:12:34
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +36,7 @@ public class PreviewCard : MonoBehaviour {
 
     public void init (CustomCardData previewData) {
         this.previewData = previewData;
+        this.showCardInfo ();
     }
 
     private void addChangeListener () {
