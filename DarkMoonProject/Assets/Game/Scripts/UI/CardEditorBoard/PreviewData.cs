@@ -15,8 +15,4 @@ public class PreviewData {
     public string cardTexture = "";
 
     public int energyConsume = 0;
-
-    public PreviewData (List<AbilityData> abilityDataList) {
-        this.abilityDataList = abilityDataList;
-    }
 }

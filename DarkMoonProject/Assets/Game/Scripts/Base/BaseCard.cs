@@ -39,7 +39,7 @@ public class BaseCard : MonoBehaviour {
 
     protected bool consumeCheck () {
         CampEnum targetCamp = cardData.camp;
-        BaseRoleData targetData = DataManager.getInstance ().getCampRoleData (targetCamp);
+        BaseRoleData targetData = AppContext.instance.dataManager.getCampRoleData (targetCamp);
         if (targetData.energy < cardData.energyConsume) {
             return false;
         }
@@ -52,7 +52,7 @@ public class BaseCard : MonoBehaviour {
             Debug.LogWarning ("abilityDic not exist in turnBegin");
             return;
         }
-        Dictionary<int, BaseAbility> abilityDic = AbilityManager.getInstance ().abilityDic;
+        Dictionary<int, BaseAbility> abilityDic = AppContext.instance.abilityManager.abilityDic;
         if (abilityDic == null) {
             Debug.LogWarning ("abilityDic not exist in turnBegin");
             return;
@@ -69,7 +69,7 @@ public class BaseCard : MonoBehaviour {
             Debug.LogWarning ("abilityDic not exist in playerTrigger");
             return;
         }
-        Dictionary<int, BaseAbility> abilityDic = AbilityManager.getInstance ().abilityDic;
+        Dictionary<int, BaseAbility> abilityDic = AppContext.instance.abilityManager.abilityDic;
         if (abilityDic == null) {
             Debug.LogWarning ("abilityDic not exist in playerTrigger");
             return;
@@ -86,7 +86,7 @@ public class BaseCard : MonoBehaviour {
             Debug.LogWarning ("abilityDic not exist in turnEnd");
             return;
         }
-        Dictionary<int, BaseAbility> abilityDic = AbilityManager.getInstance ().abilityDic;
+        Dictionary<int, BaseAbility> abilityDic = AppContext.instance.abilityManager.abilityDic;
         if (abilityDic == null) {
             Debug.LogWarning ("abilityDic not exist in turnEnd");
             return;

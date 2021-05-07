@@ -43,6 +43,8 @@ public class AbilityItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         this.abilityName.text = abilityData.abilityName;
 
         this.describeStr = abilityData.abilityDescribe;
+
+        this.isJoined = false;
     }
 
     public void editorItem_Click () {
@@ -91,5 +93,9 @@ public class AbilityItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public bool getJoinedState () {
         return this.isJoined;
+    }
+
+    private void OnDisable () {
+        this.isJoined = false;
     }
 }

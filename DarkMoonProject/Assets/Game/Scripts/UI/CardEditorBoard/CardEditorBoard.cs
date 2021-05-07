@@ -4,6 +4,7 @@
  * @Description: 卡牌编辑界面
  */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using LitJson;
@@ -27,27 +28,64 @@ public class CardEditorBoard : BaseUI {
 
     private List<AbilityItem> abilityItemList = new List<AbilityItem> ();
 
-    private List<AbilityData> cardPreviewAbilityList = new List<AbilityData> ();
+    private CustomCardData previewData = null;
 
-    public void createCards_Click () {
-        this.loadAbilities ();
+    private void OnEnable () {
+        this.init ();
     }
 
-    private void loadAbilities () {
-        if (this.abilityItemList.Count > 0) {
-            this.refreshAbilityData ();
-            return;
-        }
+    private void init () {
+        this.previewData = new CustomCardData ();
+        this.cardPreview.init (this.previewData);
+    }
 
-        Dictionary<int, AbilityData> abilityDic = CustomDataManager.abilityPoolDataDic;
+    public void loadAbilityListClick () {
+        this.recycleAllAbilityItem ();
+        // 加载能力插槽
+        this.loadAbilityItems ();
+    }
 
-        foreach (AbilityData abilityData in abilityDic.Values) {
+    public void resetCardClick () {
+        this.loadAbilityListClick ();
+        this.init ();
+    }
+
+    private void loadAbilityItems () {
+        // 加载能力插槽item
+        int abilityCount = CustomDataManager.abilityPoolDataDic.Count;
+        int startIndex = this.abilityItemList.Count;
+        for (var i = startIndex; i < abilityCount; i++) {
             GameObject abilityItemNode = ObjectPool.instance.requestInstance (this.abilityItemPrefab);
             abilityItemNode.transform.SetParent (this.content.transform, false);
             AbilityItem abilityItem = abilityItemNode.GetComponent<AbilityItem> ();
-
-            abilityItem.init (abilityData);
             this.abilityItemList.Add (abilityItem);
+        }
+
+        this.refreshAbilityData ();
+    }
+
+    private void refreshAbilityData () {
+        // 刷新插槽数据
+        Dictionary<int, AbilityData> abilityDic = CustomDataManager.abilityPoolDataDic;
+        int index = 0;
+        foreach (AbilityData itemData in abilityDic.Values) {
+            AbilityItem abilityItem = this.abilityItemList[index];
+            abilityItem.gameObject.SetActive (true);
+            abilityItem.init (itemData);
+            index++;
+        }
+    }
+
+    private void recycleAllAbilityItem () {
+        foreach (AbilityItem abilityItem in this.abilityItemList) {
+            if (abilityItem == null) {
+                continue;
+            }
+            if (!abilityItem.gameObject.activeSelf) {
+                continue;
+            }
+
+            ObjectPool.instance.returnInstance (abilityItem.gameObject);
         }
     }
 
@@ -62,39 +100,23 @@ public class CardEditorBoard : BaseUI {
 
         for (int i = 0; i < this.abilityItemList.Count; i++) {
             AbilityItem abilityItem = this.abilityItemList[i];
-            if (!abilityItem) {
+            if (abilityItem == null) {
                 continue;
             }
 
             if (abilityItem.getJoinedState ()) {
                 ObjectPool.instance.returnInstance (abilityItem.gameObject);
-                this.abilityItemList.Remove (abilityItem);
-                this.cardPreviewAbilityList.Add (abilityItem.AbilityData);
-                this.refreshPreviewCard ();
+                this.previewData.abilities.Add (abilityItem.AbilityData);
+                this.cardPreview.init (this.previewData);
             }
         }
     }
 
-    private void refreshPreviewCard () {
-        PreviewData previewData = new PreviewData (this.cardPreviewAbilityList);
-        this.cardPreview.refreshCard (previewData);
-    }
-
     public void buildCardCompleted () {
         CardPoolData cardPoolData = CustomDataManager.cardPoolData;
-        CustomCardData customCardData = new CustomCardData ();
-
-        customCardData.id = cardPoolData.cards.Count + 1;
-
-        // FIXME: 卡牌背景图片
-        customCardData.textureUrl = "";
-
-        // FIXME: 能力消耗
-        customCardData.consumeEnergy = 0;
-
-        customCardData.cardName = "暗月";
-        customCardData.abilities = this.cardPreviewAbilityList;
-        cardPoolData.cards.Add (customCardData);
+        // TODO: id 改变需要确认
+        this.previewData.id = cardPoolData.cards.Count + 1;
+        cardPoolData.cards.Add (previewData);
 
         string cardPoolStr = JsonMapper.ToJson (cardPoolData);
 
@@ -109,9 +131,11 @@ public class CardEditorBoard : BaseUI {
         sw.Write (cardPoolStr);
         sw.Close ();
 
+        // TODO: 临时修复逻辑，需求确认卡牌保存成功后的具体逻辑
+        this.resetCardClick ();
     }
 
-    private void refreshAbilityData () {
-        // TODO: 刷新能力列表数据
+    public void close_Click () {
+        AppContext.instance.uIManager.showBoard (UIPath.HallBoard);
     }
 }

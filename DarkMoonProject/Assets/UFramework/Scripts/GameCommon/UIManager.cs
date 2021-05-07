@@ -14,8 +14,6 @@ namespace UFramework.GameCommon {
 
     public class UIManager {
 
-        private static UIManager instance = null;
-
         private Dictionary<string, BaseUI> uiDic = new Dictionary<string, BaseUI> ();
 
         private BaseUI currentBoard = null;
