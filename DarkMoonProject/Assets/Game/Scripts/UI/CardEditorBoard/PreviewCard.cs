@@ -3,12 +3,13 @@
  * @Date: 2020-12-21 21:24:52 
  * @Description: 预览区卡牌
  * @Last Modified by: l hy
- * @Last Modified time: 2021-01-11 11:12:34
+ * @Last Modified time: 2021-05-07 22:38:47
  */
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UFramework;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,7 @@ public class PreviewCard : MonoBehaviour {
 
     public Image iconImage = null;
 
-    public Image cardBgImage = null;
+    public Image cardColorBgImage = null;
 
     public Text describeText = null;
 
@@ -64,9 +65,17 @@ public class PreviewCard : MonoBehaviour {
         }
         this.describeText.text = describeStr;
 
+        // TODO: 根据卡牌类型替换卡牌bg2，并决定是否显示卡牌耗费
+        // 如果显示耗费要决定耗费的样式
+
+        // 显示卡牌耗费
         this.cardConsume.text = this.previewData.consumeEnergy.ToString ();
 
+        // 显示卡牌名称
         this.cardName.text = this.previewData.cardName;
+
+        // 显示卡牌颜色背景
+        this.cardColorBgImage.color = Util.getColorByCardType (this.previewData.cardType);
     }
 
     private void OnDisable () {

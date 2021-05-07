@@ -3,7 +3,7 @@
     * @Date: 2019-12-16 23:05:55 
     * @Description: 工具类
     * @Last Modified by: l hy
-    * @Last Modified time: 2020-05-12 08:39:05
+    * @Last Modified time: 2021-05-07 22:52:30
     */
 
    namespace UFramework {
@@ -254,6 +254,42 @@
                float b = getRandomValue (0, 1f);
                return new Color (r, g, b);
            }
-       }
 
+           /// <summary>
+           /// 根据卡牌类型获取卡牌颜色
+           /// </summary>
+           /// <param name="cardType"></param>
+           /// <returns></returns>
+           public static Color getColorByCardType (CardTypeEnum cardType) {
+               switch (cardType) {
+                   case CardTypeEnum.EQUIPMENT:
+                       return new Color (0.2470588f, 0.454902f, 0.3843137f, 1);
+
+                   case CardTypeEnum.ACTION:
+                       return new Color (0.4980392f, 0.3882353f, 0.2431373f, 1);
+
+                   case CardTypeEnum.ATTACK:
+                       return new Color (0.4705882f, 0.2313726f, 0.2392157f, 1);
+
+                   case CardTypeEnum.MAGIC:
+                       return new Color (0.1921569f, 0.3764706f, 0.5568628f, 1);
+
+                   case CardTypeEnum.PRAY:
+                       return new Color (0.5058824f, 0.482353f, 0.4196079f, 1);
+
+                   case CardTypeEnum.REFLEX:
+                       return new Color (0.5137255f, 0.2941177f, 0.4705883f, 1);
+
+                   case CardTypeEnum.SPELL:
+                       return new Color (0.345098f, 0.2745098f, 0.4784314f, 1);
+
+                   case CardTypeEnum.SPECIAL:
+                       return new Color (0.3176471f, 0.2666667f, 0.3333333f, 1);
+
+                   default:
+                       Debug.LogWarning ("cardType not exist : " + cardType);
+                       return Color.white;
+               }
+           }
+       }
    }

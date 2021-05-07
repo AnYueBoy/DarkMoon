@@ -14,17 +14,15 @@ using UnityEngine.UI;
 
 public class CardEditorBoard : BaseUI {
 
-    [Header ("插槽能力列表")]
     public ScrollRect scrollList = null;
 
-    [Header ("列表节点")]
     public GameObject content = null;
 
-    [Header ("能力item")]
     public GameObject abilityItemPrefab = null;
 
-    [Header ("卡片预览区")]
     public PreviewCard cardPreview = null;
+
+    public Dropdown cardTypeDropDown = null;
 
     private List<AbilityItem> abilityItemList = new List<AbilityItem> ();
 
@@ -32,10 +30,17 @@ public class CardEditorBoard : BaseUI {
 
     private void OnEnable () {
         this.init ();
+
+        // 添加监听
+        this.cardTypeDropDown.onValueChanged.AddListener ((int selectedIndex) => {
+            this.previewData.cardType = (CardTypeEnum) selectedIndex;
+            this.cardPreview.init (this.previewData);
+        });
     }
 
     private void init () {
         this.previewData = new CustomCardData ();
+        this.previewData.cardType = (CardTypeEnum) this.cardTypeDropDown.value;
         this.cardPreview.init (this.previewData);
     }
 
@@ -110,6 +115,10 @@ public class CardEditorBoard : BaseUI {
                 this.cardPreview.init (this.previewData);
             }
         }
+    }
+
+    private void refreshCardTypeBg (CardTypeEnum cardType) {
+
     }
 
     public void buildCardCompleted () {
