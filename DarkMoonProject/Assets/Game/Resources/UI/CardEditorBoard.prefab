@@ -1606,8 +1606,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -116}
-  m_SizeDelta: {x: 187.74, y: 73.48}
+  m_AnchoredPosition: {x: 0.00000095367, y: -129.63}
+  m_SizeDelta: {x: 223.00005, y: 90.736824}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5684954458034547244
 CanvasRenderer:
@@ -1649,7 +1649,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u9020\u62101\u70B9\u4F24\u5BB3"
+  m_Text: 
 --- !u!1 &5684954458689248869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,7 +1735,7 @@ GameObject:
   - component: {fileID: 5684954458774270003}
   - component: {fileID: 2650584579510054297}
   m_Layer: 5
-  m_Name: Card
+  m_Name: PreviewCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
