@@ -100,13 +100,12 @@ public class CardEditorBoard : BaseUI {
 
         for (int i = 0; i < this.abilityItemList.Count; i++) {
             AbilityItem abilityItem = this.abilityItemList[i];
-            if (!abilityItem) {
+            if (abilityItem == null) {
                 continue;
             }
 
             if (abilityItem.getJoinedState ()) {
                 ObjectPool.instance.returnInstance (abilityItem.gameObject);
-                this.abilityItemList.Remove (abilityItem);
                 this.previewData.abilities.Add (abilityItem.AbilityData);
                 this.cardPreview.init (this.previewData);
             }
