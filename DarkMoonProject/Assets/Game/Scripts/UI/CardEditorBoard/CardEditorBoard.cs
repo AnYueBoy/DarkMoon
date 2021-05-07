@@ -42,7 +42,7 @@ public class CardEditorBoard : BaseUI {
     public void loadAbilityListClick () {
         this.recycleAllAbilityItem ();
         // 加载能力插槽
-        this.loadAbilities ();
+        this.loadAbilityItems ();
     }
 
     public void resetCardClick () {
@@ -50,16 +50,29 @@ public class CardEditorBoard : BaseUI {
         this.init ();
     }
 
-    private void loadAbilities () {
-        Dictionary<int, AbilityData> abilityDic = CustomDataManager.abilityPoolDataDic;
-        Debug.Log ("value length: " + abilityDic.Values.Count);
-        foreach (AbilityData abilityData in abilityDic.Values) {
+    private void loadAbilityItems () {
+        // 加载能力插槽item
+        int abilityCount = CustomDataManager.abilityPoolDataDic.Count;
+        int startIndex = this.abilityItemList.Count;
+        for (var i = startIndex; i < abilityCount; i++) {
             GameObject abilityItemNode = ObjectPool.instance.requestInstance (this.abilityItemPrefab);
             abilityItemNode.transform.SetParent (this.content.transform, false);
             AbilityItem abilityItem = abilityItemNode.GetComponent<AbilityItem> ();
-
-            abilityItem.init (abilityData);
             this.abilityItemList.Add (abilityItem);
+        }
+
+        this.refreshAbilityData ();
+    }
+
+    private void refreshAbilityData () {
+        // 刷新插槽数据
+        Dictionary<int, AbilityData> abilityDic = CustomDataManager.abilityPoolDataDic;
+        int index = 0;
+        foreach (AbilityData itemData in abilityDic.Values) {
+            AbilityItem abilityItem = this.abilityItemList[index];
+            abilityItem.gameObject.SetActive (true);
+            abilityItem.init (itemData);
+            index++;
         }
     }
 
@@ -74,8 +87,6 @@ public class CardEditorBoard : BaseUI {
 
             ObjectPool.instance.returnInstance (abilityItem.gameObject);
         }
-
-        this.abilityItemList.Clear ();
     }
 
     private void Update () {
