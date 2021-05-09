@@ -7,7 +7,20 @@
 using UFramework.Const;
 
 public class CustomUrlString : UrlString {
-    public static readonly string cardJsonUrl = "Json/cardPool";
 
-    public static readonly string abilityJsonUrl = "Json/abilityPool";
+    #region 配置文件
+    public const string cardJsonUrl = "Json/cardPool";
+
+    public const string abilityJsonUrl = "Json/abilityPool";
+    #endregion
+
+    #region 预制资源
+    public const string abilityPrefab = "Prefabs/abilityItem";
+
+    #endregion
+
+    #region 图片资源
+    public const string consumePreTexture = "Textures/";
+
+    #endregion
 }

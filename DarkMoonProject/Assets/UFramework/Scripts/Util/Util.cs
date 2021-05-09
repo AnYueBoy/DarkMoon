@@ -269,7 +269,7 @@
                        return new Color (0.4980392f, 0.3882353f, 0.2431373f, 1);
 
                    case CardTypeEnum.ATTACK:
-                       return new Color (0.4705882f, 0.2313726f, 0.2392157f, 1);
+                       return new Color (0.4811321f, 0.1679423f, 0.1809373f, 1);
 
                    case CardTypeEnum.MAGIC:
                        return new Color (0.1921569f, 0.3764706f, 0.5568628f, 1);
@@ -285,6 +285,9 @@
 
                    case CardTypeEnum.SPECIAL:
                        return new Color (0.3176471f, 0.2666667f, 0.3333333f, 1);
+
+                   case CardTypeEnum.BLEED:
+                       return new Color (1, 0, 0, 1);
 
                    default:
                        Debug.LogWarning ("cardType not exist : " + cardType);

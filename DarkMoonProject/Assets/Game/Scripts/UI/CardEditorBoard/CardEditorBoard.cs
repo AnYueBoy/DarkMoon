@@ -39,6 +39,7 @@ public class CardEditorBoard : BaseUI {
     }
 
     private void init () {
+        // 创建要保存的卡牌数据
         this.previewData = new CustomCardData ();
         this.previewData.cardType = (CardTypeEnum) this.cardTypeDropDown.value;
         this.cardPreview.init (this.previewData);
@@ -51,6 +52,7 @@ public class CardEditorBoard : BaseUI {
     }
 
     public void resetCardClick () {
+        // 重置卡牌
         this.loadAbilityListClick ();
         this.init ();
     }
@@ -82,6 +84,7 @@ public class CardEditorBoard : BaseUI {
     }
 
     private void recycleAllAbilityItem () {
+        // 回收所有能力item
         foreach (AbilityItem abilityItem in this.abilityItemList) {
             if (abilityItem == null) {
                 continue;
@@ -117,11 +120,8 @@ public class CardEditorBoard : BaseUI {
         }
     }
 
-    private void refreshCardTypeBg (CardTypeEnum cardType) {
-
-    }
-
     public void buildCardCompleted () {
+        // 构建卡牌
         CardPoolData cardPoolData = CustomDataManager.cardPoolData;
         // TODO: id 改变需要确认
         this.previewData.id = cardPoolData.cards.Count + 1;

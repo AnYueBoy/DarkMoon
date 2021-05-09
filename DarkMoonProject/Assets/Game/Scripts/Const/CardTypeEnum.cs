@@ -22,5 +22,7 @@ public enum CardTypeEnum {
 
     SPELL,
 
+    BLEED,
+
     SPECIAL,
 }
