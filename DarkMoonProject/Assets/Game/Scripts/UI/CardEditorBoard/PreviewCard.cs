@@ -27,6 +27,8 @@ public class PreviewCard : MonoBehaviour {
 
     public InputField cardConsume = null;
 
+    public Image cardConsumeBg = null;
+
     #endregion
 
     private CustomCardData previewData = null;
@@ -69,13 +71,52 @@ public class PreviewCard : MonoBehaviour {
         // 如果显示耗费要决定耗费的样式
 
         // 显示卡牌耗费
-        this.cardConsume.text = this.previewData.consumeEnergy.ToString ();
+        this.showCardConsume ();
 
         // 显示卡牌名称
         this.cardName.text = this.previewData.cardName;
 
         // 显示卡牌颜色背景
         this.cardColorBgImage.color = Util.getColorByCardType (this.previewData.cardType);
+    }
+
+    private void showCardConsume () {
+        // 显示卡牌耗费背景
+        this.cardConsumeBg.gameObject.SetActive (true);
+        CardTypeEnum cardType = this.previewData.cardType;
+        switch (cardType) {
+            case CardTypeEnum.ACTION:
+                string actionUrl = CustomUrlString.consumePreTexture + cardType;
+                this.cardConsumeBg.sprite = AppContext.instance.assetsManager.getAssetByUrlSync<Sprite> (actionUrl);
+                break;
+
+            case CardTypeEnum.SPELL:
+                string spellUrl = CustomUrlString.consumePreTexture + cardType;
+                this.cardConsumeBg.sprite = AppContext.instance.assetsManager.getAssetByUrlSync<Sprite> (spellUrl);
+                break;
+
+            case CardTypeEnum.BLEED:
+                string bleedUrl = CustomUrlString.consumePreTexture + cardType;
+                this.cardConsumeBg.sprite = AppContext.instance.assetsManager.getAssetByUrlSync<Sprite> (bleedUrl);
+                break;
+
+            case CardTypeEnum.EQUIPMENT:
+            case CardTypeEnum.ATTACK:
+            case CardTypeEnum.MAGIC:
+            case CardTypeEnum.PRAY:
+            case CardTypeEnum.REFLEX:
+            case CardTypeEnum.SPECIAL:
+                this.cardConsumeBg.gameObject.SetActive (false);
+                break;
+
+            default:
+                Debug.LogWarning ("card type exceed value: " + cardType);
+                break;
+        }
+
+        // 显示卡牌消耗数值
+        this.cardConsume.text = this.previewData.consumeEnergy.ToString ();
+
     }
 
     private void OnDisable () {

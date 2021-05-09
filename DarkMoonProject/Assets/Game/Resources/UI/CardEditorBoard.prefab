@@ -1630,10 +1630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b285f1c2730144d8109a3d80c67568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollList: {fileID: 0}
+  scrollList: {fileID: 5375064624759317302}
   content: {fileID: 5375064624954199860}
-  abilityItemPrefab: {fileID: 3221211798729390284, guid: 4b81957c9a871744dacf4a446c891c1f,
-    type: 3}
   cardPreview: {fileID: 2650584579510054297}
   cardTypeDropDown: {fileID: 8660987622557184406}
 --- !u!1 &5375064624999188328
@@ -1871,7 +1869,7 @@ RectTransform:
   m_GameObject: {fileID: 5637423519259534974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.18, y: 0.18, z: 1}
   m_Children: []
   m_Father: {fileID: 6569339425427312291}
   m_RootOrder: 0
@@ -2133,6 +2131,7 @@ MonoBehaviour:
   describeText: {fileID: 5684954458034547235}
   cardName: {fileID: 6197194020442925291}
   cardConsume: {fileID: 7872519676565929004}
+  cardConsumeBg: {fileID: 3765649740659903048}
 --- !u!1 &5684954459361808779
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,6 +2818,8 @@ MonoBehaviour:
     - m_Text: "\u53CD\u5236\u724C"
       m_Image: {fileID: 0}
     - m_Text: "\u5492\u672F\u724C"
+      m_Image: {fileID: 0}
+    - m_Text: "\u6CB8\u8840\u724C"
       m_Image: {fileID: 0}
     - m_Text: "\u7279\u6B8A\u724C"
       m_Image: {fileID: 0}
