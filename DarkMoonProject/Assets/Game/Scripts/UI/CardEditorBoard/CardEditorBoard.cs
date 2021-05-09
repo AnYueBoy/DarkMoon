@@ -14,17 +14,13 @@ using UnityEngine.UI;
 
 public class CardEditorBoard : BaseUI {
 
-    [Header ("插槽能力列表")]
     public ScrollRect scrollList = null;
 
-    [Header ("列表节点")]
     public GameObject content = null;
 
-    [Header ("能力item")]
-    public GameObject abilityItemPrefab = null;
-
-    [Header ("卡片预览区")]
     public PreviewCard cardPreview = null;
+
+    public Dropdown cardTypeDropDown = null;
 
     private List<AbilityItem> abilityItemList = new List<AbilityItem> ();
 
@@ -32,10 +28,18 @@ public class CardEditorBoard : BaseUI {
 
     private void OnEnable () {
         this.init ();
+
+        // 添加监听
+        this.cardTypeDropDown.onValueChanged.AddListener ((int selectedIndex) => {
+            this.previewData.cardType = (CardTypeEnum) selectedIndex;
+            this.cardPreview.init (this.previewData);
+        });
     }
 
     private void init () {
+        // 创建要保存的卡牌数据
         this.previewData = new CustomCardData ();
+        this.previewData.cardType = (CardTypeEnum) this.cardTypeDropDown.value;
         this.cardPreview.init (this.previewData);
     }
 
@@ -46,6 +50,7 @@ public class CardEditorBoard : BaseUI {
     }
 
     public void resetCardClick () {
+        // 重置卡牌
         this.loadAbilityListClick ();
         this.init ();
     }
@@ -54,8 +59,9 @@ public class CardEditorBoard : BaseUI {
         // 加载能力插槽item
         int abilityCount = CustomDataManager.abilityPoolDataDic.Count;
         int startIndex = this.abilityItemList.Count;
-        for (var i = startIndex; i < abilityCount; i++) {
-            GameObject abilityItemNode = ObjectPool.instance.requestInstance (this.abilityItemPrefab);
+        GameObject abilityItemPrefab = AppContext.instance.assetsManager.getAssetByUrlSync<GameObject> (CustomUrlString.abilityPrefab);
+        for (int i = startIndex; i < abilityCount; i++) {
+            GameObject abilityItemNode = ObjectPool.instance.requestInstance (abilityItemPrefab);
             abilityItemNode.transform.SetParent (this.content.transform, false);
             AbilityItem abilityItem = abilityItemNode.GetComponent<AbilityItem> ();
             this.abilityItemList.Add (abilityItem);
@@ -77,6 +83,7 @@ public class CardEditorBoard : BaseUI {
     }
 
     private void recycleAllAbilityItem () {
+        // 回收所有能力item
         foreach (AbilityItem abilityItem in this.abilityItemList) {
             if (abilityItem == null) {
                 continue;
@@ -113,6 +120,7 @@ public class CardEditorBoard : BaseUI {
     }
 
     public void buildCardCompleted () {
+        // 构建卡牌
         CardPoolData cardPoolData = CustomDataManager.cardPoolData;
         // TODO: id 改变需要确认
         this.previewData.id = cardPoolData.cards.Count + 1;
@@ -120,7 +128,7 @@ public class CardEditorBoard : BaseUI {
 
         string cardPoolStr = JsonMapper.ToJson (cardPoolData);
 
-        string filePath = Application.dataPath + "/Game/Resources/" + CustomUrlString.cardJsonUrl + ".json";
+        string filePath = Application.dataPath + "/Game/Resources/" + CustomUrlString.cardJson + ".json";
         Debug.Log ("filePath: " + filePath);
         if (!File.Exists (filePath)) {
             Debug.LogError ("target file not exist");

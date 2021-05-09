@@ -3,12 +3,13 @@
  * @Date: 2020-12-21 21:24:52 
  * @Description: 预览区卡牌
  * @Last Modified by: l hy
- * @Last Modified time: 2021-01-11 11:12:34
+ * @Last Modified time: 2021-05-07 22:38:47
  */
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UFramework;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,13 +19,15 @@ public class PreviewCard : MonoBehaviour {
 
     public Image iconImage = null;
 
-    public Image cardBgImage = null;
+    public Image cardColorBgImage = null;
 
     public Text describeText = null;
 
     public InputField cardName = null;
 
     public InputField cardConsume = null;
+
+    public Image cardConsumeBg = null;
 
     #endregion
 
@@ -64,9 +67,56 @@ public class PreviewCard : MonoBehaviour {
         }
         this.describeText.text = describeStr;
 
+        // TODO: 根据卡牌类型替换卡牌bg2，并决定是否显示卡牌耗费
+        // 如果显示耗费要决定耗费的样式
+
+        // 显示卡牌耗费
+        this.showCardConsume ();
+
+        // 显示卡牌名称
+        this.cardName.text = this.previewData.cardName;
+
+        // 显示卡牌颜色背景
+        this.cardColorBgImage.color = Util.getColorByCardType (this.previewData.cardType);
+    }
+
+    private void showCardConsume () {
+        // 显示卡牌耗费背景
+        this.cardConsumeBg.gameObject.SetActive (true);
+        CardTypeEnum cardType = this.previewData.cardType;
+        switch (cardType) {
+            case CardTypeEnum.ACTION:
+                string actionUrl = CustomUrlString.consumePreTexture + cardType;
+                this.cardConsumeBg.sprite = AppContext.instance.assetsManager.getAssetByUrlSync<Sprite> (actionUrl);
+                break;
+
+            case CardTypeEnum.SPELL:
+                string spellUrl = CustomUrlString.consumePreTexture + cardType;
+                this.cardConsumeBg.sprite = AppContext.instance.assetsManager.getAssetByUrlSync<Sprite> (spellUrl);
+                break;
+
+            case CardTypeEnum.BLEED:
+                string bleedUrl = CustomUrlString.consumePreTexture + cardType;
+                this.cardConsumeBg.sprite = AppContext.instance.assetsManager.getAssetByUrlSync<Sprite> (bleedUrl);
+                break;
+
+            case CardTypeEnum.EQUIPMENT:
+            case CardTypeEnum.ATTACK:
+            case CardTypeEnum.MAGIC:
+            case CardTypeEnum.PRAY:
+            case CardTypeEnum.REFLEX:
+            case CardTypeEnum.SPECIAL:
+                this.cardConsumeBg.gameObject.SetActive (false);
+                break;
+
+            default:
+                Debug.LogWarning ("card type exceed value: " + cardType);
+                break;
+        }
+
+        // 显示卡牌消耗数值
         this.cardConsume.text = this.previewData.consumeEnergy.ToString ();
 
-        this.cardName.text = this.previewData.cardName;
     }
 
     private void OnDisable () {
