@@ -9,9 +9,9 @@ using UFramework.Const;
 public class CustomUrlString : UrlString {
 
     #region 配置文件
-    public const string cardJsonUrl = "Json/cardPool";
+    public const string cardJson = "Json/cardPool";
 
-    public const string abilityJsonUrl = "Json/abilityPool";
+    public const string abilityJson = "Json/abilityPool";
     #endregion
 
     #region 预制资源

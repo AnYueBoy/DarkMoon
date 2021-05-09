@@ -18,8 +18,6 @@ public class CardEditorBoard : BaseUI {
 
     public GameObject content = null;
 
-    public GameObject abilityItemPrefab = null;
-
     public PreviewCard cardPreview = null;
 
     public Dropdown cardTypeDropDown = null;
@@ -61,8 +59,9 @@ public class CardEditorBoard : BaseUI {
         // 加载能力插槽item
         int abilityCount = CustomDataManager.abilityPoolDataDic.Count;
         int startIndex = this.abilityItemList.Count;
-        for (var i = startIndex; i < abilityCount; i++) {
-            GameObject abilityItemNode = ObjectPool.instance.requestInstance (this.abilityItemPrefab);
+        GameObject abilityItemPrefab = AppContext.instance.assetsManager.getAssetByUrlSync<GameObject> (CustomUrlString.abilityPrefab);
+        for (int i = startIndex; i < abilityCount; i++) {
+            GameObject abilityItemNode = ObjectPool.instance.requestInstance (abilityItemPrefab);
             abilityItemNode.transform.SetParent (this.content.transform, false);
             AbilityItem abilityItem = abilityItemNode.GetComponent<AbilityItem> ();
             this.abilityItemList.Add (abilityItem);
@@ -129,7 +128,7 @@ public class CardEditorBoard : BaseUI {
 
         string cardPoolStr = JsonMapper.ToJson (cardPoolData);
 
-        string filePath = Application.dataPath + "/Game/Resources/" + CustomUrlString.cardJsonUrl + ".json";
+        string filePath = Application.dataPath + "/Game/Resources/" + CustomUrlString.cardJson + ".json";
         Debug.Log ("filePath: " + filePath);
         if (!File.Exists (filePath)) {
             Debug.LogError ("target file not exist");
