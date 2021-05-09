@@ -116,7 +116,6 @@ public class PreviewCard : MonoBehaviour {
 
         // 显示卡牌消耗数值
         this.cardConsume.text = this.previewData.consumeEnergy.ToString ();
-
     }
 
     private void OnDisable () {

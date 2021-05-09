@@ -20,7 +20,7 @@ public class CustomUrlString : UrlString {
     #endregion
 
     #region 图片资源
-    public const string consumePreTexture = "Textures/";
+    public const string consumePreTexture = "Textures/Consume/";
 
     #endregion
 }
