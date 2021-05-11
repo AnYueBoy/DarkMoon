@@ -14,15 +14,17 @@ using UnityEngine.UI;
 
 public class CardEditorBoard : BaseUI {
 
-    public ScrollRect scrollList = null;
+    public GameObject abilityContent = null;
 
-    public GameObject content = null;
+    public GameObject cardIconContent = null;
 
     public PreviewCard cardPreview = null;
 
     public Dropdown cardTypeDropDown = null;
 
     private List<AbilityItem> abilityItemList = new List<AbilityItem> ();
+
+    private List<CardIcon> cardIconList = new List<CardIcon> ();
 
     private CustomCardData previewData = null;
 
@@ -49,9 +51,17 @@ public class CardEditorBoard : BaseUI {
         this.loadAbilityItems ();
     }
 
+    public void loadCardIconClick () {
+        this.recycleAllCardIcon ();
+        // 加载卡牌icon
+        this.loadCardIcons ();
+    }
+
     public void resetCardClick () {
         // 重置卡牌
         this.loadAbilityListClick ();
+        // 重置卡牌icon
+        this.loadCardIconClick ();
         this.init ();
     }
 
@@ -62,7 +72,7 @@ public class CardEditorBoard : BaseUI {
         GameObject abilityItemPrefab = AppContext.instance.assetsManager.getAssetByUrlSync<GameObject> (CustomUrlString.abilityPrefab);
         for (int i = startIndex; i < abilityCount; i++) {
             GameObject abilityItemNode = ObjectPool.instance.requestInstance (abilityItemPrefab);
-            abilityItemNode.transform.SetParent (this.content.transform, false);
+            abilityItemNode.transform.SetParent (this.abilityContent.transform, false);
             AbilityItem abilityItem = abilityItemNode.GetComponent<AbilityItem> ();
             this.abilityItemList.Add (abilityItem);
         }
@@ -93,6 +103,44 @@ public class CardEditorBoard : BaseUI {
             }
 
             ObjectPool.instance.returnInstance (abilityItem.gameObject);
+        }
+    }
+
+    private void loadCardIcons () {
+        List<PackAsset> spriteAssets = AppContext.instance.assetsManager.getAllAssetsByUrlSync<Sprite> (CustomUrlString.cardIconTexture);
+        int startIndex = this.cardIconList.Count;
+        // 卡牌头像预制
+        GameObject cardIconPrefab = AppContext.instance.assetsManager.getAssetByUrlSync<GameObject> (CustomUrlString.cardIconPrefab);
+        for (int i = startIndex; i < spriteAssets.Count; i++) {
+            GameObject cardIconNode = ObjectPool.instance.requestInstance (cardIconPrefab);
+            cardIconNode.transform.SetParent (this.cardIconContent.transform, false);
+            CardIcon cardIconImage = cardIconNode.GetComponent<CardIcon> ();
+            this.cardIconList.Add (cardIconImage);
+        }
+    }
+
+    private void refreshCardIconData () {
+        List<PackAsset> spriteAssets = AppContext.instance.assetsManager.getAllAssetsByUrlSync<Sprite> (CustomUrlString.cardIconTexture);
+        int index = 0;
+        foreach (PackAsset asset in spriteAssets) {
+            CardIcon cardIcon = this.cardIconList[index];
+            cardIcon.gameObject.SetActive (true);
+            cardIcon.init (asset.targetAsset as Sprite, asset.assetUrl);
+            index++;
+        }
+    }
+
+    private void recycleAllCardIcon () {
+        // 回收所有能力item
+        foreach (CardIcon cardIcon in this.cardIconList) {
+            if (cardIcon == null) {
+                continue;
+            }
+            if (!cardIcon.gameObject.activeSelf) {
+                continue;
+            }
+
+            ObjectPool.instance.returnInstance (cardIcon.gameObject);
         }
     }
 

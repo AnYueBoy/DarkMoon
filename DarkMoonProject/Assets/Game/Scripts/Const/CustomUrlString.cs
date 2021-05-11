@@ -16,11 +16,14 @@ public class CustomUrlString : UrlString {
 
     #region 预制资源
     public const string abilityPrefab = "Prefabs/abilityItem";
+    public const string cardIconPrefab = "Prefabs/cardIcon";
 
     #endregion
 
     #region 图片资源
     public const string consumePreTexture = "Textures/Consume/";
+
+    public const string cardIconTexture = "Textures/CardIcon/";
 
     #endregion
 }
