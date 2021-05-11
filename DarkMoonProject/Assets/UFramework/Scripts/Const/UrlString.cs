@@ -12,6 +12,6 @@ namespace UFramework.Const {
         /// <summary>
         /// 界面资源路径
         /// </summary>
-        public const string uiUrl = "UI/";
+        public static readonly string uiUrl = "UI/";
     }
 }
