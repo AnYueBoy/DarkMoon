@@ -3,23 +3,33 @@
  * @Date: 2021-05-11 15:04:20 
  * @Description: 卡牌icon
  */
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CardIcon : MonoBehaviour {
 
-    private Image _cardIconImage = null;
+    public Image cardIconImage = null;
 
-    private string _cardIconUrl;
+    public GameObject selectedNode;
 
-    public void init (Sprite icon, string iconUrl) {
-        this._cardIconImage.sprite = icon;
-        this._cardIconUrl = iconUrl;
+    private string cardIconUrl;
+
+    private Action<string> selectedCall;
+
+    public void init (Sprite icon, string iconUrl, Action<string> selected) {
+        this.cardIconImage.sprite = icon;
+        this.cardIconUrl = iconUrl;
+        this.selectedCall = selected;
+        this.selectedNode.SetActive (false);
     }
 
-    public string cardIconUrl {
-        get {
-            return this._cardIconUrl;
-        }
+    public void selectedClick () {
+        this.selectedCall?.Invoke (this.cardIconUrl);
+        this.selectedNode.SetActive (true);
+    }
+
+    public void unSelected () {
+        this.selectedNode.SetActive (false);
     }
 }

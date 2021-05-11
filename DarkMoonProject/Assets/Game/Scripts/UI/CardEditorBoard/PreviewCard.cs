@@ -3,7 +3,7 @@
  * @Date: 2020-12-21 21:24:52 
  * @Description: 预览区卡牌
  * @Last Modified by: l hy
- * @Last Modified time: 2021-05-11 17:20:55
+ * @Last Modified time: 2021-05-11 19:20:19
  */
 
 using System;
@@ -123,12 +123,18 @@ public class PreviewCard : MonoBehaviour {
 
     private void showCardIcon () {
         string textureUrl = this.previewData.textureUrl;
+        if (String.IsNullOrEmpty (textureUrl)) {
+            this.iconImage.sprite = null;
+            return;
+        }
+
         this.splitUrl (textureUrl);
-        if (String.IsNullOrEmpty (this.iconUrl)) {
+        if (!String.IsNullOrEmpty (this.iconUrl)) {
             this.iconImage.sprite = AppContext.instance.assetsManager.getAssetByUrlSync<Sprite> (this.iconUrl);
         } else {
             this.iconImage.sprite = AppContext.instance.assetsManager.getAssetByBundleSync<Sprite> (this.bundleName, this.assetName);
         }
+
     }
 
     private string iconUrl;
@@ -139,7 +145,7 @@ public class PreviewCard : MonoBehaviour {
         this.iconUrl = null;
         this.bundleName = null;
         this.assetName = null;
-        string[] urls = iconUrl.Split (':');
+        string[] urls = assetUrl.Split (':');
         if (urls.Length > 1) {
             this.bundleName = urls[0];
             this.bundleName = urls[1];
