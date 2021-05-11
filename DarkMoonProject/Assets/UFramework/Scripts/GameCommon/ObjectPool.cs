@@ -41,7 +41,6 @@ namespace UFramework.GameCommon {
 
                 if (instance == null) {
                     GameObject gameObject = GameObject.Instantiate<GameObject> (prefab);
-                    Debug.Log("prefabName: "+prefab.name);
                     gameObject.name = prefab.name;
                     this.relationShip.Add (gameObject, prefab);
                     subPool.Add (gameObject);
