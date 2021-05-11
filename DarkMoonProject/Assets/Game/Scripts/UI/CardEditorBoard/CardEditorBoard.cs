@@ -109,8 +109,8 @@ public class CardEditorBoard : BaseUI {
     private void loadCardIcons () {
         List<PackAsset> spriteAssets = AppContext.instance.assetsManager.getAllAssetsByUrlSync<Sprite> (CustomUrlString.cardIconTexture);
         int startIndex = this.cardIconList.Count;
-        // FIXME: 卡牌头像预制
-        GameObject cardIconPrefab = AppContext.instance.assetsManager.getAssetByUrlSync<GameObject> ("");
+        // 卡牌头像预制
+        GameObject cardIconPrefab = AppContext.instance.assetsManager.getAssetByUrlSync<GameObject> (CustomUrlString.cardIconPrefab);
         for (int i = startIndex; i < spriteAssets.Count; i++) {
             GameObject cardIconNode = ObjectPool.instance.requestInstance (cardIconPrefab);
             cardIconNode.transform.SetParent (this.cardIconContent.transform, false);
