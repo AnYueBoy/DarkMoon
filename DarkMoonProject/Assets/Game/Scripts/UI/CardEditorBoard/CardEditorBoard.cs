@@ -117,6 +117,8 @@ public class CardEditorBoard : BaseUI {
             CardIcon cardIconImage = cardIconNode.GetComponent<CardIcon> ();
             this.cardIconList.Add (cardIconImage);
         }
+
+        this.refreshCardIconData();
     }
 
     private void refreshCardIconData () {
@@ -125,9 +127,23 @@ public class CardEditorBoard : BaseUI {
         foreach (PackAsset asset in spriteAssets) {
             CardIcon cardIcon = this.cardIconList[index];
             cardIcon.gameObject.SetActive (true);
-            cardIcon.init (asset.targetAsset as Sprite, asset.assetUrl);
+            cardIcon.init (asset.targetAsset as Sprite, asset.assetUrl, (string iconUrl) => {
+                this.selectedIcon (iconUrl);
+            });
             index++;
         }
+    }
+
+    private void selectedIcon (string iconUrl) {
+        foreach (CardIcon cardIcon in this.cardIconList) {
+            if (cardIcon == null) {
+                continue;
+            }
+            cardIcon.unSelected ();
+        }
+
+        this.previewData.textureUrl = iconUrl;
+        this.cardPreview.init (this.previewData);
     }
 
     private void recycleAllCardIcon () {
