@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4901015140150726052}
   - component: {fileID: 3453250161959901130}
   - component: {fileID: 7743375402754422268}
+  - component: {fileID: 3658099686443824986}
   m_Layer: 5
-  m_Name: Image
+  m_Name: cardIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,3 +75,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3658099686443824986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3251365922557746519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88166d766b811ca468c0378b43a0f622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardIconImage: {fileID: 0}
+  cardIconUrl: 

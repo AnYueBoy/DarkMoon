@@ -3,7 +3,7 @@
  * @Date: 2020-12-21 21:24:52 
  * @Description: 预览区卡牌
  * @Last Modified by: l hy
- * @Last Modified time: 2021-05-07 22:38:47
+ * @Last Modified time: 2021-05-11 17:20:55
  */
 
 using System;
@@ -78,6 +78,9 @@ public class PreviewCard : MonoBehaviour {
 
         // 显示卡牌颜色背景
         this.cardColorBgImage.color = Util.getColorByCardType (this.previewData.cardType);
+
+        // 显示卡牌icon
+        this.showCardIcon ();
     }
 
     private void showCardConsume () {
@@ -116,6 +119,33 @@ public class PreviewCard : MonoBehaviour {
 
         // 显示卡牌消耗数值
         this.cardConsume.text = this.previewData.consumeEnergy.ToString ();
+    }
+
+    private void showCardIcon () {
+        string textureUrl = this.previewData.textureUrl;
+        this.splitUrl (textureUrl);
+        if (String.IsNullOrEmpty (this.iconUrl)) {
+            this.iconImage.sprite = AppContext.instance.assetsManager.getAssetByUrlSync<Sprite> (this.iconUrl);
+        } else {
+            this.iconImage.sprite = AppContext.instance.assetsManager.getAssetByBundleSync<Sprite> (this.bundleName, this.assetName);
+        }
+    }
+
+    private string iconUrl;
+    private string bundleName;
+    private string assetName;
+
+    public void splitUrl (string assetUrl) {
+        this.iconUrl = null;
+        this.bundleName = null;
+        this.assetName = null;
+        string[] urls = iconUrl.Split (':');
+        if (urls.Length > 1) {
+            this.bundleName = urls[0];
+            this.bundleName = urls[1];
+        } else {
+            this.iconUrl = urls[0];
+        }
     }
 
     private void OnDisable () {
