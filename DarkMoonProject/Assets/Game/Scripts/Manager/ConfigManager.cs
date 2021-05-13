@@ -14,7 +14,8 @@ public class ConfigManager {
     public Promise init () {
         Promise[] promises = new Promise[] {
             this.loadCardPooConfig (),
-            this.loadAbilityPoolConfig ()
+            this.loadAbilityPoolConfig (),
+            this.loadBattleLevelConfig ()
         };
         return Promise.all (promises);
     }
@@ -51,22 +52,29 @@ public class ConfigManager {
 
             foreach (LevelConfigData levelConfigData in levelBattleConfigData.levels) {
                 int level = levelConfigData.level;
-                Dictionary<int, List<int>> pageDic = battleLevelDic[level];
 
-                if (pageDic == null) {
+                Dictionary<int, List<int>> pageDic = null;
+                if (!battleLevelDic.ContainsKey (level)) {
                     pageDic = new Dictionary<int, List<int>> ();
                     battleLevelDic.Add (level, pageDic);
                 }
 
+                pageDic = battleLevelDic[level];
+
                 foreach (PageConfigData pageConfigData in levelConfigData.pages) {
                     int pageIndex = pageConfigData.page;
-                    List<int> itemIdList = pageDic[pageIndex];
-                    if (itemIdList == null) {
+                    List<int> itemIdList = null;
+                    if (!pageDic.ContainsKey (pageIndex)) {
                         itemIdList = new List<int> ();
                         pageDic.Add (pageIndex, itemIdList);
                     }
+
+                    foreach (ItemConfigData itemConfig in pageConfigData.itemIds) {
+                        itemIdList.Add (itemConfig.itemId);
+                    }
                 }
             }
+
             resolve?.Invoke ();
         });
     }
