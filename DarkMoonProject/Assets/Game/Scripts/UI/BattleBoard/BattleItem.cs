@@ -8,16 +8,28 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BattleItem : MonoBehaviour {
+    public Text itemName;
 
     public Image iconImage;
-
-    public Text itemName;
 
     public Text itemDescribe;
 
     public GameObject enterBtnNode;
 
-    public void init (BattleItemData battleItemData) {
+    private BattleItemData battleItemData;
 
+    public void init (BattleItemData battleItemData) {
+        this.battleItemData = battleItemData;
+        this.showItemInfo ();
+        this.enterBtnNode.SetActive (false);
     }
+
+    private void showItemInfo () {
+        this.itemName.text = this.battleItemData.itemName;
+
+        this.iconImage.sprite = AppContext.instance.assetsManager.getAssetByUrlSync<Sprite> (this.battleItemData.iconUrl);
+
+        this.itemDescribe.text = this.battleItemData.describe;
+    }
+
 }

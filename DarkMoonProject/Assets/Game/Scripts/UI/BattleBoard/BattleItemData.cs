@@ -6,4 +6,14 @@
 
 public class BattleItemData {
 
+    public int id;
+
+    public ItemTypeEnum itemType;
+
+    public string itemName;
+
+    public string iconUrl;
+
+    public string describe;
+
 }
