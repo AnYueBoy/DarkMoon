@@ -24,6 +24,10 @@ public class AppContext : MonoBehaviour {
 
     public UIManager uIManager = new UIManager ();
 
+    public CustomDataManager customDataManager = new CustomDataManager ();
+
+    public ConfigManager configManager = new ConfigManager ();
+
     #endregion
 
     public GameObject uiRoot = null;
@@ -41,27 +45,13 @@ public class AppContext : MonoBehaviour {
     }
 
     private void init () {
-        this.loadCardPooJson ();
-        this.loadAbilityPoolJson ();
+        this.customDataManager.init ();
+        // FIXME: 可能要等待
+        this.configManager.init ();
+
         this.abilityManager.init ();
         this.uIManager.init (this.uiRoot);
-
         this.uIManager.showBoard (UIPath.HallBoard);
     }
 
-    private void loadCardPooJson () {
-        TextAsset cardPoolJson = assetsManager.getAssetByUrlSync<TextAsset> (CustomUrlString.cardJson);
-        string context = cardPoolJson.text;
-        CardPoolData cardPoolData = JsonMapper.ToObject<CardPoolData> (context);
-        CustomDataManager.cardPoolData = cardPoolData;
-    }
-
-    private void loadAbilityPoolJson () {
-        TextAsset abilityJson = assetsManager.getAssetByUrlSync<TextAsset> (CustomUrlString.abilityJson);
-        string context = abilityJson.text;
-        AbilityPoolData abilityPoolData = JsonMapper.ToObject<AbilityPoolData> (context);
-        foreach (var abilityData in abilityPoolData.abilities) {
-            CustomDataManager.abilityPoolDataDic.Add (abilityData.id, abilityData);
-        }
-    }
 }

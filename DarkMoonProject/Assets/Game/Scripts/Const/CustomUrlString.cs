@@ -8,12 +8,6 @@ using UFramework.Const;
 
 public class CustomUrlString : UrlString {
 
-    #region 配置文件
-    public const string cardJson = "Json/cardPool";
-
-    public const string abilityJson = "Json/abilityPool";
-    #endregion
-
     #region 预制资源
     public const string abilityPrefab = "Prefabs/abilityItem";
     public const string cardIconPrefab = "Prefabs/cardIcon";
