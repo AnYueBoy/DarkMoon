@@ -12,6 +12,8 @@ public class CustomUrlString : UrlString {
     public const string abilityPrefab = "Prefabs/abilityItem";
     public const string cardIconPrefab = "Prefabs/cardIcon";
 
+    public const string battleItemPrefab = "Prefabs/battleItem";
+
     #endregion
 
     #region 图片资源
