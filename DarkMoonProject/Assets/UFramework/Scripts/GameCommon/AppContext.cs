@@ -53,6 +53,7 @@ public class AppContext : MonoBehaviour {
     }
 
     private void init () {
+        this.playerDataManager.init ();
         this.customDataManager.init ();
         // FIXME: 可能要等待
         this.configManager.init ();
