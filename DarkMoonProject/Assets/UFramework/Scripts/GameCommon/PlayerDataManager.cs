@@ -32,7 +32,7 @@ public class PlayerrDataManager {
 
     public void saveData () {
         string playerDataStr = JsonMapper.ToJson (this._playerData);
-        string filePath = Application.dataPath + "Game/Resources/" + ConfigPath.playerDataConfig + ".json";
+        string filePath = Application.dataPath + "/Game/Resources/" + ConfigPath.playerDataConfig + ".json";
 
         StreamWriter sw = new StreamWriter (filePath);
         sw.Write (playerDataStr);
