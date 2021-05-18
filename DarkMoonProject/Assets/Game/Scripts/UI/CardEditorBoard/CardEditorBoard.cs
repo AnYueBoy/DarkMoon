@@ -194,10 +194,6 @@ public class CardEditorBoard : BaseUI {
 
         string filePath = Application.dataPath + "/Game/Resources/" + ConfigPath.cardPoolConfig + ".json";
         Debug.Log ("filePath: " + filePath);
-        if (!File.Exists (filePath)) {
-            Debug.LogError ("target file not exist");
-            return;
-        }
 
         StreamWriter sw = new StreamWriter (filePath);
         sw.Write (cardPoolStr);

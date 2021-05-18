@@ -3,13 +3,14 @@
  * @Date: 2020-12-03 15:25:34 
  * @Description: AppContext
  */
-using LitJson;
 using UFramework.GameCommon;
 using UnityEngine;
 
 public class AppContext : MonoBehaviour {
 
     private static AppContext _instance = null;
+
+    public GameCommon gameCommon = null;
 
     #region 管理类
     public AssetsManager assetsManager = new AssetsManager ();
@@ -28,6 +29,8 @@ public class AppContext : MonoBehaviour {
 
     public ConfigManager configManager = new ConfigManager ();
 
+    public PlayerrDataManager playerDataManager = new PlayerrDataManager ();
+
     #endregion
 
     public GameObject uiRoot = null;
@@ -42,6 +45,11 @@ public class AppContext : MonoBehaviour {
         _instance = this;
 
         this.init ();
+    }
+
+    private void Update () {
+        float deltaTime = Time.deltaTime;
+        this.gameCommon.localUpdate (deltaTime);
     }
 
     private void init () {
