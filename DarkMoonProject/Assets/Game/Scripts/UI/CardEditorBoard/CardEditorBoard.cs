@@ -67,7 +67,7 @@ public class CardEditorBoard : BaseUI {
 
     private void loadAbilityItems () {
         // 加载能力插槽item
-        int abilityCount = CustomDataManager.abilityPoolDataDic.Count;
+        int abilityCount = AppContext.instance.customDataManager.abilityPoolDataDic.Count;
         int startIndex = this.abilityItemList.Count;
         GameObject abilityItemPrefab = AppContext.instance.assetsManager.getAssetByUrlSync<GameObject> (CustomUrlString.abilityPrefab);
         for (int i = startIndex; i < abilityCount; i++) {
@@ -82,7 +82,7 @@ public class CardEditorBoard : BaseUI {
 
     private void refreshAbilityData () {
         // 刷新插槽数据
-        Dictionary<int, AbilityData> abilityDic = CustomDataManager.abilityPoolDataDic;
+        Dictionary<int, AbilityData> abilityDic = AppContext.instance.customDataManager.abilityPoolDataDic;
         int index = 0;
         foreach (AbilityData itemData in abilityDic.Values) {
             AbilityItem abilityItem = this.abilityItemList[index];
@@ -118,7 +118,7 @@ public class CardEditorBoard : BaseUI {
             this.cardIconList.Add (cardIconImage);
         }
 
-        this.refreshCardIconData();
+        this.refreshCardIconData ();
     }
 
     private void refreshCardIconData () {
@@ -185,14 +185,14 @@ public class CardEditorBoard : BaseUI {
 
     public void buildCardCompleted () {
         // 构建卡牌
-        CardPoolData cardPoolData = CustomDataManager.cardPoolData;
+        CardPoolData cardPoolData = AppContext.instance.customDataManager.cardPoolData;
         // TODO: id 改变需要确认
         this.previewData.id = cardPoolData.cards.Count + 1;
         cardPoolData.cards.Add (previewData);
 
         string cardPoolStr = JsonMapper.ToJson (cardPoolData);
 
-        string filePath = Application.dataPath + "/Game/Resources/" + CustomUrlString.cardJson + ".json";
+        string filePath = Application.dataPath + "/Game/Resources/" + ConfigPath.cardPoolConfig + ".json";
         Debug.Log ("filePath: " + filePath);
         if (!File.Exists (filePath)) {
             Debug.LogError ("target file not exist");

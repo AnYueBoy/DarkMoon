@@ -6,7 +6,18 @@ using System.Collections.Generic;
  */
 
 public class CustomDataManager {
-    public static CardPoolData cardPoolData = null;
+    public CardPoolData cardPoolData;
 
-    public static Dictionary<int, AbilityData> abilityPoolDataDic = new Dictionary<int, AbilityData> ();
+    public Dictionary<int, AbilityData> abilityPoolDataDic;
+
+    // level 
+    //      page
+    //          list<int>
+    public Dictionary<int, Dictionary<int, List<int>>> battleLevelDic;
+
+    public void init () {
+        this.cardPoolData = new CardPoolData ();
+        abilityPoolDataDic = new Dictionary<int, AbilityData> ();
+        this.battleLevelDic = new Dictionary<int, Dictionary<int, List<int>>> ();
+    }
 }
