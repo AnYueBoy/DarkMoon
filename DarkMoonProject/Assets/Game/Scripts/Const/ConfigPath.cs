@@ -21,4 +21,6 @@ public class ConfigPath {
     /// </summary>
     public const string battleLevelConfig = "Json/levelBattleItemConfig";
 
+    public const string playerDataConfig = "Json/playerDataConfig";
+
 }
