@@ -89,6 +89,8 @@ public class ConfigManager {
             foreach (BattleItemData battleItemData in battleItemList.items) {
                 AppContext.instance.customDataManager.battleItemDataDic.Add (battleItemData.id, battleItemData);
             }
+
+            resolve?.Invoke ();
         });
     }
 
