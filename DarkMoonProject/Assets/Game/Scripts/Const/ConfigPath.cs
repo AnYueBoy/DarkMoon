@@ -21,6 +21,14 @@ public class ConfigPath {
     /// </summary>
     public const string battleLevelConfig = "Json/levelBattleItemConfig";
 
+    /// <summary>
+    /// 关卡item配置文件
+    /// </summary>
+    public const string itemsConfig = "Json/itemsConfig";
+
+    /// <summary>
+    /// 玩家数据文件
+    /// </summary>
     public const string playerDataConfig = "Json/playerDataConfig";
 
 }

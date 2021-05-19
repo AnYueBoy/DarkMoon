@@ -15,7 +15,8 @@ public class ConfigManager {
         Promise[] promises = new Promise[] {
             this.loadCardPooConfig (),
             this.loadAbilityPoolConfig (),
-            this.loadBattleLevelConfig ()
+            this.loadBattleLevelConfig (),
+            this.loadItemsConfig ()
         };
         return Promise.all (promises);
     }
@@ -76,6 +77,18 @@ public class ConfigManager {
             }
 
             resolve?.Invoke ();
+        });
+    }
+
+    private Promise loadItemsConfig () {
+        return new Promise ((Action resolve, Action<Exception> reject) => {
+            TextAsset itemsConfig = AppContext.instance.assetsManager.getAssetByUrlSync<TextAsset> (ConfigPath.itemsConfig);
+            string context = itemsConfig.text;
+
+            BattleItemList battleItemList = JsonMapper.ToObject<BattleItemList> (context);
+            foreach (BattleItemData battleItemData in battleItemList.items) {
+                AppContext.instance.customDataManager.battleItemDataDic.Add (battleItemData.id, battleItemData);
+            }
         });
     }
 
