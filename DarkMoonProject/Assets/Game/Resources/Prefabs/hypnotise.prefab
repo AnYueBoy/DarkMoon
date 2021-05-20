@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3692332295397448300}
   - component: {fileID: 5704663206179763815}
   m_Layer: 0
-  m_Name: New bone
+  m_Name: rightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 5316984470993465652}
   - component: {fileID: 2828052109675450471}
   m_Layer: 0
-  m_Name: New bone
+  m_Name: leftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,13 +71,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347276487634651762}
-  m_LocalRotation: {x: 0, y: 0, z: 0.8044816, w: -0.59397763}
+  m_LocalRotation: {x: 0, y: 0, z: 0.99907845, w: -0.04292253}
   m_LocalPosition: {x: 0.8947167, y: -0.0000000016589183, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2552990813548642329}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -467.12}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -535.08}
 --- !u!114 &2828052109675450471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 5569382287884968163}
   - component: {fileID: 1077172059316917352}
   m_Layer: 0
-  m_Name: New bone
+  m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 1976059743882333834}
   - component: {fileID: 9043515386789624766}
   m_Layer: 0
-  m_Name: New bone
+  m_Name: chin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 2686028464436970746}
   - component: {fileID: 2608896081095154061}
   m_Layer: 0
-  m_Name: New bone
+  m_Name: neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 8481645994975707367}
   - component: {fileID: 8893246800455442317}
   m_Layer: 0
-  m_Name: New bone
+  m_Name: rightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 4481409562595873125}
   - component: {fileID: 2579082956950741854}
   m_Layer: 0
-  m_Name: New bone
+  m_Name: hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 2552990813548642329}
   - component: {fileID: 5677531178393122968}
   m_Layer: 0
-  m_Name: New bone
+  m_Name: leftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -672,6 +672,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8032293763953016444}
+  - component: {fileID: 5143874823981935962}
+  - component: {fileID: 1373587905863030997}
   m_Layer: 0
   m_Name: hypnotise
   m_TagString: Untagged
@@ -695,6 +697,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &5143874823981935962
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8032293763953016447}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c718ff872039cce4eaaff5edd72fd901, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &1373587905863030997
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8032293763953016447}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 366826af4a147a148a07944a990a2146, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &8032293764360400333
 GameObject:
   m_ObjectHideFlags: 0
