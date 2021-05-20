@@ -58,8 +58,16 @@ public class BattleBoard : BaseUI {
                 continue;
             }
 
-            battleItem.init (battleItemData);
+            battleItem.init (battleItemData, () => {
+                this.unSelectedAllItems ();
+            });
             index++;
+        }
+    }
+
+    private void unSelectedAllItems () {
+        foreach (BattleItem battleItem in this.battleItemList) {
+            battleItem.unSelectedItem ();
         }
     }
 
