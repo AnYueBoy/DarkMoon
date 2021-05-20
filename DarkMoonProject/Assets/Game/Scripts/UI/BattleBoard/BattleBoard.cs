@@ -16,7 +16,7 @@ public class BattleBoard : BaseUI {
 
     private List<BattleItem> battleItemList = new List<BattleItem> ();
 
-    private readonly int createCount = 3;
+    private readonly int itemCount = 3;
 
     private readonly float itemStartX = -206;
 
@@ -34,7 +34,7 @@ public class BattleBoard : BaseUI {
             return;
         }
         GameObject itemPrefab = AppContext.instance.assetsManager.getAssetByUrlSync<GameObject> (CustomUrlString.battleItemPrefab);
-        for (int i = 0; i < this.createCount; i++) {
+        for (int i = 0; i < this.itemCount; i++) {
             GameObject itemNode = ObjectPool.instance.requestInstance (itemPrefab);
             itemNode.transform.SetParent (this.itemContent);
             itemNode.transform.localPosition = new Vector3 (this.itemStartX + itemInterval * i, this.itemStartY, 0);
@@ -46,7 +46,21 @@ public class BattleBoard : BaseUI {
     }
 
     private void refreshBattleItemsData () {
+        if (this.battleItemList.Count <= 0) {
+            return;
+        }
 
+        Dictionary<int, BattleItemData> battleItemDataDic = AppContext.instance.customDataManager.battleItemDataDic;
+        int index = 0;
+        foreach (var battleItemData in battleItemDataDic.Values) {
+            BattleItem battleItem = this.battleItemList[index];
+            if (battleItem == null) {
+                continue;
+            }
+
+            battleItem.init (battleItemData);
+            index++;
+        }
     }
 
     public void returnHallBoard () {

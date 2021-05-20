@@ -8,10 +8,10 @@
 
 public enum ItemTypeEnum {
 
-    /*战斗*/
-    BATTLE,
     /*祝福*/
     BLESS,
+    /*战斗*/
+    BATTLE,
     /*商店*/
     SHOP,
     /*酒馆*/
