@@ -9,6 +9,6 @@ using UnityEngine;
 public class BattleBoard : BaseUI {
 
     public override void onShow (params object[] args) {
-
+        int monsterId = (int) args[0];
     }
 }

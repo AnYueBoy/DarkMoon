@@ -58,7 +58,7 @@ public class BattleSelectItem : MonoBehaviour {
         switch (this.battleItemData.itemType) {
             case ItemTypeEnum.BATTLE:
                 //  进入战斗界面
-                AppContext.instance.uIManager.showBoard (UIPath.BattleBoard);
+                AppContext.instance.uIManager.showBoard (UIPath.BattleBoard, this.battleItemData.id);
                 break;
 
             case ItemTypeEnum.BLESS:
