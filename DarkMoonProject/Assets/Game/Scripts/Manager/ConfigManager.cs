@@ -16,7 +16,8 @@ public class ConfigManager {
             this.loadCardPooConfig (),
             this.loadAbilityPoolConfig (),
             this.loadBattleLevelConfig (),
-            this.loadItemsConfig ()
+            this.loadItemsConfig (),
+            this.loadMonsterConfig ()
         };
         return Promise.all (promises);
     }
@@ -94,4 +95,17 @@ public class ConfigManager {
         });
     }
 
+    private Promise loadMonsterConfig () {
+        return new Promise ((Action resolve, Action<Exception> reject) => {
+            TextAsset monsterConfig = AppContext.instance.assetsManager.getAssetByUrlSync<TextAsset> (ConfigPath.monsterConfig);
+            string context = monsterConfig.text;
+
+            MonsterDataList monsterDataList = JsonMapper.ToObject<MonsterDataList> (context);
+            foreach (MonsterData monsterData in monsterDataList.monsterList) {
+                AppContext.instance.customDataManager.monsterDataDic.Add (monsterData.id, monsterData);
+            }
+
+            resolve?.Invoke ();
+        });
+    }
 }

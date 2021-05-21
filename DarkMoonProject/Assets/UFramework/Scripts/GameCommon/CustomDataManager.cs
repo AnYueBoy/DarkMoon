@@ -17,10 +17,13 @@ public class CustomDataManager {
 
     public Dictionary<int, BattleItemData> battleItemDataDic;
 
+    public Dictionary<int, MonsterData> monsterDataDic;
+
     public void init () {
         this.cardPoolData = new CardPoolData ();
         abilityPoolDataDic = new Dictionary<int, AbilityData> ();
         this.battleLevelDic = new Dictionary<int, Dictionary<int, List<int>>> ();
         this.battleItemDataDic = new Dictionary<int, BattleItemData> ();
+        this.monsterDataDic = new Dictionary<int, MonsterData> ();
     }
 }
