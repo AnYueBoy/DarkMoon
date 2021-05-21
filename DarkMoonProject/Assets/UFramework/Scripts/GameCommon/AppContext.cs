@@ -35,6 +35,8 @@ public class AppContext : MonoBehaviour {
 
     public GameObject uiRoot = null;
 
+    public Transform monsterParent;
+
     public static AppContext instance {
         get {
             return _instance;

@@ -359,7 +359,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4898042442516516422}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3192666493133151710}
+        m_MethodName: enterItemClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4345575560814096078
 GameObject:
   m_ObjectHideFlags: 0

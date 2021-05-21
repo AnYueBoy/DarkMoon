@@ -16,4 +16,6 @@ public class MonsterData {
     public float actionValue;
 
     public float magicValue;
+
+    public string url;
 }

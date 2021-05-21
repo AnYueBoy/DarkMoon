@@ -54,7 +54,7 @@ public class BattleSelectItem : MonoBehaviour {
         this.enterBtnTween.Play ();
     }
 
-    public void enterItem () {
+    public void enterItemClick () {
         switch (this.battleItemData.itemType) {
             case ItemTypeEnum.BATTLE:
                 //  进入战斗界面

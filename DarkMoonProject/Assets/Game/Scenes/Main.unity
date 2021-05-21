@@ -293,6 +293,7 @@ MonoBehaviour:
   gameCommon: {fileID: 2131997426}
   audioManager: {fileID: 1519408317}
   uiRoot: {fileID: 1329340413}
+  monsterParent: {fileID: 1180773688}
 --- !u!4 &881134674
 Transform:
   m_ObjectHideFlags: 0
