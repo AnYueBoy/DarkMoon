@@ -4,15 +4,28 @@
             "id": 1,
             "itemType": 1,
             "itemName": "仙女祝福",
-            "iconUrl": "",
+            "iconUrl": "Textures/BattleIcon/banshee",
             "describe": "我曾赋予匹诺曹生命，也赠送过灰姑娘水晶鞋"
         },
         {
             "id": 2,
             "itemType": 2,
-            "itemName": "仙女祝福",
-            "iconUrl": "",
-            "describe": "我曾赋予匹诺曹生命，也赠送过灰姑娘水晶鞋"
+            "itemName": "催眠师",
+            "iconUrl": "Textures/BattleIcon/hypnotist",
+            "describe": "他看起来昏昏入睡",
+            "cardList": [
+                1
+            ],
+            "monsterHp": 10,
+            "actionValue": 2,
+            "magicValue": 15
+        },
+        {
+            "id": 3,
+            "itemType": 3,
+            "itemName": "收藏家",
+            "iconUrl": "Textures/BattleIcon/dealer",
+            "describe": "每张卡都有它的价值"
         }
     ]
 }

@@ -11,5 +11,7 @@ public class UIPath {
 
     public const string CardEditorBoard = "CardEditorBoard";
 
+    public const string BattleSelectBoard = "BattleSelectBoard";
+
     public const string BattleBoard = "BattleBoard";
 }
