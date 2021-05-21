@@ -16,7 +16,7 @@
         },
         {
             "id": 3,
-            "itemType": 3,
+            "itemType": 5,
             "itemName": "收藏家",
             "iconUrl": "Textures/BattleIcon/dealer",
             "describe": "每张卡都有它的价值"

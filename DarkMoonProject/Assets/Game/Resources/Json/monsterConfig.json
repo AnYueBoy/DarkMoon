@@ -8,7 +8,7 @@
             "monsterHp": 10,
             "actionValue": 2,
             "magicValue": 15,
-            "url": "Prefab/Monster/hypnotist"
+            "url": "Prefabs/Monster/hypnotist"
         }
     ]
 }
