@@ -9,7 +9,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattleItem : MonoBehaviour {
+public class BattleSelectItem : MonoBehaviour {
     public Text itemName;
 
     public Image iconImage;

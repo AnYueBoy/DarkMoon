@@ -14,7 +14,7 @@ public class BattleSelectBoard : BaseUI {
 
     public Transform itemContent;
 
-    private List<BattleItem> battleItemList = new List<BattleItem> ();
+    private List<BattleSelectItem> battleItemList = new List<BattleSelectItem> ();
 
     private readonly int itemCount = 3;
 
@@ -39,8 +39,8 @@ public class BattleSelectBoard : BaseUI {
             itemNode.transform.SetParent (this.itemContent);
             itemNode.transform.localPosition = new Vector3 (this.itemStartX + itemInterval * i, this.itemStartY, 0);
 
-            BattleItem battleItem = itemNode.GetComponent<BattleItem> ();
-            this.battleItemList.Add (battleItem);
+            BattleSelectItem battleSelectItem = itemNode.GetComponent<BattleSelectItem> ();
+            this.battleItemList.Add (battleSelectItem);
         }
 
     }
@@ -53,12 +53,12 @@ public class BattleSelectBoard : BaseUI {
         Dictionary<int, BattleItemData> battleItemDataDic = AppContext.instance.customDataManager.battleItemDataDic;
         int index = 0;
         foreach (var battleItemData in battleItemDataDic.Values) {
-            BattleItem battleItem = this.battleItemList[index];
-            if (battleItem == null) {
+            BattleSelectItem battleSelectItem = this.battleItemList[index];
+            if (battleSelectItem == null) {
                 continue;
             }
 
-            battleItem.init (battleItemData, () => {
+            battleSelectItem.init (battleItemData, () => {
                 this.unSelectedAllItems ();
             });
             index++;
@@ -66,8 +66,8 @@ public class BattleSelectBoard : BaseUI {
     }
 
     private void unSelectedAllItems () {
-        foreach (BattleItem battleItem in this.battleItemList) {
-            battleItem.unSelectedItem ();
+        foreach (BattleSelectItem battleSelectItem in this.battleItemList) {
+            battleSelectItem.unSelectedItem ();
         }
     }
 
