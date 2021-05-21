@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using UFramework.GameCommon;
 using UnityEngine;
 
-public class BattleBoard : BaseUI {
+public class BattleSelectBoard : BaseUI {
 
     public Transform itemContent;
 

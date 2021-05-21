@@ -55,6 +55,19 @@ public class BattleItem : MonoBehaviour {
     }
 
     public void enterItem () {
+        switch (this.battleItemData.itemType) {
+            case ItemTypeEnum.BATTLE:
+                // TODO: 进入战斗
+                break;
+
+            case ItemTypeEnum.BLESS:
+                break;
+
+            case ItemTypeEnum.SHOP:
+                break;
+            default:
+                break;
+        }
 
     }
 

@@ -17,5 +17,8 @@ public enum ItemTypeEnum {
     /*酒馆*/
     PUB,
     /*武器商店*/
-    ARM_DEALER
+    ARM_DEALER,
+
+    /*收藏家*/
+    DEALER,
 }
