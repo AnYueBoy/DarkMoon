@@ -57,7 +57,8 @@ public class BattleItem : MonoBehaviour {
     public void enterItem () {
         switch (this.battleItemData.itemType) {
             case ItemTypeEnum.BATTLE:
-                // TODO: 进入战斗
+                //  进入战斗界面
+                AppContext.instance.uIManager.showBoard (UIPath.BattleBoard);
                 break;
 
             case ItemTypeEnum.BLESS:

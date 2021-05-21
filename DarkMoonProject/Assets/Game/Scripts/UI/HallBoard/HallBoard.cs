@@ -14,7 +14,7 @@ using UnityEngine;
 public class HallBoard : BaseUI {
 
     public void startGame_click () {
-        AppContext.instance.uIManager.showBoard (UIPath.BattleBoard);
+        AppContext.instance.uIManager.showBoard (UIPath.BattleSelectBoard);
     }
 
     public void continueGame_click () {
