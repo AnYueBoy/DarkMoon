@@ -4,11 +4,13 @@
  * @Description: {} 
  */
 
+using DG.Tweening;
 using UFramework.GameCommon;
 using UnityEngine;
 public class BattleBoard : BaseUI {
 
     private MonsterData monsterData = null;
+
     public override void onShow (params object[] args) {
         int monsterId = (int) args[0];
         this.monsterData = AppContext.instance.customDataManager.monsterDataDic[monsterId];
