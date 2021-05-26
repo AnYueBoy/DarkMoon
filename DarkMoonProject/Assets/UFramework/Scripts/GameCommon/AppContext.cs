@@ -69,6 +69,8 @@ public class AppContext : MonoBehaviour {
         this.abilityManager.init ();
         this.uIManager.init (this.uiRoot);
         this.uIManager.showBoard (UIPath.HallBoard);
+
+        this.battleManager.init (2);
     }
 
 }

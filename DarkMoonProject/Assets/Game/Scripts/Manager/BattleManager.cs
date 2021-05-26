@@ -3,12 +3,13 @@
  * @Date: 2021-05-26 19:16:02 
  * @Description: 战斗管理
  */
-
 public class BattleManager {
 
     private TurnEnum curTurn;
 
-    public void init () {
+    private MonsterData monsterData;
+
+    public void init (int monsterId) {
         this.curTurn = TurnEnum.PLAYER;
     }
 

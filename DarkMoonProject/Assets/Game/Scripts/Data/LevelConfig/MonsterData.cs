@@ -6,16 +6,16 @@
 
 using System.Collections.Generic;
 
-public class MonsterData {
+public class MonsterData : BaseData {
     public int id;
 
     public List<int> cardList;
 
-    public float monsterHp;
+    public int monsterHp;
 
-    public float actionValue;
+    public int actionValue;
 
-    public float magicValue;
+    public int magicValue;
 
     public string url;
 }
