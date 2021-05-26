@@ -4,6 +4,7 @@
  * @Description: AppContext
  */
 using UFramework.GameCommon;
+using UFramework.Promise;
 using UnityEngine;
 
 public class AppContext : MonoBehaviour {
@@ -31,6 +32,10 @@ public class AppContext : MonoBehaviour {
 
     public PlayerrDataManager playerDataManager = new PlayerrDataManager ();
 
+    public PromiseTimer promiseTimer = new PromiseTimer ();
+
+    public BattleManager battleManager = new BattleManager ();
+
     #endregion
 
     public GameObject uiRoot = null;
@@ -52,6 +57,7 @@ public class AppContext : MonoBehaviour {
     private void Update () {
         float deltaTime = Time.deltaTime;
         this.gameCommon.localUpdate (deltaTime);
+        this.promiseTimer.localUpdate (deltaTime);
     }
 
     private void init () {
