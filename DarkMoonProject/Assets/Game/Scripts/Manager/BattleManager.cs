@@ -7,10 +7,11 @@ public class BattleManager {
 
     private TurnEnum curTurn;
 
-    private MonsterData monsterData;
+    private Monster battleMonster;
 
-    public void init (int monsterId) {
+    public void battlePrepare (Monster monster) {
         this.curTurn = TurnEnum.PLAYER;
+        this.battleMonster = monster;
     }
 
     public void switchTurn () {

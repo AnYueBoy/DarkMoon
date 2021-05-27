@@ -36,6 +36,8 @@ public class AppContext : MonoBehaviour {
 
     public BattleManager battleManager = new BattleManager ();
 
+    public SpawnManager spawnManager = new SpawnManager ();
+
     #endregion
 
     public GameObject uiRoot = null;
@@ -69,8 +71,6 @@ public class AppContext : MonoBehaviour {
         this.abilityManager.init ();
         this.uIManager.init (this.uiRoot);
         this.uIManager.showBoard (UIPath.HallBoard);
-
-        this.battleManager.init (2);
     }
 
 }
