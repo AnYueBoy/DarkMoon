@@ -27,14 +27,8 @@ public class BaseCard : MonoBehaviour {
 
     #endregion
 
-    protected void buildCard () {
+    public void init () {
 
-    }
-
-    private void initAbilityCardData () {
-        foreach (int id in this.cardData.abilityDataDic.Keys) {
-            // BaseAbility targetAbility = this.cardData.abilityDataDic[id];
-        }
     }
 
     protected bool consumeCheck () {

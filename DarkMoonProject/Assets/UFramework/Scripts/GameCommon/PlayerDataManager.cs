@@ -8,7 +8,7 @@ using System.IO;
 using LitJson;
 using UnityEngine;
 
-public class PlayerrDataManager {
+public class PlayerDataManager {
 
     private PlayerData _playerData = new PlayerData ();
 

@@ -20,4 +20,15 @@ public class SpawnManager {
         monster.init (monsterData, animator);
         return monster;
     }
+
+    public BaseCard createCard (Transform cardParent) {
+        GameObject cardPrefab = AppContext.instance.assetsManager.getAssetByUrlSync<GameObject> (CustomUrlString.cardItemPrefab);
+        GameObject cardNode = ObjectPool.instance.requestInstance (cardPrefab);
+        cardNode.transform.SetParent (cardParent);
+        cardNode.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
+        cardNode.transform.localPosition = Vector3.zero;
+
+        BaseCard baseCard = cardNode.GetComponent<BaseCard> ();
+        return baseCard;
+    }
 }

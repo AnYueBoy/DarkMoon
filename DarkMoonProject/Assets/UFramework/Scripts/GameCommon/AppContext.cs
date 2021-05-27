@@ -30,7 +30,7 @@ public class AppContext : MonoBehaviour {
 
     public ConfigManager configManager = new ConfigManager ();
 
-    public PlayerrDataManager playerDataManager = new PlayerrDataManager ();
+    public PlayerDataManager playerDataManager = new PlayerDataManager ();
 
     public PromiseTimer promiseTimer = new PromiseTimer ();
 

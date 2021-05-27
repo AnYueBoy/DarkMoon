@@ -3,15 +3,21 @@
  * @Date: 2021-05-26 19:16:02 
  * @Description: 战斗管理
  */
+using UnityEngine;
 public class BattleManager {
 
     private TurnEnum curTurn;
 
     private Monster battleMonster;
 
-    public void battlePrepare (Monster monster) {
+    private Transform cardParent;
+
+    public void battlePrepare (Monster monster, Transform cardParent) {
         this.curTurn = TurnEnum.PLAYER;
         this.battleMonster = monster;
+        this.cardParent = cardParent;
+
+        this.spawnPlayerCards ();
     }
 
     public void localUpdate (float dt) {
@@ -31,6 +37,15 @@ public class BattleManager {
         if (this.curTurn == TurnEnum.PLAYER) {
             this.curTurn = TurnEnum.MONSTER;
             this.battleMonster.recoveryState ();
+        }
+    }
+
+    private void spawnPlayerCards () {
+        int drawCardCount = AppContext.instance.playerDataManager.playerData.drawCardCount;
+        for (int i = 0; i < drawCardCount; i++) {
+            BaseCard card = AppContext.instance.spawnManager.createCard (this.cardParent);
+            // FIXME:
+            card.init ();
         }
     }
 
