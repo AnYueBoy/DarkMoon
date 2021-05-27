@@ -14,10 +14,26 @@ public class BattleManager {
         this.battleMonster = monster;
     }
 
-    public void switchTurn () {
-        this.curTurn = this.curTurn == TurnEnum.PLAYER?TurnEnum.MONSTER : TurnEnum.MONSTER;
-        // 对敌方或是怪物方数据进行重置
+    public void localUpdate (float dt) {
+        if (this.battleMonster == null || this.curTurn != TurnEnum.MONSTER) {
+            return;
+        }
+
+        this.battleMonster.localUpdate (dt);
     }
+
+    public void switchTurn () {
+        if (this.curTurn == TurnEnum.MONSTER) {
+            this.curTurn = TurnEnum.PLAYER;
+            // TODO: 对玩家相关状态进行重置
+        }
+
+        if (this.curTurn == TurnEnum.PLAYER) {
+            this.curTurn = TurnEnum.MONSTER;
+            this.battleMonster.recoveryState ();
+        }
+    }
+
 }
 
 public enum TurnEnum {

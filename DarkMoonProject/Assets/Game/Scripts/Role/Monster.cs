@@ -20,6 +20,10 @@ public class Monster {
         this.animator = animator;
     }
 
+    public void localUpdate(float dt){
+        
+    }
+
     public void recoveryState () {
         this.executeAction = this.monsterData.actionValue;
         this.executeMagic = this.monsterData.magicValue;

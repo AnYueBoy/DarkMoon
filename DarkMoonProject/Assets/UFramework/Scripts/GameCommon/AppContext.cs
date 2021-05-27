@@ -60,6 +60,7 @@ public class AppContext : MonoBehaviour {
         float deltaTime = Time.deltaTime;
         this.gameCommon.localUpdate (deltaTime);
         this.promiseTimer.localUpdate (deltaTime);
+        this.battleManager.localUpdate (deltaTime);
     }
 
     private void init () {
