@@ -1,1 +1,4 @@
-{"isNewPlayer":false}
+{
+    "isNewPlayer": false,
+    "drawCardCount": 2
+}

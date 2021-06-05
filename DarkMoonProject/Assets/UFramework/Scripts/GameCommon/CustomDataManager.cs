@@ -6,7 +6,9 @@ using System.Collections.Generic;
  */
 
 public class CustomDataManager {
-    public CardPoolData cardPoolData;
+
+    #region 游戏中使用数据
+    public Dictionary<int, CustomCardData> cardDataDic;
 
     public Dictionary<int, AbilityData> abilityPoolDataDic;
 
@@ -19,11 +21,20 @@ public class CustomDataManager {
 
     public Dictionary<int, MonsterData> monsterDataDic;
 
+    #endregion
+
+    #region  用于序列化数据
+
+    public CardPoolData cardPoolData;
+    #endregion
+
     public void init () {
-        this.cardPoolData = new CardPoolData ();
-        abilityPoolDataDic = new Dictionary<int, AbilityData> ();
+        this.cardDataDic = new Dictionary<int, CustomCardData> ();
+        this.abilityPoolDataDic = new Dictionary<int, AbilityData> ();
         this.battleLevelDic = new Dictionary<int, Dictionary<int, List<int>>> ();
         this.battleItemDataDic = new Dictionary<int, BattleItemData> ();
         this.monsterDataDic = new Dictionary<int, MonsterData> ();
+
+        this.cardPoolData = new CardPoolData ();
     }
 }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using UFramework.FrameUtil;
 /*
  * @Author: l hy 
  * @Date: 2021-05-26 19:16:02 
@@ -12,12 +14,33 @@ public class BattleManager {
 
     private Transform cardParent;
 
+    private List<int> playerCardListClone = new List<int> ();
+
+    private int curCardIndex = 0;
+
     public void battlePrepare (Monster monster, Transform cardParent) {
         this.curTurn = TurnEnum.PLAYER;
         this.battleMonster = monster;
         this.cardParent = cardParent;
 
+        this.curCardIndex = 0;
+
+        // 复制玩家数据中玩家卡牌并混乱
+        this.copyPlayerCardList ();
+
+        // 播放敌人动画
+        this.battleMonster.playAnimation ();
+
         this.spawnPlayerCards ();
+    }
+
+    private void copyPlayerCardList () {
+        List<int> playerCardList = AppContext.instance.playerDataManager.playerData.cardList;
+        foreach (int cardId in playerCardList) {
+            this.playerCardListClone.Add (cardId);
+        }
+
+        CommonUtil.confusionElement<int> (this.playerCardListClone);
     }
 
     public void localUpdate (float dt) {
@@ -42,13 +65,16 @@ public class BattleManager {
 
     private void spawnPlayerCards () {
         int drawCardCount = AppContext.instance.playerDataManager.playerData.drawCardCount;
-        for (int i = 0; i < drawCardCount; i++) {
+        int leftCardCount = this.playerCardListClone.Count;
+        for (int i = 0; (i < drawCardCount && i < leftCardCount); i++) {
             BaseCard card = AppContext.instance.spawnManager.createCard (this.cardParent);
-            // FIXME:
-            card.init ();
+            int cardId = this.playerCardListClone[i];
+            CustomCardData cardData = AppContext.instance.customDataManager.cardDataDic[cardId];
+
+            card.init (cardData);
+            this.curCardIndex++;
         }
     }
-
 }
 
 public enum TurnEnum {

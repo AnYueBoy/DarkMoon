@@ -20,8 +20,12 @@ public class Monster {
         this.animator = animator;
     }
 
-    public void localUpdate(float dt){
-        
+    public void playAnimation () {
+        this.animator.SetBool ("isStart", true);
+    }
+
+    public void localUpdate (float dt) {
+
     }
 
     public void recoveryState () {

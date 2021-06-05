@@ -187,8 +187,12 @@ public class CardEditorBoard : BaseUI {
         // 构建卡牌
         CardPoolData cardPoolData = AppContext.instance.customDataManager.cardPoolData;
         // TODO: id 改变需要确认
-        this.previewData.id = cardPoolData.cards.Count + 1;
-        cardPoolData.cards.Add (previewData);
+        int cardId = cardPoolData.cards.Count + 1;
+        this.previewData.id = cardId;
+        cardPoolData.cards.Add (this.previewData);
+
+        Dictionary<int, CustomCardData> cardDisc = AppContext.instance.customDataManager.cardDataDic;
+        cardDisc.Add (cardId, this.previewData);
 
         string cardPoolStr = JsonMapper.ToJson (cardPoolData);
 
