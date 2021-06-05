@@ -1,19 +1,16 @@
 ﻿/*
  * @Author: l hy 
- * @Date: 2020-12-21 21:24:52 
- * @Description: 预览区卡牌
- * @Last Modified by: l hy
- * @Last Modified time: 2021-05-27 11:28:51
+ * @Date: 2020-11-18 16:44:09 
+ * @Description: 卡牌
  */
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UFramework;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PreviewCard : MonoBehaviour {
+public class BaseCard : MonoBehaviour {
+    protected int currentLevel = 1;
 
     #region ui相关
 
@@ -28,40 +25,18 @@ public class PreviewCard : MonoBehaviour {
     public InputField cardConsume = null;
 
     public Image cardConsumeBg = null;
-
     #endregion
 
-    private CustomCardData previewData = null;
+    protected CustomCardData cardData;
 
-    private void OnEnable () {
-        this.addChangeListener ();
+    public void init (CustomCardData cardData) {
+        this.cardData = cardData;
     }
 
-    public void init (CustomCardData previewData) {
-        this.previewData = previewData;
-        this.showCardInfo ();
-    }
-
-    private void addChangeListener () {
-        this.cardName.onValueChanged.AddListener ((string cardNameValue) => {
-            this.previewData.cardName = cardNameValue;
-            this.showCardInfo ();
-        });
-
-        this.cardConsume.onValueChanged.AddListener ((String consumeValue) => {
-            if (String.IsNullOrEmpty (consumeValue)) {
-                this.previewData.consumeEnergy = 0;
-            } else {
-                this.previewData.consumeEnergy = int.Parse (consumeValue);
-            }
-            this.showCardInfo ();
-        });
-    }
-
-    private void showCardInfo () {
+    protected void showCardInfo () {
         // 显示卡牌描述
         string describeStr = "";
-        foreach (AbilityData abilityData in this.previewData.abilities) {
+        foreach (AbilityData abilityData in this.cardData.abilities) {
             string replaceStr = abilityData.abilityEffect.Replace ("X", abilityData.baseValue.ToString ());
             describeStr += replaceStr + "\n";
         }
@@ -71,10 +46,10 @@ public class PreviewCard : MonoBehaviour {
         this.showCardConsume ();
 
         // 显示卡牌名称
-        this.cardName.text = this.previewData.cardName;
+        this.cardName.text = this.cardData.cardName;
 
         // 显示卡牌颜色背景
-        this.cardColorBgImage.color = Util.getColorByCardType (this.previewData.cardType);
+        this.cardColorBgImage.color = Util.getColorByCardType (this.cardData.cardType);
 
         // 显示卡牌icon
         this.showCardIcon ();
@@ -83,7 +58,7 @@ public class PreviewCard : MonoBehaviour {
     private void showCardConsume () {
         // 显示卡牌耗费背景
         this.cardConsumeBg.gameObject.SetActive (true);
-        CardTypeEnum cardType = this.previewData.cardType;
+        CardTypeEnum cardType = this.cardData.cardType;
         switch (cardType) {
             case CardTypeEnum.ACTION:
                 string actionUrl = CustomUrlString.consumePreTexture + cardType;
@@ -115,11 +90,11 @@ public class PreviewCard : MonoBehaviour {
         }
 
         // 显示卡牌消耗数值
-        this.cardConsume.text = this.previewData.consumeEnergy.ToString ();
+        this.cardConsume.text = this.cardData.consumeEnergy.ToString ();
     }
 
     private void showCardIcon () {
-        string textureUrl = this.previewData.textureUrl;
+        string textureUrl = this.cardData.textureUrl;
         if (String.IsNullOrEmpty (textureUrl)) {
             this.iconImage.sprite = null;
             return;
@@ -131,7 +106,6 @@ public class PreviewCard : MonoBehaviour {
         } else {
             this.iconImage.sprite = AppContext.instance.assetsManager.getAssetByBundleSync<Sprite> (this.bundleName, this.assetName);
         }
-
     }
 
     private string iconUrl;
@@ -149,10 +123,5 @@ public class PreviewCard : MonoBehaviour {
         } else {
             this.iconUrl = urls[0];
         }
-    }
-
-    private void OnDisable () {
-        this.cardName.onValueChanged.RemoveAllListeners ();
-        this.cardConsume.onValueChanged.RemoveAllListeners ();
     }
 }

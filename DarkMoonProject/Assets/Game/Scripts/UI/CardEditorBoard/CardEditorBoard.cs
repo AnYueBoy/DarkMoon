@@ -18,7 +18,7 @@ public class CardEditorBoard : BaseUI {
 
     public GameObject cardIconContent = null;
 
-    public PreviewCard cardPreview = null;
+    public EditorCard editorCard = null;
 
     public Dropdown cardTypeDropDown = null;
 
@@ -26,23 +26,23 @@ public class CardEditorBoard : BaseUI {
 
     private List<CardIcon> cardIconList = new List<CardIcon> ();
 
-    private CustomCardData previewData = null;
+    private CustomCardData editorCardData = null;
 
     private void OnEnable () {
         this.init ();
 
         // 添加监听
         this.cardTypeDropDown.onValueChanged.AddListener ((int selectedIndex) => {
-            this.previewData.cardType = (CardTypeEnum) selectedIndex;
-            this.cardPreview.init (this.previewData);
+            this.editorCardData.cardType = (CardTypeEnum) selectedIndex;
+            this.editorCard.init (this.editorCardData);
         });
     }
 
     private void init () {
         // 创建要保存的卡牌数据
-        this.previewData = new CustomCardData ();
-        this.previewData.cardType = (CardTypeEnum) this.cardTypeDropDown.value;
-        this.cardPreview.init (this.previewData);
+        this.editorCardData = new CustomCardData ();
+        this.editorCardData.cardType = (CardTypeEnum) this.cardTypeDropDown.value;
+        this.editorCard.init (this.editorCardData);
     }
 
     public void loadAbilityListClick () {
@@ -142,8 +142,8 @@ public class CardEditorBoard : BaseUI {
             cardIcon.unSelected ();
         }
 
-        this.previewData.textureUrl = iconUrl;
-        this.cardPreview.init (this.previewData);
+        this.editorCardData.textureUrl = iconUrl;
+        this.editorCard.init (this.editorCardData);
     }
 
     private void recycleAllCardIcon () {
@@ -177,8 +177,8 @@ public class CardEditorBoard : BaseUI {
 
             if (abilityItem.getJoinedState ()) {
                 ObjectPool.instance.returnInstance (abilityItem.gameObject);
-                this.previewData.abilities.Add (abilityItem.AbilityData);
-                this.cardPreview.init (this.previewData);
+                this.editorCardData.abilities.Add (abilityItem.AbilityData);
+                this.editorCard.init (this.editorCardData);
             }
         }
     }
@@ -188,11 +188,11 @@ public class CardEditorBoard : BaseUI {
         CardPoolData cardPoolData = AppContext.instance.customDataManager.cardPoolData;
         // TODO: id 改变需要确认
         int cardId = cardPoolData.cards.Count + 1;
-        this.previewData.id = cardId;
-        cardPoolData.cards.Add (this.previewData);
+        this.editorCardData.id = cardId;
+        cardPoolData.cards.Add (this.editorCardData);
 
         Dictionary<int, CustomCardData> cardDisc = AppContext.instance.customDataManager.cardDataDic;
-        cardDisc.Add (cardId, this.previewData);
+        cardDisc.Add (cardId, this.editorCardData);
 
         string cardPoolStr = JsonMapper.ToJson (cardPoolData);
 

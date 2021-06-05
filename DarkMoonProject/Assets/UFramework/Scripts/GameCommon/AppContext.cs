@@ -22,8 +22,6 @@ public class AppContext : MonoBehaviour {
 
     public AbilityManager abilityManager = new AbilityManager ();
 
-    public DataManager dataManager = new DataManager ();
-
     public UIManager uIManager = new UIManager ();
 
     public CustomDataManager customDataManager = new CustomDataManager ();
