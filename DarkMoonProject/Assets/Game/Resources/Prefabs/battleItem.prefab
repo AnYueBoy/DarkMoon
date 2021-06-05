@@ -359,7 +359,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4898042442516516422}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3192666493133151710}
+        m_MethodName: enterItemClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4345575560814096078
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 796914005315279051}
-  - component: {fileID: 8106041133927885989}
+  - component: {fileID: 3192666493133151710}
   - component: {fileID: 6828168573284744763}
   m_Layer: 5
   m_Name: battleItem
@@ -783,7 +794,7 @@ RectTransform:
   m_AnchoredPosition: {x: -192, y: 131}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8106041133927885989
+--- !u!114 &3192666493133151710
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -792,7 +803,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7219072391946382202}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7770e1a80b3a2c14fa4bc3f977b62910, type: 3}
+  m_Script: {fileID: 11500000, guid: 7027dd5449045b24f97f17d5edd93e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: {fileID: 8119818613431442797}
@@ -842,7 +853,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8106041133927885989}
+      - m_Target: {fileID: 3192666493133151710}
         m_MethodName: selectedItem
         m_Mode: 1
         m_Arguments:

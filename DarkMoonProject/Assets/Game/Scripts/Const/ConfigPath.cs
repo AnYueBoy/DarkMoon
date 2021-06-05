@@ -27,6 +27,11 @@ public class ConfigPath {
     public const string itemsConfig = "Json/itemsConfig";
 
     /// <summary>
+    /// 怪物配置文件
+    /// </summary>
+    public const string monsterConfig = "Json/monsterConfig";
+
+    /// <summary>
     /// 玩家数据文件
     /// </summary>
     public const string playerDataConfig = "Json/playerDataConfig";

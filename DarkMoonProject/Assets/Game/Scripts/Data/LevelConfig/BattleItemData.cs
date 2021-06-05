@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 /*
  * @Author: l hy 
  * @Date: 2021-05-13 14:48:50 
@@ -16,13 +15,4 @@ public class BattleItemData {
     public string iconUrl;
 
     public string describe;
-
-    /*战斗独有*/
-    public List<int> cardList;
-
-    public float monsterHp;
-
-    public float actionValue;
-
-    public float magicValue;
 }

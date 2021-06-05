@@ -1,0 +1,14 @@
+{
+    "monsterList": [
+        {
+            "id": 2,
+            "cardList": [
+                1
+            ],
+            "monsterHp": 10,
+            "actionValue": 2,
+            "magicValue": 15,
+            "url": "Prefabs/Monster/hypnotist"
+        }
+    ]
+}

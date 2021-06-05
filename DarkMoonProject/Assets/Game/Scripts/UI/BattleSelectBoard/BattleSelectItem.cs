@@ -9,7 +9,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattleItem : MonoBehaviour {
+public class BattleSelectItem : MonoBehaviour {
     public Text itemName;
 
     public Image iconImage;
@@ -54,11 +54,11 @@ public class BattleItem : MonoBehaviour {
         this.enterBtnTween.Play ();
     }
 
-    public void enterItem () {
+    public void enterItemClick () {
         switch (this.battleItemData.itemType) {
             case ItemTypeEnum.BATTLE:
                 //  进入战斗界面
-                AppContext.instance.uIManager.showBoard (UIPath.BattleBoard);
+                AppContext.instance.uIManager.showBoard (UIPath.BattleBoard, this.battleItemData.id);
                 break;
 
             case ItemTypeEnum.BLESS:

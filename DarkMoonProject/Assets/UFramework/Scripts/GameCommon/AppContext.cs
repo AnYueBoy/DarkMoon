@@ -4,6 +4,7 @@
  * @Description: AppContext
  */
 using UFramework.GameCommon;
+using UFramework.Promise;
 using UnityEngine;
 
 public class AppContext : MonoBehaviour {
@@ -29,11 +30,19 @@ public class AppContext : MonoBehaviour {
 
     public ConfigManager configManager = new ConfigManager ();
 
-    public PlayerrDataManager playerDataManager = new PlayerrDataManager ();
+    public PlayerDataManager playerDataManager = new PlayerDataManager ();
+
+    public PromiseTimer promiseTimer = new PromiseTimer ();
+
+    public BattleManager battleManager = new BattleManager ();
+
+    public SpawnManager spawnManager = new SpawnManager ();
 
     #endregion
 
     public GameObject uiRoot = null;
+
+    public Transform monsterParent;
 
     public static AppContext instance {
         get {
@@ -50,6 +59,8 @@ public class AppContext : MonoBehaviour {
     private void Update () {
         float deltaTime = Time.deltaTime;
         this.gameCommon.localUpdate (deltaTime);
+        this.promiseTimer.localUpdate (deltaTime);
+        this.battleManager.localUpdate (deltaTime);
     }
 
     private void init () {

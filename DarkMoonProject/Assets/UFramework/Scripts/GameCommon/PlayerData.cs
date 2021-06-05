@@ -4,8 +4,10 @@
  * @Description: 玩家数据
  */
 
-public class PlayerData {
+public class PlayerData : BaseData {
 
     public bool isNewPlayer = true;
+
+    public int drawCardCount = 2;
 
 }

@@ -3,7 +3,7 @@
  * @Date: 2020-12-21 21:24:52 
  * @Description: 预览区卡牌
  * @Last Modified by: l hy
- * @Last Modified time: 2021-05-11 19:20:19
+ * @Last Modified time: 2021-05-27 11:28:51
  */
 
 using System;
@@ -66,9 +66,6 @@ public class PreviewCard : MonoBehaviour {
             describeStr += replaceStr + "\n";
         }
         this.describeText.text = describeStr;
-
-        // TODO: 根据卡牌类型替换卡牌bg2，并决定是否显示卡牌耗费
-        // 如果显示耗费要决定耗费的样式
 
         // 显示卡牌耗费
         this.showCardConsume ();
