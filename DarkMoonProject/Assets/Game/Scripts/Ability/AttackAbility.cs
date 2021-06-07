@@ -5,12 +5,11 @@
  */
 
 public class AttackAbility : BaseAbility {
-    public new int id = 1;
+    public AttackAbility (int id) : base (id) { }
 
     public override void turnBeginEffect () { }
 
-    public override void effect () {
-    }
+    public override void effect () { }
 
     public override void turnEndEffect () { }
 }

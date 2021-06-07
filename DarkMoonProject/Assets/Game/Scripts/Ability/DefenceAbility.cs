@@ -5,20 +5,11 @@
  */
 
 public class DefenceAbility : BaseAbility {
-
-    public new int id = 2;
-
-    public override void refreshCardData (CardData cardData) {
-        this.cardData = cardData;
-    }
+    public DefenceAbility (int id) : base (id) { }
 
     public override void turnBeginEffect () { }
 
-    public override void effect () {
-        AbilityData abilityData = this.cardData.abilityDataDic[id];
-        BaseRoleData targetData = AppContext.instance.dataManager.getCampRoleData (this.cardData.camp);
-        targetData.armor += abilityData.baseValue;
-    }
+    public override void effect () { }
 
     public override void turnEndEffect () { }
 }

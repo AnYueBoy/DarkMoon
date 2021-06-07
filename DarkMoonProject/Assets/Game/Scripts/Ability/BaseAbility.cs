@@ -6,17 +6,7 @@
 
 public abstract class BaseAbility {
 
-    private int _id = 0;
-
-    public virtual int id {
-        get {
-            return this._id;
-        }
-
-        set {
-            this._id = value;
-        }
-    }
+    protected int id = 0;
 
     /// <summary>
     /// 回合开始时激发
@@ -32,4 +22,8 @@ public abstract class BaseAbility {
     /// 回合结束时激发
     /// </summary>
     public abstract void turnEndEffect ();
+
+    public BaseAbility (int id) {
+        this.id = id;
+    }
 }
