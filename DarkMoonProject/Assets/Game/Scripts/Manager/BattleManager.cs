@@ -64,18 +64,25 @@ public class BattleManager {
         }
     }
 
+    private List<BattleCard> battleCardList = new List<BattleCard> ();
+
     private void spawnPlayerCards () {
         int drawCardCount = AppContext.instance.playerDataManager.playerData.drawCardCount;
         int leftCardCount = this.playerCardListClone.Count;
         for (int i = 0;
             (i < drawCardCount && i < leftCardCount); i++) {
             BattleCard battleCard = AppContext.instance.spawnManager.createBattleCard (this.cardParent);
+            this.battleCardList.Add (battleCard);
             int cardId = this.playerCardListClone[i];
             CustomCardData cardData = AppContext.instance.customDataManager.cardDataDic[cardId];
 
             battleCard.init (cardData);
             this.curCardIndex++;
         }
+
+        // TODO: 卡牌扇形排布
+
+
     }
 }
 
