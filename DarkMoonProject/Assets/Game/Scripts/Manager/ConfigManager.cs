@@ -28,6 +28,10 @@ public class ConfigManager {
             string context = cardPoolConfig.text;
             CardPoolData cardPoolData = JsonMapper.ToObject<CardPoolData> (context);
             AppContext.instance.customDataManager.cardPoolData = cardPoolData;
+            foreach (CustomCardData cardData in cardPoolData.cards) {
+                int cardId = cardData.id;
+                AppContext.instance.customDataManager.cardDataDic.Add (cardId, cardData);
+            }
             resolve?.Invoke ();
         });
     }

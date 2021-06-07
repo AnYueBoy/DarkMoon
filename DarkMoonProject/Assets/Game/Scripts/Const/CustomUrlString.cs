@@ -9,11 +9,11 @@ using UFramework.Const;
 public class CustomUrlString : UrlString {
 
     #region 预制资源
-    public const string abilityPrefab = "Prefabs/abilityItem";
-    public const string cardIconPrefab = "Prefabs/cardIcon";
-    public const string battleItemPrefab = "Prefabs/battleItem";
+    public const string abilityPrefab = "Prefabs/AbilityItem";
+    public const string cardIconPrefab = "Prefabs/CardIcon";
+    public const string battleItemPrefab = "Prefabs/BattleItem";
 
-    public const string cardItemPrefab = "Prefabs/card";
+    public const string cardItemPrefab = "Prefabs/Card";
 
     #endregion
 

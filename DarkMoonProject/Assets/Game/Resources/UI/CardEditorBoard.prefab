@@ -1907,7 +1907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityContent: {fileID: 5375064624954199860}
   cardIconContent: {fileID: 8613064568080844182}
-  cardPreview: {fileID: 2650584579510054297}
+  editorCard: {fileID: 6946499156357930641}
   cardTypeDropDown: {fileID: 8660987622557184406}
 --- !u!1 &5375064624999188328
 GameObject:
@@ -2356,9 +2356,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5684954458774270003}
-  - component: {fileID: 2650584579510054297}
+  - component: {fileID: 6946499156357930641}
   m_Layer: 5
-  m_Name: PreviewCard
+  m_Name: EditorCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2389,7 +2389,7 @@ RectTransform:
   m_AnchoredPosition: {x: 162, y: 124}
   m_SizeDelta: {x: 223, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2650584579510054297
+--- !u!114 &6946499156357930641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2398,7 +2398,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5684954458774270002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4ad6f7b60406d844ab8126f8171ed40, type: 3}
+  m_Script: {fileID: 11500000, guid: cec43efcbfa704540bda0e6772716eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   iconImage: {fileID: 5684954459364870308}

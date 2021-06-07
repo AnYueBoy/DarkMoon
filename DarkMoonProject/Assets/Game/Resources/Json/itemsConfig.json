@@ -4,21 +4,21 @@
             "id": 1,
             "itemType": 1,
             "itemName": "仙女祝福",
-            "iconUrl": "Textures/BattleIcon/banshee",
+            "iconUrl": "Textures/BattleIcon/Banshee",
             "describe": "我曾赋予匹诺曹生命，也赠送过灰姑娘水晶鞋"
         },
         {
             "id": 2,
             "itemType": 2,
             "itemName": "催眠师",
-            "iconUrl": "Textures/BattleIcon/hypnotist",
+            "iconUrl": "Textures/BattleIcon/Hypnotist",
             "describe": "他看起来昏昏入睡"
         },
         {
             "id": 3,
             "itemType": 5,
             "itemName": "收藏家",
-            "iconUrl": "Textures/BattleIcon/dealer",
+            "iconUrl": "Textures/BattleIcon/Dealer",
             "describe": "每张卡都有它的价值"
         }
     ]
