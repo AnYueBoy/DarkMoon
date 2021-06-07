@@ -31,6 +31,7 @@ public class BattleManager {
         // 播放敌人动画
         this.battleMonster.playAnimation ();
 
+        // 生成玩家卡牌
         this.spawnPlayerCards ();
     }
 
@@ -66,12 +67,13 @@ public class BattleManager {
     private void spawnPlayerCards () {
         int drawCardCount = AppContext.instance.playerDataManager.playerData.drawCardCount;
         int leftCardCount = this.playerCardListClone.Count;
-        for (int i = 0; (i < drawCardCount && i < leftCardCount); i++) {
-            BaseCard card = AppContext.instance.spawnManager.createCard (this.cardParent);
+        for (int i = 0;
+            (i < drawCardCount && i < leftCardCount); i++) {
+            BattleCard battleCard = AppContext.instance.spawnManager.createBattleCard (this.cardParent);
             int cardId = this.playerCardListClone[i];
             CustomCardData cardData = AppContext.instance.customDataManager.cardDataDic[cardId];
 
-            card.init (cardData);
+            battleCard.init (cardData);
             this.curCardIndex++;
         }
     }

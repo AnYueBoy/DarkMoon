@@ -13,7 +13,7 @@ public class CustomUrlString : UrlString {
     public const string cardIconPrefab = "Prefabs/CardIcon";
     public const string battleItemPrefab = "Prefabs/BattleItem";
 
-    public const string cardItemPrefab = "Prefabs/Card";
+    public const string battleCardItemPrefab = "Prefabs/BattleCard";
 
     #endregion
 
