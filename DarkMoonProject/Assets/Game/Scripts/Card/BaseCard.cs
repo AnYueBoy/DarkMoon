@@ -31,6 +31,7 @@ public class BaseCard : MonoBehaviour {
 
     public void init (CustomCardData cardData) {
         this.cardData = cardData;
+        this.showCardInfo();
     }
 
     protected void showCardInfo () {
