@@ -35,14 +35,29 @@ public class BattleCard : BaseCard {
     }
 
     protected void turnBegin () {
-
+        List<AbilityData> abilityDataList = this.cardData.abilities;
+        foreach (AbilityData abilityData in abilityDataList) {
+            int abilityId = abilityData.id;
+            BaseAbility ability = AppContext.instance.abilityManager.abilityDic[abilityId];
+            ability.turnBegin (abilityData);
+        }
     }
 
     protected void playerTrigger () {
-
+        List<AbilityData> abilityDataList = this.cardData.abilities;
+        foreach (AbilityData abilityData in abilityDataList) {
+            int abilityId = abilityData.id;
+            BaseAbility ability = AppContext.instance.abilityManager.abilityDic[abilityId];
+            ability.playerTrigger (abilityData);
+        }
     }
 
     protected void turnEnd () {
-
+        List<AbilityData> abilityDataList = this.cardData.abilities;
+        foreach (AbilityData abilityData in abilityDataList) {
+            int abilityId = abilityData.id;
+            BaseAbility ability = AppContext.instance.abilityManager.abilityDic[abilityId];
+            ability.turnEnd (abilityData);
+        }
     }
 }
