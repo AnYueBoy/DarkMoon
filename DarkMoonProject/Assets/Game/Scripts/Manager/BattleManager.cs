@@ -85,9 +85,3 @@ public class BattleManager {
 
     }
 }
-
-public enum TurnEnum {
-    MONSTER,
-
-    PLAYER,
-}
