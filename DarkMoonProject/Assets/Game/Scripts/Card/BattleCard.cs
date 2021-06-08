@@ -10,7 +10,28 @@ using UnityEngine;
 public class BattleCard : BaseCard {
 
     protected bool consumeCheck () {
-        return false;
+        int consumeEnergy = this.cardData.consumeEnergy;
+
+        if (consumeEnergy <= 0) {
+            return true;
+        }
+
+        CardTypeEnum cardType = this.cardData.cardType;
+        PlayerData battlePlayerData = AppContext.instance.battleManager.battlePlayerData;
+        switch (cardType) {
+            case CardTypeEnum.ACTION:
+                return battlePlayerData.actionValue >= consumeEnergy;
+
+            case CardTypeEnum.MAGIC:
+                return battlePlayerData.magicValue >= consumeEnergy;
+
+            case CardTypeEnum.BLEED:
+                return battlePlayerData.hpValue >= consumeEnergy;
+
+            default:
+                Debug.LogError ("incorrect card type : " + consumeEnergy);
+                return false;
+        }
     }
 
     protected void turnBegin () {

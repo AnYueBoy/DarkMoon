@@ -14,9 +14,15 @@ public class BattleManager {
 
     private Transform cardParent;
 
-    private List<int> playerCardListClone = new List<int> ();
-
     private int curCardIndex = 0;
+
+    private PlayerData _battlePlayerData;
+
+    public PlayerData battlePlayerData {
+        get {
+            return this._battlePlayerData;
+        }
+    }
 
     public void battlePrepare (Monster monster, Transform cardParent) {
         this.curTurn = TurnEnum.PLAYER;
@@ -25,23 +31,17 @@ public class BattleManager {
 
         this.curCardIndex = 0;
 
-        // 复制玩家数据中玩家卡牌并混乱
-        this.copyPlayerCardList ();
+        // 复制玩家数据
+        this._battlePlayerData = AppContext.instance.playerDataManager.playerData.clone<PlayerData> ();
+
+        // 混乱玩家卡牌
+        CommonUtil.confusionElement<int> (this._battlePlayerData.cardList);
 
         // 播放敌人动画
         this.battleMonster.playAnimation ();
 
         // 生成玩家卡牌
         this.spawnPlayerCards ();
-    }
-
-    private void copyPlayerCardList () {
-        List<int> playerCardList = AppContext.instance.playerDataManager.playerData.cardList;
-        foreach (int cardId in playerCardList) {
-            this.playerCardListClone.Add (cardId);
-        }
-
-        CommonUtil.confusionElement<int> (this.playerCardListClone);
     }
 
     public void localUpdate (float dt) {
@@ -68,12 +68,13 @@ public class BattleManager {
 
     private void spawnPlayerCards () {
         int drawCardCount = AppContext.instance.playerDataManager.playerData.drawCardCount;
-        int leftCardCount = this.playerCardListClone.Count;
+        List<int> playerCardList = this._battlePlayerData.cardList;
+        int leftCardCount = playerCardList.Count;
         for (int i = 0;
             (i < drawCardCount && i < leftCardCount); i++) {
             BattleCard battleCard = AppContext.instance.spawnManager.createBattleCard (this.cardParent);
             this.battleCardList.Add (battleCard);
-            int cardId = this.playerCardListClone[i];
+            int cardId = playerCardList[i];
             CustomCardData cardData = AppContext.instance.customDataManager.cardDataDic[cardId];
 
             battleCard.init (cardData);
@@ -81,7 +82,6 @@ public class BattleManager {
         }
 
         // TODO: 卡牌扇形排布
-
 
     }
 }
