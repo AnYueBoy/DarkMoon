@@ -3,9 +3,9 @@
  * @Date: 2021-05-26 19:16:02 
  * @Description: 战斗管理
  */
-using UnityEngine;
 using System.Collections.Generic;
 using UFramework.FrameUtil;
+using UnityEngine;
 public class BattleManager {
 
     private TurnEnum curTurn;
@@ -66,6 +66,14 @@ public class BattleManager {
 
     private List<BattleCard> battleCardList = new List<BattleCard> ();
 
+    private readonly float fixedWidth = 640;
+
+    private readonly float leftBound = -320;
+
+    private readonly float cardInterval = 50.5f;
+
+    private readonly float angleValue = -1.5f;
+
     private void spawnPlayerCards () {
         int drawCardCount = AppContext.instance.playerDataManager.playerData.drawCardCount;
         List<int> playerCardList = this._battlePlayerData.cardList;
@@ -81,7 +89,34 @@ public class BattleManager {
             this.curCardIndex++;
         }
 
-        // TODO: 卡牌扇形排布
+        this.sectorArrayCard ();
+    }
 
+    private void sectorArrayCard () {
+        // 卡牌扇形排布
+        int battleCardCount = this.battleCardList.Count;
+        float interval = this.fixedWidth / (battleCardCount + 1);
+
+        bool isDouble = battleCardCount % 2 == 0;
+        int startIndex = -Mathf.FloorToInt (battleCardCount / 2);
+
+        for (int i = 0; i < battleCardCount; i++) {
+            BattleCard battleCard = this.battleCardList[i];
+            float cardX = 0;
+            if (interval > this.cardInterval) {
+                // 使用卡牌间距
+                cardX = startIndex * this.cardInterval;
+            } else {
+                // 使用计算间距
+                cardX = this.leftBound + (i + 1) * interval;
+            }
+            battleCard.transform.localPosition = new Vector3 (cardX, 0, 0);
+
+            battleCard.transform.localEulerAngles = new Vector3 (0, 0, startIndex * this.angleValue);
+            startIndex++;
+            if (isDouble && startIndex == 0) {
+                startIndex++;
+            }
+        }
     }
 }
