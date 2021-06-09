@@ -70,7 +70,7 @@ public class BattleManager {
 
     private readonly float leftBound = -320;
 
-    private readonly float cardInterval = 50.5f;
+    private readonly float cardInterval = 70f;
 
     private readonly float angleValue = -1.5f;
 

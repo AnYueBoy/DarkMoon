@@ -1,4 +1,14 @@
 {
     "isNewPlayer": false,
-    "drawCardCount": 2
+    "drawCardCount": 5,
+    "cardList": [
+        1,
+        2,
+        3,
+        4,
+        5
+    ],
+    "magicValue": 10,
+    "actionValue": 3,
+    "hpValue": 25
 }
