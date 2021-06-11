@@ -117,6 +117,8 @@ public class BattleManager {
             if (isDouble && startIndex == 0) {
                 startIndex++;
             }
+
+            battleCard.setCardInfo ();
         }
     }
 }

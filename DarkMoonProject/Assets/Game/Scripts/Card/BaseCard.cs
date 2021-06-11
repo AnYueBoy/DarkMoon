@@ -16,6 +16,8 @@ public class BaseCard : MonoBehaviour {
 
     protected RectTransform rectTransform;
 
+    protected RectTransform parentRectTransform;
+
     public Image iconImage = null;
 
     public Image cardColorBgImage = null;
@@ -33,6 +35,7 @@ public class BaseCard : MonoBehaviour {
 
     public virtual void init (CustomCardData cardData) {
         this.rectTransform = this.GetComponent<RectTransform> ();
+        this.parentRectTransform = this.rectTransform.parent.GetComponent<RectTransform> ();
         this.cardData = cardData;
         this.showCardInfo ();
     }

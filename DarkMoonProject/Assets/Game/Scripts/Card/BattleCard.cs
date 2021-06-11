@@ -8,16 +8,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BattleCard : BaseCard, IPointerEnterHandler, IPointerExitHandler, IDragHandler, IEndDragHandler {
+public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDragHandler, IEndDragHandler {
 
-    private float cardY;
+    private Vector3 localPos;
 
-    private RectTransform parentRect;
+    private Vector3 localEulerAngles;
+
+    private Vector3 localScale;
+
+    private RectTransform childRectTransform;
 
     public override void init (CustomCardData cardData) {
         base.init (cardData);
-        this.cardY = this.rectTransform.localPosition.y;
-        this.parentRect = this.transform.parent.GetComponent<RectTransform> ();
+        this.childRectTransform = this.rectTransform.GetChild (0).GetComponent<RectTransform> ();
+    }
+
+    public void setCardInfo () {
+        this.localPos = this.rectTransform.localPosition;
+        this.localEulerAngles = this.rectTransform.localEulerAngles;
+        this.localScale = this.rectTransform.localScale;
     }
 
     protected bool consumeCheck () {
@@ -75,23 +84,44 @@ public class BattleCard : BaseCard, IPointerEnterHandler, IPointerExitHandler, I
     public void OnDrag (PointerEventData eventData) {
         Vector2 localPos = new Vector2 ();
         // 需要注意的是，eventData中的position返回的是屏幕坐标，从左边下角(0,0),需要转换到UGUI的坐标
-        RectTransformUtility.ScreenPointToLocalPointInRectangle (this.parentRect, eventData.position, AppContext.instance.uiCamera, out localPos);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle (this.parentRectTransform, eventData.position, AppContext.instance.uiCamera, out localPos);
         if (localPos.y < 0) {
             localPos.y = 0;
         }
         this.rectTransform.localPosition = new Vector3 (this.rectTransform.localPosition.x, localPos.y, this.rectTransform.localPosition.z);
-    }
+        this.rectTransform.localEulerAngles = Vector3.zero;
 
-    private readonly float enterOffset = 15f;
-    public void OnPointerEnter (PointerEventData eventData) {
-        this.rectTransform.localPosition = new Vector3 (this.rectTransform.localPosition.x, this.rectTransform.localPosition.y + enterOffset, this.rectTransform.localPosition.z);
-    }
-
-    public void OnPointerExit (PointerEventData eventData) {
-        this.rectTransform.localPosition = new Vector3 (this.rectTransform.localPosition.x, this.cardY, this.rectTransform.localPosition.z);
+        this.resetChildState ();
     }
 
     public void OnEndDrag (PointerEventData eventData) {
-        this.rectTransform.localPosition = new Vector3 (this.rectTransform.localPosition.x, this.cardY, this.rectTransform.localPosition.z);;
+        this.resetParentState ();
+        this.resetChildState ();
+    }
+
+    private readonly float scaleOffset = 1.5f;
+    public void OnPointerDown (PointerEventData eventData) {
+        float enterOffset = this.rectTransform.rect.height * this.scaleOffset;
+
+        this.childRectTransform.localPosition = new Vector3 (-this.rectTransform.position.x, enterOffset, 0);
+        this.childRectTransform.localEulerAngles = new Vector3 (0, 0, -this.rectTransform.localEulerAngles.z);
+        this.childRectTransform.localScale = Vector3.one * scaleOffset;
+    }
+
+    public void OnPointerUp (PointerEventData eventData) {
+        this.resetParentState ();
+        this.resetChildState ();
+    }
+
+    private void resetParentState () {
+        this.rectTransform.localPosition = this.localPos;
+        this.rectTransform.localEulerAngles = this.localEulerAngles;
+        this.rectTransform.localScale = this.localScale;
+    }
+
+    private void resetChildState () {
+        this.childRectTransform.localEulerAngles = Vector3.zero;
+        this.childRectTransform.localPosition = Vector3.zero;
+        this.childRectTransform.localScale = Vector3.one;
     }
 }
