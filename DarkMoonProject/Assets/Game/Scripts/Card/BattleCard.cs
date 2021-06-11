@@ -5,6 +5,7 @@
  */
 
 using System.Collections.Generic;
+using DG.Tweening;
 using UFramework.GameCommon;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -122,12 +123,14 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
     }
 
     private readonly float scaleOffset = 1.5f;
+
+    private readonly float animationTime = 0.25f;
     public void OnPointerDown (PointerEventData eventData) {
         float enterOffset = this.rectTransform.rect.height * this.scaleOffset;
 
-        this.childRectTransform.localPosition = new Vector3 (-this.rectTransform.position.x, enterOffset, 0);
+        this.childRectTransform.DOLocalMove (new Vector3 (-this.rectTransform.position.x, enterOffset, 0), this.animationTime);
+        this.childRectTransform.DOScale (Vector3.one * scaleOffset, this.animationTime);
         this.childRectTransform.localEulerAngles = new Vector3 (0, 0, -this.rectTransform.localEulerAngles.z);
-        this.childRectTransform.localScale = Vector3.one * scaleOffset;
     }
 
     public void OnPointerUp (PointerEventData eventData) {
@@ -139,14 +142,13 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
     }
 
     private void resetParentState () {
-        this.rectTransform.localPosition = this.localPos;
         this.rectTransform.localEulerAngles = this.localEulerAngles;
         this.rectTransform.localScale = this.localScale;
     }
 
     private void resetChildState () {
         this.childRectTransform.localEulerAngles = Vector3.zero;
-        this.childRectTransform.localPosition = Vector3.zero;
-        this.childRectTransform.localScale = Vector3.one;
+        this.childRectTransform.DOLocalMove (Vector3.zero, this.animationTime);
+        this.childRectTransform.DOScale (Vector3.one, this.animationTime);
     }
 }
