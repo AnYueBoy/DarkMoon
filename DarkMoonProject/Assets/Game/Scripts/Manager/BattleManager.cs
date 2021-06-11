@@ -1,10 +1,13 @@
+using System;
 /*
  * @Author: l hy 
  * @Date: 2021-05-26 19:16:02 
  * @Description: 战斗管理
  */
 using System.Collections.Generic;
+using DG.Tweening;
 using UFramework.FrameUtil;
+using UFramework.Promise;
 using UnityEngine;
 public class BattleManager {
 
@@ -74,26 +77,38 @@ public class BattleManager {
 
     private readonly float angleValue = -1.5f;
 
+    private readonly float spawnCardInterval = 1.5f;
+
     private void spawnPlayerCards () {
         int drawCardCount = AppContext.instance.playerDataManager.playerData.drawCardCount;
         List<int> playerCardList = this._battlePlayerData.cardList;
         int leftCardCount = playerCardList.Count;
         for (int i = 0;
             (i < drawCardCount && i < leftCardCount); i++) {
-            BattleCard battleCard = AppContext.instance.spawnManager.createBattleCard (this.cardParent);
-            this.battleCardList.Add (battleCard);
-            int cardId = playerCardList[i];
-            CustomCardData cardData = AppContext.instance.customDataManager.cardDataDic[cardId];
+            AppContext.instance.promiseTimer.waitFor (i * this.spawnCardInterval).then (() => {
+                BattleCard battleCard = AppContext.instance.spawnManager.createBattleCard (this.cardParent);
+                Debug.Log ("count: " + this.battleCardList.Count);
+                this.battleCardList.Add (battleCard);
+                Debug.Log ("i: " + i);
+                int cardId = playerCardList[i];
 
-            battleCard.init (cardData);
-            this.curCardIndex++;
+                CustomCardData cardData = AppContext.instance.customDataManager.cardDataDic[cardId];
+
+                battleCard.init (cardData);
+                this.curCardIndex++;
+
+                battleCard.transform.localPosition = new Vector3 (-300, 0, 0);
+
+                this.sectorArrayCard (this.battleCardList);
+            });
         }
-
-        this.sectorArrayCard (this.battleCardList);
     }
+
+    private readonly float cardAnimationTime = 0.25f;
 
     private void sectorArrayCard (List<BattleCard> battleCards) {
         // 卡牌扇形排布
+        Debug.Log ("排序");
         int battleCardCount = battleCards.Count;
         float interval = this.fixedWidth / (battleCardCount + 1);
 
@@ -110,7 +125,7 @@ public class BattleManager {
                 // 使用计算间距
                 cardX = this.leftBound + (i + 1) * interval;
             }
-            battleCard.transform.localPosition = new Vector3 (cardX, 0, 0);
+            battleCard.transform.DOLocalMove (new Vector3 (cardX, 0, 0), this.cardAnimationTime);
 
             battleCard.transform.localEulerAngles = new Vector3 (0, 0, startIndex * this.angleValue);
             startIndex++;
