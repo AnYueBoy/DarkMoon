@@ -12,9 +12,12 @@ public class BattleCard : BaseCard, IPointerEnterHandler, IPointerExitHandler, I
 
     private float cardY;
 
+    private RectTransform parentRect;
+
     public override void init (CustomCardData cardData) {
         base.init (cardData);
         this.cardY = this.rectTransform.localPosition.y;
+        this.parentRect = this.transform.parent.GetComponent<RectTransform> ();
     }
 
     protected bool consumeCheck () {
@@ -70,10 +73,13 @@ public class BattleCard : BaseCard, IPointerEnterHandler, IPointerExitHandler, I
     }
 
     public void OnDrag (PointerEventData eventData) {
-        Vector3 worldPos = new Vector3 ();
+        Vector2 localPos = new Vector2 ();
         // 需要注意的是，eventData中的position返回的是屏幕坐标，从左边下角(0,0),需要转换到UGUI的坐标
-        RectTransformUtility.ScreenPointToWorldPointInRectangle (this.rectTransform, eventData.pressPosition, AppContext.instance.uiCamera, out worldPos);
-        this.rectTransform.position = new Vector3 (this.rectTransform.localPosition.x, worldPos.y, this.rectTransform.localPosition.z);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle (this.parentRect, eventData.position, AppContext.instance.uiCamera, out localPos);
+        if (localPos.y < 0) {
+            localPos.y = 0;
+        }
+        this.rectTransform.localPosition = new Vector3 (this.rectTransform.localPosition.x, localPos.y, this.rectTransform.localPosition.z);
     }
 
     private readonly float enterOffset = 15f;
