@@ -89,19 +89,19 @@ public class BattleManager {
             this.curCardIndex++;
         }
 
-        this.sectorArrayCard ();
+        this.sectorArrayCard (this.battleCardList);
     }
 
-    private void sectorArrayCard () {
+    private void sectorArrayCard (List<BattleCard> battleCards) {
         // 卡牌扇形排布
-        int battleCardCount = this.battleCardList.Count;
+        int battleCardCount = battleCards.Count;
         float interval = this.fixedWidth / (battleCardCount + 1);
 
         bool isDouble = battleCardCount % 2 == 0;
         int startIndex = -Mathf.FloorToInt (battleCardCount / 2);
 
         for (int i = 0; i < battleCardCount; i++) {
-            BattleCard battleCard = this.battleCardList[i];
+            BattleCard battleCard = battleCards[i];
             float cardX = 0;
             if (interval > this.cardInterval) {
                 // 使用卡牌间距
@@ -120,5 +120,12 @@ public class BattleManager {
 
             battleCard.setCardInfo ();
         }
+    }
+
+    public void removeBatteleCard (BattleCard battleCard) {
+        this.battleCardList.Remove (battleCard);
+        // TODO: 转移到弃牌堆
+
+        this.sectorArrayCard (this.battleCardList);
     }
 }

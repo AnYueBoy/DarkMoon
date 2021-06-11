@@ -5,6 +5,7 @@
  */
 
 using System.Collections.Generic;
+using UFramework.GameCommon;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -82,6 +83,7 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
     }
 
     public void OnDrag (PointerEventData eventData) {
+        this.isDrag = true;
         Vector2 localPos = new Vector2 ();
         // 需要注意的是，eventData中的position返回的是屏幕坐标，从左边下角(0,0),需要转换到UGUI的坐标
         RectTransformUtility.ScreenPointToLocalPointInRectangle (this.parentRectTransform, eventData.position, AppContext.instance.uiCamera, out localPos);
@@ -94,9 +96,29 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
         this.resetChildState ();
     }
 
+    private readonly float triggerY = 250;
+
+    private bool isDrag = false;
     public void OnEndDrag (PointerEventData eventData) {
-        this.resetParentState ();
-        this.resetChildState ();
+        this.isDrag = false;
+        if (this.rectTransform.localPosition.y < triggerY) {
+            this.resetParentState ();
+            this.resetChildState ();
+            return;
+        }
+
+        if (!this.consumeCheck ()) {
+            this.resetParentState ();
+            this.resetChildState ();
+            Debug.Log ("能量不足");
+            return;
+        }
+
+        // 达到触发值
+        this.playerTrigger ();
+        ObjectPool.instance.returnInstance (this.transform.gameObject);
+
+        AppContext.instance.battleManager.removeBatteleCard (this);
     }
 
     private readonly float scaleOffset = 1.5f;
@@ -109,6 +131,9 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
     }
 
     public void OnPointerUp (PointerEventData eventData) {
+        if (this.isDrag) {
+            return;
+        }
         this.resetParentState ();
         this.resetChildState ();
     }
