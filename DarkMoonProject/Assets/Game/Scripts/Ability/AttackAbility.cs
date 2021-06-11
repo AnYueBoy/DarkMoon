@@ -7,9 +7,9 @@
 public class AttackAbility : BaseAbility {
     public AttackAbility (int id) : base (id) { }
 
-    public override void turnBeginEffect () { }
+    public override void turnBegin (AbilityData abilityData) { }
 
-    public override void effect () { }
+    public override void playerTrigger (AbilityData abilityData) { }
 
-    public override void turnEndEffect () { }
+    public override void turnEnd (AbilityData abilityData) { }
 }

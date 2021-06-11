@@ -18,5 +18,8 @@ public class AbilityManager {
 
         NotingAbility notingAbility = new NotingAbility (3);
         this.abilityDic.Add (3, notingAbility);
+
+        PoisonAbility poisonAbility = new PoisonAbility (4);
+        this.abilityDic.Add (4, poisonAbility);
     }
 }

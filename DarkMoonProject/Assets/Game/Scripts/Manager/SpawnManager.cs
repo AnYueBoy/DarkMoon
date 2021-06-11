@@ -21,14 +21,14 @@ public class SpawnManager {
         return monster;
     }
 
-    public BaseCard createCard (Transform cardParent) {
-        GameObject cardPrefab = AppContext.instance.assetsManager.getAssetByUrlSync<GameObject> (CustomUrlString.cardItemPrefab);
+    public BattleCard createBattleCard (Transform cardParent) {
+        GameObject cardPrefab = AppContext.instance.assetsManager.getAssetByUrlSync<GameObject> (CustomUrlString.battleCardItemPrefab);
         GameObject cardNode = ObjectPool.instance.requestInstance (cardPrefab);
         cardNode.transform.SetParent (cardParent);
         cardNode.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
         cardNode.transform.localPosition = Vector3.zero;
 
-        BaseCard baseCard = cardNode.GetComponent<BaseCard> ();
-        return baseCard;
+        BattleCard battleCard = cardNode.GetComponent<BattleCard> ();
+        return battleCard;
     }
 }

@@ -14,6 +14,10 @@ public class BaseCard : MonoBehaviour {
 
     #region ui相关
 
+    protected RectTransform rectTransform;
+
+    protected RectTransform parentRectTransform;
+
     public Image iconImage = null;
 
     public Image cardColorBgImage = null;
@@ -29,9 +33,11 @@ public class BaseCard : MonoBehaviour {
 
     protected CustomCardData cardData;
 
-    public void init (CustomCardData cardData) {
+    public virtual void init (CustomCardData cardData) {
+        this.rectTransform = this.GetComponent<RectTransform> ();
+        this.parentRectTransform = this.rectTransform.parent.GetComponent<RectTransform> ();
         this.cardData = cardData;
-        this.showCardInfo();
+        this.showCardInfo ();
     }
 
     protected void showCardInfo () {

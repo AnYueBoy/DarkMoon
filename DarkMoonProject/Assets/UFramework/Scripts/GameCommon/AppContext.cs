@@ -13,6 +13,8 @@ public class AppContext : MonoBehaviour {
 
     public GameCommon gameCommon = null;
 
+    public Camera uiCamera;
+
     #region 管理类
     public AssetsManager assetsManager = new AssetsManager ();
 

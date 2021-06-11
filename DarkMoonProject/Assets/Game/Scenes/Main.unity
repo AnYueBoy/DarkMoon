@@ -291,6 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameCommon: {fileID: 2131997426}
+  uiCamera: {fileID: 832690973}
   audioManager: {fileID: 1519408317}
   uiRoot: {fileID: 1329340413}
   monsterParent: {fileID: 1180773688}
