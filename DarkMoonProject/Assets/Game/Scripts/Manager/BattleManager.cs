@@ -1,9 +1,10 @@
-using System;
 /*
  * @Author: l hy 
  * @Date: 2021-05-26 19:16:02 
  * @Description: 战斗管理
  */
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UFramework.FrameUtil;
@@ -77,7 +78,7 @@ public class BattleManager {
 
     private readonly float angleValue = -1.5f;
 
-    private readonly float spawnCardInterval = 1.5f;
+    private readonly float spawnCardInterval = 0.5f;
 
     private void spawnPlayerCards () {
         int drawCardCount = AppContext.instance.playerDataManager.playerData.drawCardCount;
@@ -85,12 +86,11 @@ public class BattleManager {
         int leftCardCount = playerCardList.Count;
         for (int i = 0;
             (i < drawCardCount && i < leftCardCount); i++) {
-            AppContext.instance.promiseTimer.waitFor (i * this.spawnCardInterval).then (() => {
+            int index = i;
+            AppContext.instance.promiseTimer.waitFor (index * this.spawnCardInterval).then (() => {
                 BattleCard battleCard = AppContext.instance.spawnManager.createBattleCard (this.cardParent);
-                Debug.Log ("count: " + this.battleCardList.Count);
                 this.battleCardList.Add (battleCard);
-                Debug.Log ("i: " + i);
-                int cardId = playerCardList[i];
+                int cardId = playerCardList[index];
 
                 CustomCardData cardData = AppContext.instance.customDataManager.cardDataDic[cardId];
 
