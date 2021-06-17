@@ -114,24 +114,41 @@ public class BattleManager {
         bool isDouble = battleCardCount % 2 == 0;
         int startIndex = -Mathf.FloorToInt (battleCardCount / 2);
 
+        List<float> posList = new List<float> ();
+
+        float realInterval = interval > this.cardInterval?this.cardInterval : interval;
+
+        if (!isDouble) {
+            for (int i = -startIndex; i <= startIndex; i++) {
+                float endPos = i * realInterval;
+                posList.Add (endPos);
+            }
+        } else {
+            for (int j = -startIndex; j <= startIndex; j++) {
+                if (j == 0) {
+                    continue;
+                }
+                int sign = 1;
+                int index = 0;
+                if (j > 0) {
+                    sign = 1;
+                    index = j - 1;
+                } else {
+                    sign = -1;
+                    index = j + 1;
+                }
+                float endPos = sign * (realInterval / 2) + index * realInterval;
+                posList.Add (endPos);
+            }
+        }
+
         for (int i = 0; i < battleCardCount; i++) {
             BattleCard battleCard = battleCards[i];
-            float cardX = 0;
-            if (interval > this.cardInterval) {
-                // 使用卡牌间距
-                cardX = startIndex * this.cardInterval;
-            } else {
-                // 使用计算间距
-                cardX = this.leftBound + (i + 1) * interval;
-            }
-            battleCard.transform.DOLocalMove (new Vector3 (cardX, 0, 0), this.cardAnimationTime);
+            float endX = posList[i];
+
+            battleCard.transform.DOLocalMove (new Vector3 (endX, 0, 0), this.cardAnimationTime);
 
             battleCard.transform.localEulerAngles = new Vector3 (0, 0, startIndex * this.angleValue);
-            startIndex++;
-            if (isDouble && startIndex == 0) {
-                startIndex++;
-            }
-
             battleCard.setCardInfo ();
         }
     }
