@@ -78,7 +78,7 @@ public class BattleManager {
 
     private readonly float angleValue = -1.5f;
 
-    private readonly float spawnCardInterval = 0.5f;
+    private readonly float spawnCardInterval = 0.25f;
 
     private void spawnPlayerCards () {
         int drawCardCount = AppContext.instance.playerDataManager.playerData.drawCardCount;
@@ -104,15 +104,35 @@ public class BattleManager {
         }
     }
 
-    private readonly float cardAnimationTime = 0.25f;
+    private readonly float cardAnimationTime = 0.2f;
 
+    // 卡牌扇形排布
     private void sectorArrayCard (List<BattleCard> battleCards) {
-        // 卡牌扇形排布
+
+        // 获取卡牌分布位置
+        List<float> cardEndPosList = this.calculateCardPos (battleCardList);
+
+        int startIndex = -Mathf.FloorToInt (battleCards.Count / 2);
+
+        for (int i = 0; i < battleCards.Count; i++) {
+            BattleCard battleCard = battleCards[i];
+            float endX = cardEndPosList[i];
+
+            battleCard.transform.DOLocalMove (new Vector3 (endX, 0, 0), this.cardAnimationTime);
+
+            battleCard.transform.localEulerAngles = new Vector3 (0, 0, startIndex * this.angleValue);
+
+            battleCard.setCardInfo ();
+            startIndex++;
+        }
+    }
+
+    private List<float> calculateCardPos (List<BattleCard> battleCards) {
         int battleCardCount = battleCards.Count;
         float interval = this.fixedWidth / (battleCardCount + 1);
 
         bool isDouble = battleCardCount % 2 == 0;
-        int startIndex = -Mathf.FloorToInt (battleCardCount / 2);
+        int startIndex = Mathf.FloorToInt (battleCardCount / 2);
 
         List<float> posList = new List<float> ();
 
@@ -142,15 +162,7 @@ public class BattleManager {
             }
         }
 
-        for (int i = 0; i < battleCardCount; i++) {
-            BattleCard battleCard = battleCards[i];
-            float endX = posList[i];
-
-            battleCard.transform.DOLocalMove (new Vector3 (endX, 0, 0), this.cardAnimationTime);
-
-            battleCard.transform.localEulerAngles = new Vector3 (0, 0, startIndex * this.angleValue);
-            battleCard.setCardInfo ();
-        }
+        return posList;
     }
 
     public void removeBatteleCard (BattleCard battleCard) {
