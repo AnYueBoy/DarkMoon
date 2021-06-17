@@ -108,7 +108,6 @@ public class BattleManager {
 
     private void sectorArrayCard (List<BattleCard> battleCards) {
         // 卡牌扇形排布
-        Debug.Log ("排序");
         int battleCardCount = battleCards.Count;
         float interval = this.fixedWidth / (battleCardCount + 1);
 
