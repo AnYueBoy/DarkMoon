@@ -22,13 +22,13 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
 
     public override void init (CustomCardData cardData) {
         base.init (cardData);
-        this.childRectTransform = this.rectTransform.GetChild (0).GetComponent<RectTransform> ();
+        this.childRectTransform = this._rectTransform.GetChild (0).GetComponent<RectTransform> ();
     }
 
-    public void setCardInfo () {
-        this.localPos = this.rectTransform.localPosition;
-        this.localEulerAngles = this.rectTransform.localEulerAngles;
-        this.localScale = this.rectTransform.localScale;
+    public void setCardInfo (Vector3 originPos, Vector3 originAngle, Vector3 originScale) {
+        this.localPos = originPos;
+        this.localEulerAngles = originAngle;
+        this.localScale = originScale;
     }
 
     protected bool consumeCheck () {
@@ -91,10 +91,10 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
         if (localPos.y < 0) {
             localPos.y = 0;
         }
-        this.rectTransform.localPosition = new Vector3 (this.rectTransform.localPosition.x, localPos.y, this.rectTransform.localPosition.z);
-        this.rectTransform.localEulerAngles = Vector3.zero;
+        this._rectTransform.localPosition = new Vector3 (this._rectTransform.localPosition.x, localPos.y, this._rectTransform.localPosition.z);
+        this._rectTransform.localEulerAngles = Vector3.zero;
 
-        this.resetChildState ();
+        this.resetChildState (this.normalAnimationTime);
     }
 
     private readonly float triggerY = 250;
@@ -102,15 +102,15 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
     private bool isDrag = false;
     public void OnEndDrag (PointerEventData eventData) {
         this.isDrag = false;
-        if (this.rectTransform.localPosition.y < triggerY) {
-            this.resetParentState ();
-            this.resetChildState ();
+        if (this._rectTransform.localPosition.y < triggerY) {
+            this.resetParentState (this.normalAnimationTime);
+            this.resetChildState (0);
             return;
         }
 
         if (!this.consumeCheck ()) {
-            this.resetParentState ();
-            this.resetChildState ();
+            this.resetParentState (this.normalAnimationTime);
+            this.resetChildState (0);
             Debug.Log ("能量不足");
             return;
         }
@@ -124,31 +124,31 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
 
     private readonly float scaleOffset = 1.5f;
 
-    private readonly float animationTime = 0.25f;
+    private readonly float normalAnimationTime = 0.25f;
     public void OnPointerDown (PointerEventData eventData) {
-        float enterOffset = this.rectTransform.rect.height * this.scaleOffset;
+        float enterOffset = this._rectTransform.rect.height * this.scaleOffset;
 
-        this.childRectTransform.DOLocalMove (new Vector3 (-this.rectTransform.position.x, enterOffset, 0), this.animationTime);
-        this.childRectTransform.DOScale (Vector3.one * scaleOffset, this.animationTime);
-        this.childRectTransform.localEulerAngles = new Vector3 (0, 0, -this.rectTransform.localEulerAngles.z);
+        this.childRectTransform.DOLocalMove (new Vector3 (-this._rectTransform.position.x, enterOffset, 0), this.normalAnimationTime);
+        this.childRectTransform.DOScale (Vector3.one * scaleOffset, this.normalAnimationTime);
+        this.childRectTransform.localEulerAngles = new Vector3 (0, 0, -this._rectTransform.localEulerAngles.z);
     }
 
     public void OnPointerUp (PointerEventData eventData) {
         if (this.isDrag) {
             return;
         }
-        this.resetParentState ();
-        this.resetChildState ();
+        this.resetChildState (this.normalAnimationTime);
     }
 
-    private void resetParentState () {
-        this.rectTransform.localEulerAngles = this.localEulerAngles;
-        this.rectTransform.localScale = this.localScale;
+    private void resetParentState (float animationTime) {
+        this._rectTransform.localEulerAngles = this.localEulerAngles;
+        this._rectTransform.DOScale (this.localScale, animationTime);
+        this._rectTransform.DOLocalMove (this.localPos, animationTime);
     }
 
-    private void resetChildState () {
+    private void resetChildState (float animationTime) {
         this.childRectTransform.localEulerAngles = Vector3.zero;
-        this.childRectTransform.DOLocalMove (Vector3.zero, this.animationTime);
-        this.childRectTransform.DOScale (Vector3.one, this.animationTime);
+        this.childRectTransform.DOLocalMove (Vector3.zero, this.normalAnimationTime);
+        this.childRectTransform.DOScale (Vector3.one, this.normalAnimationTime);
     }
 }

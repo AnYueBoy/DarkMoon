@@ -3,12 +3,9 @@
  * @Date: 2021-05-26 19:16:02 
  * @Description: 战斗管理
  */
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UFramework.FrameUtil;
-using UFramework.Promise;
 using UnityEngine;
 public class BattleManager {
 
@@ -16,7 +13,7 @@ public class BattleManager {
 
     private Monster battleMonster;
 
-    private Transform cardParent;
+    private RectTransform cardParent;
 
     private int curCardIndex = 0;
 
@@ -28,7 +25,7 @@ public class BattleManager {
         }
     }
 
-    public void battlePrepare (Monster monster, Transform cardParent) {
+    public void battlePrepare (Monster monster, RectTransform cardParent) {
         this.curTurn = TurnEnum.PLAYER;
         this.battleMonster = monster;
         this.cardParent = cardParent;
@@ -97,7 +94,7 @@ public class BattleManager {
                 battleCard.init (cardData);
                 this.curCardIndex++;
 
-                battleCard.transform.localPosition = new Vector3 (-300, 0, 0);
+                battleCard.rectTransform.localPosition = new Vector3 (-300, 0, 0);
 
                 this.sectorArrayCard (this.battleCardList);
             });
@@ -118,11 +115,14 @@ public class BattleManager {
             BattleCard battleCard = battleCards[i];
             float endX = cardEndPosList[i];
 
-            battleCard.transform.DOLocalMove (new Vector3 (endX, 0, 0), this.cardAnimationTime);
+            Vector3 endPos = new Vector3 (endX, 0, 0);
+            Vector3 endAngle = new Vector3 (0, 0, startIndex * this.angleValue);
 
-            battleCard.transform.localEulerAngles = new Vector3 (0, 0, startIndex * this.angleValue);
+            battleCard.rectTransform.DOLocalMove (endPos, this.cardAnimationTime);
 
-            battleCard.setCardInfo ();
+            battleCard.rectTransform.localEulerAngles = endAngle;
+
+            battleCard.setCardInfo (endPos, endAngle, battleCard.rectTransform.localScale);
             startIndex++;
         }
     }

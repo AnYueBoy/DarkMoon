@@ -4,11 +4,10 @@
  * @Description:  战斗界面
  */
 
-using DG.Tweening;
 using UFramework.GameCommon;
 using UnityEngine;
 public class BattleBoard : BaseUI {
-    public Transform cardParent;
+    public RectTransform cardParent;
     public override void onShow (params object[] args) {
         int monsterId = (int) args[0];
 

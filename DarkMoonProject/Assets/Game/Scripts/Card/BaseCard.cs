@@ -14,7 +14,7 @@ public class BaseCard : MonoBehaviour {
 
     #region ui相关
 
-    protected RectTransform rectTransform;
+    protected RectTransform _rectTransform;
 
     protected RectTransform parentRectTransform;
 
@@ -34,10 +34,16 @@ public class BaseCard : MonoBehaviour {
     protected CustomCardData cardData;
 
     public virtual void init (CustomCardData cardData) {
-        this.rectTransform = this.GetComponent<RectTransform> ();
-        this.parentRectTransform = this.rectTransform.parent.GetComponent<RectTransform> ();
+        this._rectTransform = this.GetComponent<RectTransform> ();
+        this.parentRectTransform = this._rectTransform.parent.GetComponent<RectTransform> ();
         this.cardData = cardData;
         this.showCardInfo ();
+    }
+
+    public RectTransform rectTransform {
+        get {
+            return this._rectTransform;
+        }
     }
 
     protected void showCardInfo () {
