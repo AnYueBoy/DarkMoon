@@ -4,6 +4,7 @@
  * @Description: 战斗管理
  */
 using System.Collections.Generic;
+using DG.Tweening;
 using UFramework.FrameUtil;
 using UnityEngine;
 public class BattleManager {
@@ -12,7 +13,7 @@ public class BattleManager {
 
     private Monster battleMonster;
 
-    private Transform cardParent;
+    private RectTransform cardParent;
 
     private int curCardIndex = 0;
 
@@ -24,7 +25,7 @@ public class BattleManager {
         }
     }
 
-    public void battlePrepare (Monster monster, Transform cardParent) {
+    public void battlePrepare (Monster monster, RectTransform cardParent) {
         this.curTurn = TurnEnum.PLAYER;
         this.battleMonster = monster;
         this.cardParent = cardParent;
@@ -74,52 +75,94 @@ public class BattleManager {
 
     private readonly float angleValue = -1.5f;
 
+    private readonly float spawnCardInterval = 0.25f;
+
     private void spawnPlayerCards () {
         int drawCardCount = AppContext.instance.playerDataManager.playerData.drawCardCount;
         List<int> playerCardList = this._battlePlayerData.cardList;
         int leftCardCount = playerCardList.Count;
         for (int i = 0;
             (i < drawCardCount && i < leftCardCount); i++) {
-            BattleCard battleCard = AppContext.instance.spawnManager.createBattleCard (this.cardParent);
-            this.battleCardList.Add (battleCard);
-            int cardId = playerCardList[i];
-            CustomCardData cardData = AppContext.instance.customDataManager.cardDataDic[cardId];
+            int index = i;
+            AppContext.instance.promiseTimer.waitFor (index * this.spawnCardInterval).then (() => {
+                BattleCard battleCard = AppContext.instance.spawnManager.createBattleCard (this.cardParent);
+                this.battleCardList.Add (battleCard);
+                int cardId = playerCardList[index];
 
-            battleCard.init (cardData);
-            this.curCardIndex++;
+                CustomCardData cardData = AppContext.instance.customDataManager.cardDataDic[cardId];
+
+                battleCard.init (cardData);
+                this.curCardIndex++;
+
+                battleCard.rectTransform.localPosition = new Vector3 (-300, 0, 0);
+
+                this.sectorArrayCard (this.battleCardList);
+            });
         }
-
-        this.sectorArrayCard (this.battleCardList);
     }
 
+    private readonly float cardAnimationTime = 0.2f;
+
+    // 卡牌扇形排布
     private void sectorArrayCard (List<BattleCard> battleCards) {
-        // 卡牌扇形排布
+
+        // 获取卡牌分布位置
+        List<float> cardEndPosList = this.calculateCardPos (battleCardList);
+
+        int startIndex = -Mathf.FloorToInt (battleCards.Count / 2);
+
+        for (int i = 0; i < battleCards.Count; i++) {
+            BattleCard battleCard = battleCards[i];
+            float endX = cardEndPosList[i];
+
+            Vector3 endPos = new Vector3 (endX, 0, 0);
+            Vector3 endAngle = new Vector3 (0, 0, startIndex * this.angleValue);
+
+            battleCard.rectTransform.DOLocalMove (endPos, this.cardAnimationTime);
+
+            battleCard.rectTransform.localEulerAngles = endAngle;
+
+            battleCard.setCardInfo (endPos, endAngle, battleCard.rectTransform.localScale);
+            startIndex++;
+        }
+    }
+
+    private List<float> calculateCardPos (List<BattleCard> battleCards) {
         int battleCardCount = battleCards.Count;
         float interval = this.fixedWidth / (battleCardCount + 1);
 
         bool isDouble = battleCardCount % 2 == 0;
-        int startIndex = -Mathf.FloorToInt (battleCardCount / 2);
+        int startIndex = Mathf.FloorToInt (battleCardCount / 2);
 
-        for (int i = 0; i < battleCardCount; i++) {
-            BattleCard battleCard = battleCards[i];
-            float cardX = 0;
-            if (interval > this.cardInterval) {
-                // 使用卡牌间距
-                cardX = startIndex * this.cardInterval;
-            } else {
-                // 使用计算间距
-                cardX = this.leftBound + (i + 1) * interval;
+        List<float> posList = new List<float> ();
+
+        float realInterval = interval > this.cardInterval?this.cardInterval : interval;
+
+        if (!isDouble) {
+            for (int i = -startIndex; i <= startIndex; i++) {
+                float endPos = i * realInterval;
+                posList.Add (endPos);
             }
-            battleCard.transform.localPosition = new Vector3 (cardX, 0, 0);
-
-            battleCard.transform.localEulerAngles = new Vector3 (0, 0, startIndex * this.angleValue);
-            startIndex++;
-            if (isDouble && startIndex == 0) {
-                startIndex++;
+        } else {
+            for (int j = -startIndex; j <= startIndex; j++) {
+                if (j == 0) {
+                    continue;
+                }
+                int sign = 1;
+                int index = 0;
+                if (j > 0) {
+                    sign = 1;
+                    index = j - 1;
+                } else {
+                    sign = -1;
+                    index = j + 1;
+                }
+                float endPos = sign * (realInterval / 2) + index * realInterval;
+                posList.Add (endPos);
             }
-
-            battleCard.setCardInfo ();
         }
+
+        return posList;
     }
 
     public void removeBatteleCard (BattleCard battleCard) {
