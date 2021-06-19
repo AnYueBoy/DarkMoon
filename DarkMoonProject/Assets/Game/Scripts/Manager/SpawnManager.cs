@@ -1,7 +1,7 @@
 /*
  * @Author: l hy 
  * @Date: 2021-05-27 10:16:38 
- * @Description: {} 
+ * @Description: 生成器 
  */
 
 using UFramework.GameCommon;
@@ -14,6 +14,8 @@ public class SpawnManager {
         GameObject monsterPrefab = AppContext.instance.assetsManager.getAssetByUrlSync<GameObject> (monsterUrl);
         GameObject monsterNode = ObjectPool.instance.requestInstance (monsterPrefab);
         monsterNode.transform.SetParent (AppContext.instance.monsterParent);
+        monsterNode.transform.localPosition = Vector3.zero;
+        monsterNode.transform.localScale = Vector3.one;
 
         Animator animator = monsterNode.GetComponent<Animator> ();
         Monster monster = new Monster ();
