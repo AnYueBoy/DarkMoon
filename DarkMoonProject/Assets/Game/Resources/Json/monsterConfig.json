@@ -5,9 +5,11 @@
             "cardList": [
                 1
             ],
-            "monsterHp": 10,
+            "monsterHp": 100,
+            "maxMonsterHp": 100,
             "actionValue": 2,
             "magicValue": 15,
+            "maxMagicValue": 30,
             "url": "Prefabs/Monster/Hypnotist"
         }
     ]
