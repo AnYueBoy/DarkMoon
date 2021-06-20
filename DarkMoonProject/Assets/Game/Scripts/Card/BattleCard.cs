@@ -91,13 +91,13 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
         if (localPos.y < 0) {
             localPos.y = 0;
         }
-        this._rectTransform.localPosition = new Vector3 (this._rectTransform.localPosition.x, localPos.y, this._rectTransform.localPosition.z);
+        this._rectTransform.localPosition = new Vector3 (localPos.x, localPos.y, this._rectTransform.localPosition.z);
         this._rectTransform.localEulerAngles = Vector3.zero;
 
         this.resetChildState (this.normalAnimationTime);
     }
 
-    private readonly float triggerY = 250;
+    private readonly float triggerY = 300;
 
     private bool isDrag = false;
     public void OnEndDrag (PointerEventData eventData) {

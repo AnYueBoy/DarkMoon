@@ -42,13 +42,13 @@ public class BattleBoard : BaseUI {
         int curMonsterHp = this.battleMonsterData.monsterHp;
         if (this.preMonsterHp != curMonsterHp) {
             this.preMonsterHp = curMonsterHp;
-            this.hpFillImage.fillAmount = curMonsterHp / this.battleMonsterData.maxMonsterHp;
+            this.hpFillImage.fillAmount = (float) curMonsterHp / this.battleMonsterData.maxMonsterHp;
         }
 
         int curMonsterMagic = this.battleMonsterData.magicValue;
         if (this.preMonsterMagic != curMonsterMagic) {
             this.preMonsterMagic = curMonsterMagic;
-            this.magicFillImage.fillAmount = curMonsterMagic / this.battleMonsterData.maxMagicValue;
+            this.magicFillImage.fillAmount = (float) curMonsterMagic / this.battleMonsterData.maxMagicValue;;
         }
 
         int curActionValue = this.battleMonsterData.actionValue;
