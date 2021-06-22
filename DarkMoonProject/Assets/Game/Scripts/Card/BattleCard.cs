@@ -20,9 +20,12 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
 
     private RectTransform childRectTransform;
 
+    public GameObject lightNode;
+
     public override void init (CustomCardData cardData) {
         base.init (cardData);
         this.childRectTransform = this._rectTransform.GetChild (0).GetComponent<RectTransform> ();
+        this.lightNode.SetActive (false);
     }
 
     public void setCardInfo (Vector3 originPos, Vector3 originAngle, Vector3 originScale) {
@@ -85,6 +88,9 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
 
     public void OnDrag (PointerEventData eventData) {
         this.isDrag = true;
+        if (!this.lightNode.activeSelf) {
+            this.lightNode.SetActive (true);
+        }
         Vector2 localPos = new Vector2 ();
         // 需要注意的是，eventData中的position返回的是屏幕坐标，从左边下角(0,0),需要转换到UGUI的坐标
         RectTransformUtility.ScreenPointToLocalPointInRectangle (this.parentRectTransform, eventData.position, AppContext.instance.uiCamera, out localPos);
@@ -102,6 +108,9 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
     private bool isDrag = false;
     public void OnEndDrag (PointerEventData eventData) {
         this.isDrag = false;
+        if (this.lightNode.activeSelf) {
+            this.lightNode.SetActive (false);
+        }
         if (this._rectTransform.localPosition.y < triggerY) {
             this.resetParentState (this.normalAnimationTime);
             this.resetChildState (0);
