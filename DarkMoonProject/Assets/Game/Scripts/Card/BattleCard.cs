@@ -20,9 +20,12 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
 
     private RectTransform childRectTransform;
 
+    public GameObject lightNode;
+
     public override void init (CustomCardData cardData) {
         base.init (cardData);
         this.childRectTransform = this._rectTransform.GetChild (0).GetComponent<RectTransform> ();
+        this.lightNode.SetActive (false);
     }
 
     public void setCardInfo (Vector3 originPos, Vector3 originAngle, Vector3 originScale) {
@@ -85,23 +88,29 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
 
     public void OnDrag (PointerEventData eventData) {
         this.isDrag = true;
+        if (!this.lightNode.activeSelf) {
+            this.lightNode.SetActive (true);
+        }
         Vector2 localPos = new Vector2 ();
         // 需要注意的是，eventData中的position返回的是屏幕坐标，从左边下角(0,0),需要转换到UGUI的坐标
         RectTransformUtility.ScreenPointToLocalPointInRectangle (this.parentRectTransform, eventData.position, AppContext.instance.uiCamera, out localPos);
         if (localPos.y < 0) {
             localPos.y = 0;
         }
-        this._rectTransform.localPosition = new Vector3 (this._rectTransform.localPosition.x, localPos.y, this._rectTransform.localPosition.z);
+        this._rectTransform.localPosition = new Vector3 (localPos.x, localPos.y, this._rectTransform.localPosition.z);
         this._rectTransform.localEulerAngles = Vector3.zero;
 
         this.resetChildState (this.normalAnimationTime);
     }
 
-    private readonly float triggerY = 250;
+    private readonly float triggerY = 300;
 
     private bool isDrag = false;
     public void OnEndDrag (PointerEventData eventData) {
         this.isDrag = false;
+        if (this.lightNode.activeSelf) {
+            this.lightNode.SetActive (false);
+        }
         if (this._rectTransform.localPosition.y < triggerY) {
             this.resetParentState (this.normalAnimationTime);
             this.resetChildState (0);

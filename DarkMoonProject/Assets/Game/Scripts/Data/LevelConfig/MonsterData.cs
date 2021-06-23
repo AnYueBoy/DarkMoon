@@ -13,9 +13,13 @@ public class MonsterData : BaseData {
 
     public int monsterHp;
 
+    public int maxMonsterHp;
+
     public int actionValue;
 
     public int magicValue;
+
+    public int maxMagicValue;
 
     public string url;
 }

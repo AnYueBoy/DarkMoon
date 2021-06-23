@@ -7,7 +7,7 @@
 using UnityEngine;
 public class Monster {
 
-    private MonsterData monsterData;
+    private MonsterData _monsterData;
 
     private Animator animator;
 
@@ -16,7 +16,7 @@ public class Monster {
     private int executeMagic;
 
     public void init (MonsterData monsterData, Animator animator) {
-        this.monsterData = monsterData.clone<MonsterData> ();
+        this._monsterData = monsterData.clone<MonsterData> ();
         this.animator = animator;
     }
 
@@ -29,7 +29,13 @@ public class Monster {
     }
 
     public void recoveryState () {
-        this.executeAction = this.monsterData.actionValue;
-        this.executeMagic = this.monsterData.magicValue;
+        this.executeAction = this._monsterData.actionValue;
+        this.executeMagic = this._monsterData.magicValue;
+    }
+
+    public MonsterData monsterData {
+        get {
+            return this._monsterData;
+        }
     }
 }
