@@ -57,4 +57,8 @@ public class BattleBoard : BaseUI {
             this.actionValue.text = curActionValue.ToString ();
         }
     }
+
+    private void refreshPlayerInfo () {
+        // TODO: 刷新玩家信息
+    }
 }
