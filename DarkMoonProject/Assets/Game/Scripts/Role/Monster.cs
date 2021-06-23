@@ -33,6 +33,17 @@ public class Monster {
         this.executeMagic = this._monsterData.magicValue;
     }
 
+    public void damage (int damage) {
+        int armor = this._monsterData.armor;
+        if (armor >= damage) {
+            this._monsterData.armor -= damage;
+            return;
+        }
+
+        this._monsterData.monsterHp -= (damage - armor);
+        this._monsterData.armor = 0;
+    }
+
     public MonsterData monsterData {
         get {
             return this._monsterData;

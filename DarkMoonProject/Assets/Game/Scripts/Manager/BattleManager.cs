@@ -9,9 +9,11 @@ using UFramework.FrameUtil;
 using UnityEngine;
 public class BattleManager {
 
-    private TurnEnum curTurn;
+    public TurnEnum curTurn;
 
-    private Monster battleMonster;
+    public Monster battleMonster;
+
+    public Player battlePlayer;
 
     private RectTransform cardParent;
 
@@ -28,6 +30,7 @@ public class BattleManager {
     public void battlePrepare (Monster monster, RectTransform cardParent) {
         this.curTurn = TurnEnum.PLAYER;
         this.battleMonster = monster;
+        this.battlePlayer = new Player ();
         this.cardParent = cardParent;
 
         this.curCardIndex = 0;

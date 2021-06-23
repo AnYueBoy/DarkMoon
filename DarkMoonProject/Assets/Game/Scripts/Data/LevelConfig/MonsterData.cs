@@ -21,5 +21,11 @@ public class MonsterData : BaseData {
 
     public int maxMagicValue;
 
+    public int armor;
+
     public string url;
+
+    public MonsterData () {
+        this.armor = 0;
+    }
 }

@@ -5,8 +5,8 @@
             "cardList": [
                 1
             ],
-            "monsterHp": 100,
-            "maxMonsterHp": 100,
+            "monsterHp": 20,
+            "maxMonsterHp": 20,
             "actionValue": 2,
             "magicValue": 15,
             "maxMagicValue": 30,
