@@ -9,7 +9,7 @@
 			"abilities": [
 				{
 					"id": 1,
-					"baseValue": 15.0,
+					"baseValue": 15,
 					"abilityName": "攻击",
 					"abilityDescribe": "攻击：对敌人造成伤害",
 					"abilityEffect": "对敌人造成X点伤害"
@@ -25,7 +25,7 @@
 			"abilities": [
 				{
 					"id": 2,
-					"baseValue": 1.0,
+					"baseValue": 1,
 					"abilityName": "防御",
 					"abilityDescribe": "防御：获得护甲",
 					"abilityEffect": "获得X点护甲"
@@ -41,7 +41,7 @@
 			"abilities": [
 				{
 					"id": 1,
-					"baseValue": 15.0,
+					"baseValue": 15,
 					"abilityName": "攻击",
 					"abilityDescribe": "攻击：对敌人造成伤害",
 					"abilityEffect": "对敌人造成X点伤害"
@@ -57,7 +57,7 @@
 			"abilities": [
 				{
 					"id": 1,
-					"baseValue": 15.0,
+					"baseValue": 15,
 					"abilityName": "攻击",
 					"abilityDescribe": "攻击：对敌人造成伤害",
 					"abilityEffect": "对敌人造成X点伤害"
@@ -73,7 +73,7 @@
 			"abilities": [
 				{
 					"id": 1,
-					"baseValue": 15.0,
+					"baseValue": 15,
 					"abilityName": "攻击",
 					"abilityDescribe": "攻击：对敌人造成伤害",
 					"abilityEffect": "对敌人造成X点伤害"
@@ -89,7 +89,7 @@
 			"abilities": [
 				{
 					"id": 1,
-					"baseValue": 15.0,
+					"baseValue": 15,
 					"abilityName": "攻击",
 					"abilityDescribe": "攻击：对敌人造成伤害",
 					"abilityEffect": "对敌人造成X点伤害"
@@ -105,7 +105,7 @@
 			"abilities": [
 				{
 					"id": 1,
-					"baseValue": 15.0,
+					"baseValue": 15,
 					"abilityName": "攻击",
 					"abilityDescribe": "攻击：对敌人造成伤害",
 					"abilityEffect": "对敌人造成X点伤害"
@@ -121,7 +121,7 @@
 			"abilities": [
 				{
 					"id": 1,
-					"baseValue": 15.0,
+					"baseValue": 15,
 					"abilityName": "攻击",
 					"abilityDescribe": "攻击：对敌人造成伤害",
 					"abilityEffect": "对敌人造成X点伤害"
@@ -137,7 +137,7 @@
 			"abilities": [
 				{
 					"id": 1,
-					"baseValue": 15.0,
+					"baseValue": 15,
 					"abilityName": "攻击",
 					"abilityDescribe": "攻击：对敌人造成伤害",
 					"abilityEffect": "对敌人造成X点伤害"
