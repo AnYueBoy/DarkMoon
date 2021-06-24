@@ -214,6 +214,6 @@ public class CardEditorBoard : BaseUI {
     }
 
     private void OnDisable () {
-        AppContext.instance.listenerManager.removeAll (EventNameEnum.REFRESH_ABILITY_ITEMS, this);
+        AppContext.instance.listenerManager.removeAll (this);
     }
 }
