@@ -36,6 +36,8 @@ public class CardEditorBoard : BaseUI {
             this.editorCardData.cardType = (CardTypeEnum) selectedIndex;
             this.editorCard.init (this.editorCardData);
         });
+
+        AppContext.instance.listenerManager.add (EventNameEnum.REFRESH_ABILITY_ITEMS, this, this.refreshAbilityData);
     }
 
     private void init () {
@@ -209,5 +211,9 @@ public class CardEditorBoard : BaseUI {
 
     public void close_Click () {
         AppContext.instance.uIManager.showBoard (UIPath.HallBoard);
+    }
+
+    private void OnDisable () {
+        AppContext.instance.listenerManager.removeAll (EventNameEnum.REFRESH_ABILITY_ITEMS, this);
     }
 }

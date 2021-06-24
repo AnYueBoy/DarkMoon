@@ -46,6 +46,7 @@ public class AbilityItemEditorDialog : BaseUI {
 	public void close () {
 		AppContext.instance.configManager.saveAbilityPoolConfig ();
 		AppContext.instance.uIManager.closeDialog (UIPath.AbilityItemEditorDialog);
+		AppContext.instance.listenerManager.trigger (EventNameEnum.REFRESH_ABILITY_ITEMS);
 	}
 
 }
