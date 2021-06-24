@@ -19,6 +19,8 @@ public class AbilityItemEditorDialog : BaseUI {
 
 	private AbilityData abilityData;
 
+	private int preBaseValue;
+
 	private void OnEnable () {
 		this.customerValue.onValueChanged.AddListener ((string changeValue) => {
 			if (String.IsNullOrEmpty (changeValue)) {

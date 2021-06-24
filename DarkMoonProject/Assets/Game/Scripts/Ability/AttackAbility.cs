@@ -13,11 +13,11 @@ public class AttackAbility : BaseAbility {
         TurnEnum curTurn = AppContext.instance.battleManager.curTurn;
         if (curTurn == TurnEnum.PLAYER) {
             // 作用于怪物
-            AppContext.instance.battleManager.battleMonster.damage ((int) abilityData.baseValue);
+            AppContext.instance.battleManager.battleMonster.damage (abilityData.baseValue);
 
         } else if (curTurn == TurnEnum.MONSTER) {
             //  作用于玩家
-            AppContext.instance.battleManager.battlePlayer.damage ((int) abilityData.baseValue);
+            AppContext.instance.battleManager.battlePlayer.damage (abilityData.baseValue);
         }
     }
 
