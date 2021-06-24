@@ -17,7 +17,7 @@ public class EditorCard : BaseCard {
             this.showCardInfo ();
         });
 
-        this.cardConsume.onValueChanged.AddListener ((String consumeValue) => {
+        this.cardConsume.onValueChanged.AddListener ((string consumeValue) => {
             if (String.IsNullOrEmpty (consumeValue)) {
                 this.cardData.consumeEnergy = 0;
             } else {
