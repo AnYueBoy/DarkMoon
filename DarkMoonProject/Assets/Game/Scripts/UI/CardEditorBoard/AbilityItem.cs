@@ -48,7 +48,7 @@ public class AbilityItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
 
     public void editorItem_Click () {
-
+        AppContext.instance.uIManager.showDialog (UIPath.AbilityItemEditorDialog, this.abilityData.id);
     }
 
     public void joinItem_Click () {

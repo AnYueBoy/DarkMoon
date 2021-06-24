@@ -3,7 +3,7 @@
  * @Date: 2020-03-07 17:13:07 
  * @Description: 界面管理器 
  * @Last Modified by: l hy
- * @Last Modified time: 2021-05-05 10:30:58
+ * @Last Modified time: 2021-06-24 10:01:30
  */
 namespace UFramework.GameCommon {
 
@@ -44,6 +44,10 @@ namespace UFramework.GameCommon {
 
         public void showDialog (string uiName, params object[] args) {
             this.showUI (uiName, null, args);
+        }
+
+        public void closeDialog (string uiName) {
+            this.hideUI (uiName);
         }
 
         private void hideUI (string uiName) {

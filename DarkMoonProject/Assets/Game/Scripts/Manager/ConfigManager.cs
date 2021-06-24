@@ -48,6 +48,14 @@ public class ConfigManager {
         });
     }
 
+    public void saveAbilityPoolConfig () {
+        AbilityPoolData abilityPoolData = new AbilityPoolData ();
+        Dictionary<int, AbilityData> abilityDataDic = AppContext.instance.customDataManager.abilityPoolDataDic;
+        foreach (AbilityData value in abilityDataDic.Values) {
+            abilityPoolData.abilities.Add (value);
+        }
+    }
+
     private Promise loadBattleLevelConfig () {
         return new Promise ((Action resolve, Action<Exception> reject) => {
             TextAsset battleLevelConfig = AppContext.instance.assetsManager.getAssetByUrlSync<TextAsset> (ConfigPath.battleLevelConfig);
