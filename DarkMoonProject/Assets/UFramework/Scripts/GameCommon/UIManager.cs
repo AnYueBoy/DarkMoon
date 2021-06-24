@@ -3,7 +3,7 @@
  * @Date: 2020-03-07 17:13:07 
  * @Description: 界面管理器 
  * @Last Modified by: l hy
- * @Last Modified time: 2021-06-24 11:14:27
+ * @Last Modified time: 2021-05-05 10:30:58
  */
 namespace UFramework.GameCommon {
 
@@ -26,12 +26,13 @@ namespace UFramework.GameCommon {
         }
 
         public void showBoard (string uiName, params object[] args) {
-            BaseUI targerUI = this.getUI (uiName);
-            if (currentBoard != null && this.currentBoard == targerUI) {
+            BaseUI targetUI = this.getUI (uiName);
+            if (currentBoard != null && this.currentBoard == targetUI) {
                 return;
             }
 
-            BaseUI targetUI = this.showUI (uiName, args);
+            targetUI = this.showUI (uiName, args);
+
             if (this.currentBoard != null) {
                 this.currentBoard.gameObject.SetActive (false);
             }
@@ -39,11 +40,12 @@ namespace UFramework.GameCommon {
             this.currentBoard = targetUI;
         }
 
-        public void hideAllDialog () {
+        public void hideAll () {
             foreach (BaseUI targerUI in this.uiDic.Values) {
-                if (targerUI != null && targerUI != this.currentBoard) {
-                    this.hideUI (targerUI.name);
+                if (targerUI == null) {
+                    continue;
                 }
+                this.hideUI (targerUI.name);
             }
         }
 
@@ -87,6 +89,7 @@ namespace UFramework.GameCommon {
             }
 
             targetUI.onShow (args);
+
             return targetUI;
         }
     }
