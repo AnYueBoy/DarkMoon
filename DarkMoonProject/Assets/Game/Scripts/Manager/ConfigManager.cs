@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 /*
  * @Author: l hy 
  * @Date: 2021-05-13 15:50:18 
@@ -54,6 +55,11 @@ public class ConfigManager {
         foreach (AbilityData value in abilityDataDic.Values) {
             abilityPoolData.abilities.Add (value);
         }
+        string abilityPoolStr = JsonMapper.ToJson (abilityPoolData);
+        string filePath = Application.dataPath + "/Game/Resources/" + ConfigPath.abilityPoolConfig + ".json";
+        StreamWriter sw = new StreamWriter (filePath);
+        sw.Write (abilityPoolStr);
+        sw.Close ();
     }
 
     private Promise loadBattleLevelConfig () {

@@ -2,28 +2,28 @@
     "abilities": [
         {
             "id": 1,
-            "baseValue": 1,
+            "baseValue": 15.0,
             "abilityName": "攻击",
             "abilityDescribe": "攻击：对敌人造成伤害",
             "abilityEffect": "对敌人造成X点伤害"
         },
         {
             "id": 2,
-            "baseValue": 1,
+            "baseValue": 1.0,
             "abilityName": "防御",
             "abilityDescribe": "防御：获得护甲",
             "abilityEffect": "获得X点护甲"
         },
         {
             "id": 3,
-            "baseValue": -1,
+            "baseValue": -1.0,
             "abilityName": "虚无",
             "abilityDescribe": "虚无：在回合结束时，移出卡组",
             "abilityEffect": "虚无"
         },
         {
             "id": 4,
-            "baseValue": 2,
+            "baseValue": 2.0,
             "abilityName": "中毒",
             "abilityDescribe": "中毒:中毒方在回合开始时，受到中毒层数的伤害，并减少一层中毒",
             "abilityEffect": "对敌人造成X点中毒"
