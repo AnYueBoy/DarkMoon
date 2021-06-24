@@ -35,6 +35,7 @@ public class AbilityItemEditorDialog : BaseUI {
 		base.onShow (args);
 		this.abilityItemId = (int) args[0];
 		this.abilityData = AppContext.instance.customDataManager.abilityPoolDataDic[this.abilityItemId];
+		this.refreshItemInfo ();
 	}
 
 	private void refreshItemInfo () {
