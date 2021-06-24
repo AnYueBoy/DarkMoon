@@ -19,6 +19,8 @@ public class AbilityItemEditorDialog : BaseUI {
 
 	private AbilityData abilityData;
 
+	private int preBaseValue;
+
 	private void OnEnable () {
 		this.customerValue.onValueChanged.AddListener ((string changeValue) => {
 			if (String.IsNullOrEmpty (changeValue)) {
@@ -42,10 +44,15 @@ public class AbilityItemEditorDialog : BaseUI {
 		// 显示能力信息
 		this.title.text = this.abilityData.abilityName;
 		this.effectDescribe.text = this.abilityData.abilityEffect.Replace ("X", this.abilityData.baseValue.ToString ());
+		this.customerValue.text = this.abilityData.baseValue.ToString ();
+		this.preBaseValue = this.abilityData.baseValue;
 	}
 
 	public void close () {
-		AppContext.instance.configManager.saveAbilityPoolConfig ();
+		if (this.preBaseValue != this.abilityData.baseValue) {
+			this.preBaseValue = this.abilityData.baseValue;
+			AppContext.instance.configManager.saveAbilityPoolConfig ();
+		}
 		AppContext.instance.uIManager.closeDialog (UIPath.AbilityItemEditorDialog);
 		AppContext.instance.listenerManager.trigger (EventNameEnum.REFRESH_ABILITY_ITEMS);
 	}
