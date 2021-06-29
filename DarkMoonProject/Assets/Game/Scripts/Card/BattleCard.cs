@@ -93,7 +93,7 @@ public class BattleCard : BaseCard, IPointerDownHandler, IPointerUpHandler, IDra
         }
         Vector2 localPos = new Vector2 ();
         // 需要注意的是，eventData中的position返回的是屏幕坐标，从左边下角(0,0),需要转换到UGUI的坐标
-        RectTransformUtility.ScreenPointToLocalPointInRectangle (this.parentRectTransform, eventData.position, AppContext.instance.uiCamera, out localPos);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle (this.parentRectTransform, eventData.position, eventData.enterEventCamera, out localPos);
         if (localPos.y < 0) {
             localPos.y = 0;
         }
